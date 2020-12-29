@@ -13,4 +13,8 @@ with open('question.txt', 'rt') as f:
     for line in text:
         ID = int(line, 2)
         IDs.append(ID)
-    print(max(IDs))
+    for i in range(min(IDs), max(IDs)):
+        try:
+            IDs.remove(i)
+        except ValueError:
+            print(i)
