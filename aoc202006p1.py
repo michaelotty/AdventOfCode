@@ -4,11 +4,11 @@ with open('question.txt', 'rt') as f:
     text = f.read()
     groups = text.split('\n\n')
 
-    total = 0
+    TOTAL = 0
 
     for string in groups:
         string = string.replace('\n', '')  # Remove whitespace
         letters = set(string)
-        total += len(letters)
-    
-    print(total)
+        TOTAL += len(letters)
+
+    print(TOTAL)
