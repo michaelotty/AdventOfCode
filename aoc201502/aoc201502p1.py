@@ -1,14 +1,33 @@
 """Advent of code Day 2 part 1"""
 
-def area_of_cuboid(length: float, width: float, height: float) -> float:
-    """Finds the surface area of a cuboid"""
-    return 2.0*length*width + 2.0*length*height + 2.0*height*width
+
+def area_of_cuboid(length, width, height):
+    """Finds the surface area of a cuboid
+
+    Also finds the size of the smallest side"""
+    side_1 = length * width
+    side_2 = length * height
+    side_3 = height * width
+    area = 2*side_1 + 2*side_2 + 2*side_3
+    smallest_side = min(side_1, side_2, side_3)
+    return (area, smallest_side)
 
 
 def main():
     """Main function"""
     with open('input.txt') as f:
-        print(f.read())
+        file_contents = f.read()
+
+    file_contents = file_contents.split()
+
+    amount_of_wrapping_paper = 0
+
+    for line in file_contents:
+        length, width, height = tuple(int(i) for i in line.split('x'))
+        area, smallest_side = area_of_cuboid(length, width, height)
+        amount_of_wrapping_paper += area + smallest_side
+
+    print(amount_of_wrapping_paper)
 
 
 if __name__ == "__main__":
