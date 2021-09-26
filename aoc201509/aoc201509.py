@@ -1,4 +1,4 @@
-"""Advent of code Day 9 part 1"""
+"""Advent of code Day 9 part 1 and 2"""
 
 import sys
 from itertools import permutations
