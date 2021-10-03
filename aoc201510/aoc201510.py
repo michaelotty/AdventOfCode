@@ -9,7 +9,11 @@ def main():
     output = file_input
     for _ in range(40):
         output = find_look_and_say_string(output)
-    print(len(output))
+    print(f'40 iterations: {len(output)}')
+
+    for _ in range(10):
+        output = find_look_and_say_string(output)
+    print(f'50 iterations: {len(output)}')
 
 
 def find_look_and_say_string(in_str: str) -> str:
