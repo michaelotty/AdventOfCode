@@ -19,12 +19,8 @@ def main():
 def match_or_missing(match: str, line: str) -> bool:
     """Returns true if the string matches or if it isn't there at all"""
     if match.split()[0] in line:
-        if match in line:
-            return True
-        else:
-            return False
-    else:
-        return True
+        return match in line
+    return True
 
 
 if __name__ == "__main__":
