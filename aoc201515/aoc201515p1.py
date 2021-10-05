@@ -14,10 +14,7 @@ def main():
 
     for line in data:
         numbers = re.findall(r'[+-]?\d', line)
-        numbers = tuple(int(i) for i in numbers)
-        props = numbers[0:-1]
-        ingredient = (props, numbers[-1])
-        ingredients.append(ingredient)
+        ingredients.append(tuple(int(i) for i in numbers))
 
     for comb in combinations_with_replacement(ingredients, 100):
         capacity = 0
@@ -26,10 +23,10 @@ def main():
         texture = 0
 
         for ingredient in comb:
-            capacity += ingredient[0][0]
-            durability += ingredient[0][1]
-            flavor += ingredient[0][2]
-            texture += ingredient[0][3]
+            capacity += ingredient[0]
+            durability += ingredient[1]
+            flavor += ingredient[2]
+            texture += ingredient[3]
 
         if capacity < 0:
             capacity = 0
