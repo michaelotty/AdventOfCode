@@ -16,7 +16,6 @@ def main():
             if sum(i) == 150:
                 comb += 1
     print(comb)
-    
 
 
 if __name__ == "__main__":
