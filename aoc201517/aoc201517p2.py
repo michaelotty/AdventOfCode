@@ -1,4 +1,4 @@
-"""Advent of code Day 17 part 1"""
+"""Advent of code Day 17 part 2"""
 
 from itertools import combinations
 
