@@ -1,24 +1,3 @@
 [submodule "aoc201501"]
 	path = aoc201501
 	url = https://github.com/michaelotty/aoc201501.git
-[submodule "aoc202001"]
-	path = aoc202001
-	url = https://github.com/michaelotty/aoc202001.git
-[submodule "aoc202002"]
-	path = aoc202002
-	url = https://github.com/michaelotty/aoc202002.git
-[submodule "aoc202003"]
-	path = aoc202003
-	url = https://github.com/michaelotty/aoc202003.git
-[submodule "aoc202004"]
-	path = aoc202004
-	url = https://github.com/michaelotty/aoc202004.git
-[submodule "aoc202005"]
-	path = aoc202005
-	url = https://github.com/michaelotty/aoc202005.git
-[submodule "aoc202006"]
-	path = aoc202006
-	url = https://github.com/michaelotty/aoc202006.git
-[submodule "aoc202007"]
-	path = aoc202007
-	url = https://github.com/michaelotty/aoc202007.git
