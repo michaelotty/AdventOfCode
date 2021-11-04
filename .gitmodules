@@ -1,0 +1,6 @@
+[submodule "aoc2020"]
+	path = aoc2020
+	url = https://github.com/michaelotty/aoc2020.git
+[submodule "aoc2015"]
+	path = aoc2015
+	url = https://github.com/michaelotty/aoc2015.git
