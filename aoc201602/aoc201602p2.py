@@ -37,7 +37,7 @@ def main():
 
         code.append(digits[position])
 
-    print(''.join(str(x) for x in code))
+    print(''.join(code))
 
 
 if __name__ == "__main__":
