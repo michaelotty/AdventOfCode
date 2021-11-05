@@ -29,23 +29,8 @@ def main():
     with open('input.txt', encoding='utf-8') as file:
         lines = file.read().splitlines()
 
-    ips_that_support_tls = []
-
-    inside_brackets = re.compile(r'\[(\w+)\]')
-    outside_brackets = re.compile(r'\w+\[|\]\w+')
-    word_only = re.compile(r'\w+')
-
-    for line in lines:
-        hypernet_sequences = inside_brackets.findall(line)
-        ip_sequences = outside_brackets.findall(line)
-        ip_sequences = [
-            word_only.search(ip_sequence).group()
-            for ip_sequence in ip_sequences]
-
-        ips_that_support_tls.append(
-            supports_tls(ip_sequences, hypernet_sequences))
-
-    print(sum(ips_that_support_tls))
+    re_expr = re.compile(r'\[(\w+)\]')
+    print(sum(supports_tls(x[::2], x[1::2]) for x in (re_expr.split(line) for line in lines)))
 
 
 if __name__ == "__main__":
