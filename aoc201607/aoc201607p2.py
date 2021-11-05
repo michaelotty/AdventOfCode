@@ -15,16 +15,18 @@ def has_abba(test_string: str) -> bool:
     return False
 
 
-def has_aba(test_string: str) -> tuple[bool, tuple]:
+def has_aba(test_string: str) -> list[tuple[str, str]]:
     """An ABA is any three-character sequence which
     consists of the same character twice with a
     different character between them, such as xyx
     or aba."""
+    chars = []
     num_of_substr = len(test_string) - 2
+
     for i in range(num_of_substr):
         if (test_string[i] != test_string[i+1]) and (test_string[i] == test_string[i+2]):
-            return (True, test_string[i], test_string[i+1])
-    return (False, '', '')
+            chars.append((test_string[i], test_string[i+1]))
+    return chars
 
 
 def has_bab(test_string: str, bab_chars: tuple[str, str]) -> bool:
@@ -49,9 +51,9 @@ def supports_ssl(supernets: list[str], hypernets: list[str]) -> bool:
     (outside any square bracketed sections), and a
     corresponding Byte Allocation Block, or BAB,
     anywhere in the hypernet sequences."""
-    for supernet_has_aba, first_ch, second_ch in map(has_aba, supernets):
-        if supernet_has_aba:
-            if any(has_bab(x, (first_ch, second_ch)) for x in hypernets):
+    for aba_list in map(has_aba, supernets):
+        for aba_item in aba_list:
+            if any(has_bab(x, aba_item) for x in hypernets):
                 return True
     return False
 
@@ -83,7 +85,6 @@ def main():
 
     print(sum(ips_that_support_ssl))
 
-#178 too low
 
 if __name__ == "__main__":
     main()
