@@ -3,18 +3,6 @@
 import re
 
 
-def has_abba(test_string: str) -> bool:
-    """An ABBA is any four-character sequence which consists
-    of a pair of two DIFFERENT characters followed by the
-    reverse of that pair, such as xyyx or abba.
-    Not aaaa or tttt."""
-    num_of_substr = len(test_string) - 3
-    for i in range(num_of_substr):
-        if (test_string[i] != test_string[i+1]) and (test_string[i:i+2] == test_string[i+3:i+1:-1]):
-            return True
-    return False
-
-
 def has_aba(test_string: str) -> list[tuple[str, str]]:
     """An ABA is any three-character sequence which
     consists of the same character twice with a
@@ -36,15 +24,6 @@ def has_bab(test_string: str, bab_chars: tuple[str, str]) -> bool:
     return bool(re.search(f'{bab_chars[1]}{bab_chars[0]}{bab_chars[1]}', test_string))
 
 
-def supports_tls(supernets: list[str], hypernets: list[str]) -> bool:
-    """An IP supports TLS if it has an Autonomous Bridge
-    Bypass Annotation, or ABBA.
-    However, the IP also must not have an ABBA within any
-    hypernet sequences, which are contained by square
-    brackets."""
-    return any(map(has_abba, supernets)) and not any(map(has_abba, hypernets))
-
-
 def supports_ssl(supernets: list[str], hypernets: list[str]) -> bool:
     """An IP supports SSL if it has an Area-Broadcast
     Accessor, or ABA, anywhere in the supernet sequences
@@ -63,27 +42,9 @@ def main():
     with open('input.txt', encoding='utf-8') as file:
         lines = file.read().splitlines()
 
-    ips_that_support_tls = []
-    ips_that_support_ssl = []
-
-    inside_brackets = re.compile(r'\[(\w+)\]')
-    outside_brackets = re.compile(r'\w+\[|\]\w+')
-    word_only = re.compile(r'\w+')
-
-    for line in lines:
-        hypernet_sequences = inside_brackets.findall(line)
-        ip_sequences = outside_brackets.findall(line)
-        ip_sequences = [
-            word_only.search(ip_sequence).group()
-            for ip_sequence in ip_sequences]
-
-        ips_that_support_tls.append(
-            supports_tls(ip_sequences, hypernet_sequences))
-
-        ips_that_support_ssl.append(
-            supports_ssl(ip_sequences, hypernet_sequences))
-
-    print(sum(ips_that_support_ssl))
+    re_expr = re.compile(r'\W+')
+    print(sum(supports_ssl(x[::2], x[1::2])
+          for x in (re_expr.split(line) for line in lines)))
 
 
 if __name__ == "__main__":

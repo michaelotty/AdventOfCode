@@ -29,8 +29,9 @@ def main():
     with open('input.txt', encoding='utf-8') as file:
         lines = file.read().splitlines()
 
-    re_expr = re.compile(r'\[(\w+)\]')
-    print(sum(supports_tls(x[::2], x[1::2]) for x in (re_expr.split(line) for line in lines)))
+    re_expr = re.compile(r'\W+')
+    print(sum(supports_tls(x[::2], x[1::2])
+          for x in (re_expr.split(line) for line in lines)))
 
 
 if __name__ == "__main__":
