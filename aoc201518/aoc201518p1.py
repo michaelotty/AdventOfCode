@@ -1,17 +1,17 @@
 """Advent of code Day 18 part 1"""
 
+import copy
+
 
 def main():
     """Main function"""
-    with open('test.txt') as file:
+    with open('input.txt', encoding='utf-8') as file:
         lines = file.read().split()
 
     gol = GameOfLife(lines)
 
-    for _ in range(3):
-        print(gol)
-        print()
-        gol.update()
+    for _ in range(100):
+        next(gol)
 
     print(gol.num_of_lights_on)
 
@@ -27,44 +27,33 @@ class GameOfLife:
             self.height)] for j in range(self.width)]
 
     def __str__(self) -> str:
-        return '\n'.join(''.join('#' if item else '.' for item in line) for line in self.grid)
+        return '\n'.join(''.join('#' if item else '.' for item in line)
+                         for line in self.grid) + '\n'
 
     @property
     def num_of_lights_on(self) -> int:
         """Gets the total number of lights switched on"""
         return sum([sum(line) for line in self.grid])
 
-    def update(self) -> None:
+    def __next__(self) -> None:
         """Update the game of life"""
-        new_grid = self.grid.copy()
+        new_grid = copy.deepcopy(self.grid)
 
-        height = len(self.grid)
-        width = len(self.grid[0])
-
-        # Corners
-        top_left = sum((self.grid[0][1], self.grid[1][0], self.grid[1][1]))
-        top_right = sum((self.grid[width-2][0], self.grid[width-2][1], self.grid[width-1][1]))
-        bottom_left = sum((self.grid[0][height-2], self.grid[1][height-2], self.grid[1][height-1]))
-        bottom_right = sum((self.grid[width-2][height-2], self.grid[width-1][height-2], self.grid[width-2][height-1]))
-
-        new_grid[0][0] = True if top_left == 2 else 
-        new_grid[width-1][0] = sum((self.grid[width-2][0], self.grid[width-2][1], self.grid[width-1][1]))
-        new_grid[0][height-1] = sum((self.grid[0][height-2], self.grid[1][height-2], self.grid[1][height-1]))
-        new_grid[width-1][height-1] = sum((self.grid[width-2][height-2], self.grid[width-1][height-2], self.grid[width-2][height-1]))
-
-        # Edges
-        # for i
-
-        for i in range(1, height - 1):
-            for j in range(1, width - 1):
-                neighbours = (self.grid[i-1][j-1], self.grid[i-1][j], self.grid[i-1][j+1],
-                              self.grid[i][j-1], self.grid[i][j+1],
-                              self.grid[i+1][j-1], self.grid[i+1][j], self.grid[i+1][j+1])
-                total = sum(neighbours)
-                if total == 3:
-                    new_grid[i][j] = True
-                elif total != 2:
-                    new_grid[i][j] = False
+        for i in range(self.height):
+            for j in range(self.width):
+                neighbour_sum = 0
+                for x in range(i-1, i+2):
+                    if not 0 <= x < self.height:
+                        continue
+                    for y in range(j-1, j+2):
+                        if not 0 <= y < self.width:
+                            continue
+                        if x == i and y == j:
+                            continue
+                        if self.grid[x][y]:
+                            neighbour_sum += 1
+                new_grid[i][j] = self._process_cell(
+                    self.grid[i][j], neighbour_sum)
 
         self.grid = new_grid.copy()
 
@@ -73,6 +62,13 @@ class GameOfLife:
         if self._text_file_contents[j][i] == '#':
             return True
         return False
+
+    @staticmethod
+    def _process_cell(prev_value: bool, sum_of_neighbors: int) -> bool:
+        """Processes the cells next value"""
+        if prev_value:
+            return sum_of_neighbors in (2, 3)
+        return sum_of_neighbors == 3
 
 
 if __name__ == "__main__":
