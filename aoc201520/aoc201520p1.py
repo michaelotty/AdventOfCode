@@ -1,55 +1,42 @@
-"""Advent of code Day 20 part 1"""
-
-from collections import Counter
-from functools import reduce
-from math import sqrt
-from operator import mul
+"""Advent of code Day 20 part 1 and 2"""
 
 
-def factors(n: int) -> int:
-    j = 2
-    while n > 1:
-        for i in range(j, int(sqrt(n+0.05)) + 1):
-            if n % i == 0:
-                n //= i
-                j = i
-                yield i
-                break
-        else:
-            if n > 1:
-                yield n
-                break
-
-
-def presents_at_house(house_number: int) -> int:
-    """Works out the number of presents delivered to a house"""
-    presents = 0
-    for elf_id in range(1, house_number + 1):
-        if not (house_number % elf_id):
-            presents += elf_id
-    return presents * 10
+def find_lowest_house(houses: list[int], value: int) -> tuple[int, int]:
+    for house_num, presents in enumerate(houses):
+        if presents >= value:
+            return house_num, presents
 
 
 def main():
     """Main function"""
     with open('input.txt', encoding='utf-8') as file:
         puzzle_input = int(file.read())
-    # facts = tuple(int(i) for i in factors(puzzle_input//10))
-    facts = tuple(factors(puzzle_input//10))
-    reduced_facts = tuple(a**b for a, b in Counter(facts).most_common())
-    print(facts)
-    print(reduced_facts)
-    print(reduce(mul, facts))
-    # for i in range(500000, puzzle_input//10):
-    #     x = presents_at_house(i)
-    #     if x >= puzzle_input:
-    #         presents = (i, x)
-    #         break
-    #     if not (i % 1000):
-    #         print(f'{i}: {x}')
-    # print(presents)
 
-# 900480 too high
+    # Part 1
+    print('Allocating...')
+    houses = [0 for _ in range(puzzle_input//10)]
+    print('Populating...')
+    for i in range(1, puzzle_input//10):
+        for j in range(i, puzzle_input//10, i):
+            houses[j] += i * 10
+    print('Finding...')
+    house_num, presents = find_lowest_house(houses, puzzle_input)
+    print(f'{house_num}: {presents}')
+    print('Done\n\n')
+
+    # Part 2
+    print('Allocating...')
+    houses = [0 for _ in range(puzzle_input//10)]
+    print('Populating...')
+    for i in range(1, puzzle_input//10):
+        for j in range(i, i*50+1, i):
+            if j >= puzzle_input//10:
+                break
+            houses[j] += i * 11
+    print('Finding...')
+    house_num, presents = find_lowest_house(houses, puzzle_input)
+    print(f'{house_num}: {presents}')
+    print('Done')
 
 
 if __name__ == "__main__":
