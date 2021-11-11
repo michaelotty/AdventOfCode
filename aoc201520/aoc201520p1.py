@@ -3,10 +3,9 @@
 
 def main():
     """Main function"""
-    with open('input.txt') as file:
-        file_contents = file.read()
-
-    print(file_contents)
+    with open('input.txt', encoding='utf-8') as file:
+        puzzle_input = int(file.read())
+    print(puzzle_input)
 
 
 if __name__ == "__main__":
