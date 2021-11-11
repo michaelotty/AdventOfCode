@@ -2,9 +2,12 @@
 
 
 def find_lowest_house(houses: list[int], value: int) -> tuple[int, int]:
+    """Finds the house id and amount of presents for the first house that contains
+    the presents that exceeds the value"""
     for house_num, presents in enumerate(houses):
         if presents >= value:
             return house_num, presents
+    raise ValueError(f'Could not find lowest house for {value} in list given')
 
 
 def main():
