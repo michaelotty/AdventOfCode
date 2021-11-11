@@ -88,7 +88,6 @@ def main():
         enemy_file = {name.lower().replace(' ', '_'): int(value)
                       for name, value in re.findall(r'(.*): (\d+)', file.read())}
 
-
     for weapon, armor in product(shop['weapons'], shop['armor']):
         for i in range(3):
             for rings in combinations(shop['rings'], i):
@@ -98,11 +97,14 @@ def main():
                 for item in items:
                     player.add_item(item)
                 if does_player_win(player, enemy):
-                    winning_combos.append((player.money_spent, player.inventory))
+                    winning_combos.append(
+                        (player.money_spent, player.inventory))
                 else:
-                    losing_combos.append((player.money_spent, player.inventory))
+                    losing_combos.append(
+                        (player.money_spent, player.inventory))
     print(sorted(winning_combos, key=itemgetter(0))[0][0])
     print(sorted(losing_combos, key=itemgetter(0))[-1][0])
+
 
 if __name__ == "__main__":
     main()
