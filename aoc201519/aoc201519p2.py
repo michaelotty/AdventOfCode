@@ -3,17 +3,13 @@
 import re
 from multiprocessing import Process
 
-distinct_molecules = set()
-
-def processing(replacements: list[tuple[str, str]], formula: str):
-    global distinct_molecules
+def processing(replacements: list[tuple[str, str]], formula: str, list_of_formula: list):
     for replace_from, replace_to in replacements:
         for i in range(len(formula)):
             left_formula, right_formula = formula[:i], formula[i:]
             molecule = left_formula + \
                 right_formula.replace(replace_to, replace_from, 1)
-            distinct_molecules.add(molecule)
-    # distinct_molecules.remove(formula)
+            list_of_formula.append(molecule)
 
 
 def main():
@@ -25,12 +21,12 @@ def main():
     replacements = replacements.split('\n')
     replacements = [tuple(re.split(r' => ', line)) for line in replacements]
 
-    global distinct_molecules
-    distinct_molecules.add(original_formula)
+    distinct_molecules = []
+    distinct_molecules.append(original_formula)
     level = 0
 
     while 'e' not in distinct_molecules:
-        processes = [Process(target=processing, args=(replacements, formula)) for formula in tuple(distinct_molecules)]
+        processes = [Process(target=processing, args=(replacements, formula, distinct_molecules)) for formula in tuple(distinct_molecules)]
         for process in processes:
             process.start()
         for process in processes:
