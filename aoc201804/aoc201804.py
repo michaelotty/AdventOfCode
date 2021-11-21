@@ -1,20 +1,99 @@
 """Advent of code Day 4 part 1 and 2"""
 
+from __future__ import annotations
+
 import re
-from datetime import datetime
+from datetime import datetime, time, timedelta
 from operator import itemgetter
+
+
+class Guard:
+    """A guard who has a record of shifts"""
+
+    def __init__(self, guard_id: int) -> None:
+        """Creates a Guard"""
+        self.id: int = guard_id
+        self.shift_record: list[Shift] = []
+
+    def __repr__(self) -> str:
+        return 'Guard(' + str(self.id) + ')'
+
+    def __gt__(self, other):
+        return self.calculate_minutes_asleep() > other.calculate_minutes_asleep()
+
+    def add_shift(self, shift: Shift) -> None:
+        """Adds a shift to the shift record"""
+        self.shift_record.append(shift)
+
+    def calculate_minutes_asleep(self) -> int:
+        return sum(shift.get_minutes_asleep() for shift in self.shift_record)
+
+
+class Shift:
+    """A work shift"""
+
+    def __init__(self, lines: list[tuple[datetime, str]]) -> None:
+        """Creates the Shift object"""
+        # If empty list, they were awake the whole time
+        if not lines:
+            self.time_awake = timedelta(minutes=60)
+            self.time_asleep = timedelta(minutes=0)
+            return
+
+        self.time_awake = timedelta()
+        self.time_asleep = timedelta()
+        last_time = datetime.combine(lines[0][0].date(), time(0))
+
+        is_awake = True
+
+        for line in lines:
+            current_time = line[0]
+
+            if is_awake:
+                self.time_awake += current_time - last_time
+                is_awake = False
+            else:
+                self.time_asleep += current_time - last_time
+                is_awake = True
+            last_time = current_time
+
+    def __repr__(self) -> str:
+        return 'Shift(' + str(self.time_awake) + ')'
+
+    def get_minutes_asleep(self) -> int:
+        return self.time_asleep.seconds // 60
 
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
+    with open('test.txt', encoding='utf-8') as file:
         lines = [(datetime.fromisoformat(date_time), desc)
-                 for date_time, desc in re.findall(r'\[(.+)\] (.+)\n', file.read())]
+                 for date_time, desc in re.findall(r'\[(.+)\] (.+)',
+                                                   file.read())]
 
-    lines = sorted(lines, key=itemgetter(0))
+    lines: list[tuple[datetime, str]] = sorted(lines, key=itemgetter(0))
 
-    for line in lines:
-        print(f'{line[0].isoformat()} {line[1]}')
+    guard_ids = [int(x) for x in re.findall(r'#(\d+)', ''.join(str(lines)))]
+    guards: dict[Guard] = {}
+
+    for guard_id in sorted(set(guard_ids)):
+        guards[guard_id] = Guard(guard_id)
+
+    shift_starts = [i for i, line in enumerate(
+        lines) if line[1].startswith('Guard')]
+
+    for i, shift_start in enumerate(shift_starts):
+        guard_id = int(lines[shift_start][1].split()[1][1:])
+
+        if shift_start == shift_starts[-1]:
+            guards[guard_id].add_shift(Shift(lines[shift_start+1:]))
+        else:
+            guards[guard_id].add_shift(
+                Shift(lines[shift_start+1:shift_starts[i+1]]))
+
+    most_sleepy_guard = max(guards.values())
+
+    print(most_sleepy_guard)
 
 
 if __name__ == "__main__":
