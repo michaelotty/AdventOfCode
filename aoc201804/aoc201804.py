@@ -21,6 +21,16 @@ class Guard:
     def __gt__(self, other):
         return self.calculate_minutes_asleep() > other.calculate_minutes_asleep()
 
+    @property
+    def most_sleepy_minute(self) -> int:
+        """Returns most sleepy time"""
+        awake_time = [0 for _ in range(60)]
+        all_shift_records = [shift for shift in self.shift_record]
+        for i in range(60):
+            for shift in all_shift_records:
+                awake_time[i] += shift.awake_schedule[i]
+        return min(enumerate(awake_time), key=itemgetter(1))[0]
+
     def add_shift(self, shift: Shift) -> None:
         """Adds a shift to the shift record"""
         self.shift_record.append(shift)
@@ -46,6 +56,8 @@ class Shift:
 
         is_awake = True
 
+        self.awake_schedule = [1 for _ in range(60)]
+
         for line in lines:
             current_time = line[0]
 
@@ -54,6 +66,8 @@ class Shift:
                 is_awake = False
             else:
                 self.time_asleep += current_time - last_time
+                for i in range(last_time.minute, current_time.minute):
+                    self.awake_schedule[i] -= 1
                 is_awake = True
             last_time = current_time
 
@@ -66,7 +80,7 @@ class Shift:
 
 def main():
     """Main function"""
-    with open('test.txt', encoding='utf-8') as file:
+    with open('input.txt', encoding='utf-8') as file:
         lines = [(datetime.fromisoformat(date_time), desc)
                  for date_time, desc in re.findall(r'\[(.+)\] (.+)',
                                                    file.read())]
@@ -94,6 +108,7 @@ def main():
     most_sleepy_guard = max(guards.values())
 
     print(most_sleepy_guard)
+    print(most_sleepy_guard.most_sleepy_minute * most_sleepy_guard.id)
 
 
 if __name__ == "__main__":
