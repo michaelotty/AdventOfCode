@@ -22,20 +22,31 @@ class Guard:
         return self.calculate_minutes_asleep() > other.calculate_minutes_asleep()
 
     @property
+    def awake_time(self) -> list[int]:
+        """A list with count of times awake"""
+        awake_time = [0 for _ in range(60)]
+        for i in range(60):
+            for shift in self.shift_record:
+                awake_time[i] += shift.awake_schedule[i]
+        return awake_time
+
+    @property
+    def asleep_time(self) -> list[int]:
+        """A list with count of times asleep"""
+        awake_time = self.awake_time
+        return [len(self.shift_record) - awake_time[i] for i in range(60)]
+
+    @property
     def most_sleepy_minute(self) -> int:
         """Returns most sleepy time"""
-        awake_time = [0 for _ in range(60)]
-        all_shift_records = [shift for shift in self.shift_record]
-        for i in range(60):
-            for shift in all_shift_records:
-                awake_time[i] += shift.awake_schedule[i]
-        return min(enumerate(awake_time), key=itemgetter(1))[0]
+        return min(enumerate(self.awake_time), key=itemgetter(1))[0]
 
     def add_shift(self, shift: Shift) -> None:
         """Adds a shift to the shift record"""
         self.shift_record.append(shift)
 
     def calculate_minutes_asleep(self) -> int:
+        """Calculate the total minutes asleep"""
         return sum(shift.get_minutes_asleep() for shift in self.shift_record)
 
 
@@ -48,15 +59,16 @@ class Shift:
         if not lines:
             self.time_awake = timedelta(minutes=60)
             self.time_asleep = timedelta(minutes=0)
+            self.awake_schedule = [1 for _ in range(60)]
             return
 
         self.time_awake = timedelta()
         self.time_asleep = timedelta()
+        self.awake_schedule = [1 for _ in range(60)]
+
         last_time = datetime.combine(lines[0][0].date(), time(0))
 
         is_awake = True
-
-        self.awake_schedule = [1 for _ in range(60)]
 
         for line in lines:
             current_time = line[0]
@@ -75,6 +87,7 @@ class Shift:
         return 'Shift(' + str(self.time_awake) + ')'
 
     def get_minutes_asleep(self) -> int:
+        """Gets the total minutes asleep on the shift"""
         return self.time_asleep.seconds // 60
 
 
@@ -107,8 +120,15 @@ def main():
 
     most_sleepy_guard = max(guards.values())
 
-    print(most_sleepy_guard)
+    print('Part 1')
     print(most_sleepy_guard.most_sleepy_minute * most_sleepy_guard.id)
+
+    guard_id, time_asleep = max(
+        ((key, max(item.asleep_time)) for key, item in guards.items()),
+        key=itemgetter(1))
+
+    print('\nPart 2')
+    print(guard_id * guards[guard_id].asleep_time.index(time_asleep))
 
 
 if __name__ == "__main__":
