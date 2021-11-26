@@ -26,14 +26,14 @@ def move_position(position: tuple[int, int], direction: str) -> tuple[int, int]:
     """Return a new position, one step in the direction"""
     if direction == 'U':
         return position[0], position[1] + 1
-    elif direction == 'R':
+    if direction == 'R':
         return position[0] + 1, position[1]
-    elif direction == 'D':
+    if direction == 'D':
         return position[0], position[1] - 1
-    elif direction == 'L':
+    if direction == 'L':
         return position[0] - 1, position[1]
-    else:
-        raise ValueError(f'Unknown direction: {direction}')
+
+    raise ValueError(f'Unknown direction: {direction}')
 
 
 def distance_to_closest_intersection(intersections: set[tuple[int, int]]) -> int:
