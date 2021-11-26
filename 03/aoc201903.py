@@ -1,10 +1,13 @@
 """Advent of code Day 3 part 1 and 2"""
 
+import timeit
 
-def find_visited_locations(wire: tuple[str]) -> set[tuple[int, int]]:
+def find_visited_locations(wire: tuple[str]) -> tuple[set[tuple[int, int]], dict]:
     """Create set of visited locations"""
     position = (0, 0)
     visited_locations = set()
+    step_record = {}
+    step = 1
 
     for branch in wire:
         direction, *amount = branch
@@ -12,14 +15,16 @@ def find_visited_locations(wire: tuple[str]) -> set[tuple[int, int]]:
         for _ in range(amount):
             position = move_position(position, direction)
             visited_locations.add(position)
+            step_record[step] = position
+            step += 1
 
-    return visited_locations
+    return visited_locations, step_record
 
 
-def find_intersections(wires: tuple[tuple[str]]) -> set[tuple[int, int]]:
+def find_intersections(wires: tuple[tuple[str]]) -> tuple[set[tuple[int, int]], tuple[dict, dict]]:
     """Find all coords of all intersections of the wires"""
     wire_visits = [find_visited_locations(wire) for wire in wires]
-    return wire_visits[0] & wire_visits[1]
+    return (wire_visits[0][0] & wire_visits[1][0], (wire_visits[0][1], wire_visits[1][1]))
 
 
 def move_position(position: tuple[int, int], direction: str) -> tuple[int, int]:
@@ -36,18 +41,40 @@ def move_position(position: tuple[int, int], direction: str) -> tuple[int, int]:
     raise ValueError(f'Unknown direction: {direction}')
 
 
-def distance_to_closest_intersection(intersections: set[tuple[int, int]]) -> int:
+def distance_to_closest_intersection(intersections: set[tuple[int, int]],
+                                     method: str,
+                                     step_records: tuple[dict, dict] = None) -> int:
     """Find the closest intersection"""
+    distance_funcs = {'manhattan': manhattan_distance,
+                      'path': path_distance}
+    try:
+        distance_func = distance_funcs[method]
+    except KeyError:
+        raise ValueError(
+            f"Method not defined: '{method}'.\nChoose one of {distance_funcs.keys()}") from KeyError
+
+    if distance_func is path_distance and step_records is None:
+        raise ValueError(f"step_records must be defined if method={method}")
+
     intersections = list(intersections)
-    intersection_distances = (manhattan_distance(
-        intersection) for intersection in intersections)
-    distance = min(intersection_distances)
-    return distance
+    intersection_distances = (distance_func(intersection, step_records)
+                              for intersection in intersections)
+    return min(intersection_distances)
 
 
-def manhattan_distance(coordinate: tuple[int, int]) -> int:
+def manhattan_distance(coordinate: tuple[int, int], *_) -> int:
     """Calculates the manhattan distance to a coordinate"""
     return sum(abs(dimension) for dimension in coordinate)
+
+
+def path_distance(coordinate: tuple[int, int], step_records: tuple[dict, dict]) -> int:
+    """Calculates the path distance to a coordinate"""
+    distance = 0
+    for step_record in step_records:
+        for key, val in step_record.items():
+            if val == coordinate:
+                distance += key
+    return distance
 
 
 def main():
@@ -55,8 +82,19 @@ def main():
     with open('input.txt', encoding='utf-8') as file:
         wires = tuple(tuple(i.split(',')) for i in file.read().split())
 
-    intersections = find_intersections(wires)
-    print(f'Part 1: {distance_to_closest_intersection(intersections)}')
+    timeit.timeit()
+
+    intersections, step_records = find_intersections(wires)
+    part_1 = distance_to_closest_intersection(intersections, "manhattan")
+
+    start = timeit.default_timer()
+    part_2 = distance_to_closest_intersection(
+        intersections, "path", step_records=step_records)
+    stop = timeit.default_timer()
+
+    print(f'Part 1: {part_1}')
+    print(f'Part 2: {part_2}')
+    print(stop - start)
 
 
 if __name__ == "__main__":
