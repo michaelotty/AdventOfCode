@@ -1,6 +1,5 @@
 """Advent of code Day 3 part 1 and 2"""
 
-import timeit
 
 def find_visited_locations(wire: tuple[str]) -> tuple[set[tuple[int, int]], dict]:
     """Create set of visited locations"""
@@ -69,12 +68,9 @@ def manhattan_distance(coordinate: tuple[int, int], *_) -> int:
 
 def path_distance(coordinate: tuple[int, int], step_records: tuple[dict, dict]) -> int:
     """Calculates the path distance to a coordinate"""
-    distance = 0
-    for step_record in step_records:
-        for key, val in step_record.items():
-            if val == coordinate:
-                distance += key
-    return distance
+    return sum(step_count for step_record in step_records
+               for step_count, coord in step_record.items()
+               if coord == coordinate)
 
 
 def main():
@@ -82,19 +78,12 @@ def main():
     with open('input.txt', encoding='utf-8') as file:
         wires = tuple(tuple(i.split(',')) for i in file.read().split())
 
-    timeit.timeit()
-
     intersections, step_records = find_intersections(wires)
     part_1 = distance_to_closest_intersection(intersections, "manhattan")
-
-    start = timeit.default_timer()
     part_2 = distance_to_closest_intersection(
         intersections, "path", step_records=step_records)
-    stop = timeit.default_timer()
-
     print(f'Part 1: {part_1}')
     print(f'Part 2: {part_2}')
-    print(stop - start)
 
 
 if __name__ == "__main__":
