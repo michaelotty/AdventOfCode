@@ -1,20 +1,30 @@
 """Advent of code Day 4 part 1 and 2"""
 
+import string
 
-def valid_password(password: int) -> bool:
-    """Returns true if password is valid"""
+
+def valid_password(password: int, is_part_2: bool) -> bool:
+    """Returns true if password is valid according to part 1 rules"""
     password = str(password)
-    return contains_pair(password) and ascending_numbers(password)
+    return contains_pair(password, is_part_2) and ascending_numbers(password)
 
 
-def contains_pair(password: str) -> bool:
+def contains_pair(password: str, exclusive: bool = False) -> bool:
     """Returns true if password contains a pair"""
+    if exclusive:
+        for digit in string.digits:
+            if ((digit + digit) in password and
+                    (digit + digit + digit) not in password):
+                return True
+        return False
+
     for i, digit in enumerate(password):
         if i == len(password) - 1:
             return False
 
         if digit == password[i+1]:
             return True
+    raise RuntimeError('How did we get here?')
 
 
 def ascending_numbers(password: str) -> bool:
@@ -33,10 +43,10 @@ def main():
     with open('input.txt', encoding='utf-8') as file:
         password_range = tuple(int(i) for i in file.read().split('-'))
 
-    valid_passwords = [password for password in range(
-        password_range[0], password_range[1]) if valid_password(password)]
-
-    print(len(valid_passwords))
+    print('Part 1: ' + str(sum(1 for _ in (password for password in range(
+        password_range[0], password_range[1]) if valid_password(password, False)))))
+    print('Part 2: ' + str(sum(1 for _ in (password for password in range(
+        password_range[0], password_range[1]) if valid_password(password, True)))))
 
 
 if __name__ == "__main__":
