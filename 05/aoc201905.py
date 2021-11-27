@@ -10,6 +10,10 @@ class Opcode(IntEnum):
     MULTIPLY = 2
     INPUT = 3
     OUTPUT = 4
+    JMP_IF_TRUE = 5
+    JMP_IF_FALSE = 6
+    LESS_THAN = 7
+    EQUALS = 8
     END = 99
 
 
@@ -56,9 +60,6 @@ def solve_puzzle(file_input: tuple[int], input_val: int) -> int:
             numbers[numbers[address]] = values[0] * values[1]
             address += 1
 
-        elif opcode == Opcode.END:
-            return return_val
-
         elif opcode == Opcode.INPUT:
             if parameter_modes[0] == ParameterMode.POSITION:
                 numbers[numbers[address]] = input_val
@@ -68,13 +69,67 @@ def solve_puzzle(file_input: tuple[int], input_val: int) -> int:
 
         elif opcode == Opcode.OUTPUT:
             if parameter_modes[0] == ParameterMode.POSITION:
-                value = numbers[numbers[address]]
+                return_val = numbers[numbers[address]]
             elif parameter_modes[0] == ParameterMode.IMMEDIATE:
-                value = numbers[address]
-
-            if value != 0:
-                return_val = value
+                return_val = numbers[address]
             address += 1
+
+        elif opcode == Opcode.JMP_IF_TRUE:
+            if parameter_modes[0] == ParameterMode.POSITION:
+                value = bool(numbers[numbers[address]])
+            elif parameter_modes[0] == ParameterMode.IMMEDIATE:
+                value = bool(numbers[address])
+            address += 1
+
+            if value:
+                if parameter_modes[1] == ParameterMode.POSITION:
+                    address = numbers[numbers[address]]
+                elif parameter_modes[1] == ParameterMode.IMMEDIATE:
+                    address = numbers[address]
+            else:
+                address += 1
+
+        elif opcode == Opcode.JMP_IF_FALSE:
+            if parameter_modes[0] == ParameterMode.POSITION:
+                value = bool(numbers[numbers[address]])
+            elif parameter_modes[0] == ParameterMode.IMMEDIATE:
+                value = bool(numbers[address])
+            address += 1
+
+            if not value:
+                if parameter_modes[1] == ParameterMode.POSITION:
+                    address = numbers[numbers[address]]
+                elif parameter_modes[1] == ParameterMode.IMMEDIATE:
+                    address = numbers[address]
+            else:
+                address += 1
+
+        elif opcode == Opcode.LESS_THAN:
+            values = []
+            for parameter_mode in parameter_modes[:2]:
+                if parameter_mode == ParameterMode.POSITION:
+                    values.append(numbers[numbers[address]])
+                elif parameter_mode == ParameterMode.IMMEDIATE:
+                    values.append(numbers[address])
+                address += 1
+
+            numbers[numbers[address]] = int(values[0] < values[1])
+            address += 1
+
+        elif opcode == Opcode.EQUALS:
+            values = []
+            for parameter_mode in parameter_modes[:2]:
+                if parameter_mode == ParameterMode.POSITION:
+                    values.append(numbers[numbers[address]])
+                elif parameter_mode == ParameterMode.IMMEDIATE:
+                    values.append(numbers[address])
+                address += 1
+
+            numbers[numbers[address]] = int(values[0] == values[1])
+            address += 1
+
+        elif opcode == Opcode.END:
+            return return_val
 
         else:
             raise ValueError(f'Opcode: {opcode} not supported')
@@ -86,6 +141,7 @@ def main():
         file_input = tuple(int(i) for i in file.read().split(','))
 
     print(f'Part 1: {solve_puzzle(file_input, 1)}')
+    print(f'Part 2: {solve_puzzle(file_input, 5)}')
 
 
 if __name__ == "__main__":
