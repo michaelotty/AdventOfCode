@@ -38,6 +38,12 @@ def solve_puzzle(file_input: tuple[int], input_val: int) -> int:
     numbers = list(file_input)
     address = 0
     return_val = None
+    opcode_fns = {Opcode.ADD: add_op,
+                  Opcode.MULTIPLY: multiply_op,
+                  Opcode.JMP_IF_TRUE: jmp_if_true_op,
+                  Opcode.JMP_IF_FALSE: jmp_if_false_op,
+                  Opcode.LESS_THAN: less_than_op,
+                  Opcode.EQUALS: equals_op}
 
     while True:
         opcode = f'{numbers[address]:05d}'
@@ -45,39 +51,22 @@ def solve_puzzle(file_input: tuple[int], input_val: int) -> int:
         opcode = int(opcode[-2:])
         address += 1
 
-        if opcode == Opcode.ADD:
-            address, numbers = add_op(address, numbers, parameter_modes)
+        if opcode == Opcode.END:
+            return return_val
 
-        elif opcode == Opcode.MULTIPLY:
-            address, numbers = multiply_op(address, numbers, parameter_modes)
-
-        elif opcode == Opcode.INPUT:
+        if opcode == Opcode.INPUT:
             address, numbers = input_op(
                 address, numbers, parameter_modes, input_val)
-
         elif opcode == Opcode.OUTPUT:
             address, numbers, return_val = output_op(
                 address, numbers, parameter_modes)
-
-        elif opcode == Opcode.JMP_IF_TRUE:
-            address, numbers = jmp_if_true_op(
-                address, numbers, parameter_modes)
-
-        elif opcode == Opcode.JMP_IF_FALSE:
-            address, numbers = jmp_if_false_op(
-                address, numbers, parameter_modes)
-
-        elif opcode == Opcode.LESS_THAN:
-            address, numbers = less_than_op(address, numbers, parameter_modes)
-
-        elif opcode == Opcode.EQUALS:
-            address, numbers = equals_op(address, numbers, parameter_modes)
-
-        elif opcode == Opcode.END:
-            return return_val
-
         else:
-            raise ValueError(f'Opcode: {opcode} not supported')
+            try:
+                address, numbers = opcode_fns[opcode](
+                    address, numbers, parameter_modes)
+            except KeyError:
+                raise ValueError(
+                    f'Opcode: {opcode} not supported') from KeyError
 
 
 def add_op(address: int,
@@ -160,8 +149,8 @@ def jmp_if_true_op(address: int,
 
 
 def jmp_if_false_op(address: int,
-                       numbers: list[int],
-                       parameter_modes: list[int]) -> tuple[int, list[int]]:
+                    numbers: list[int],
+                    parameter_modes: list[int]) -> tuple[int, list[int]]:
     """Jump if false operator"""
     if parameter_modes[0] == ParameterMode.POSITION:
         value = bool(numbers[numbers[address]])
