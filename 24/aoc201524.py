@@ -3,7 +3,7 @@
 
 def main():
     """Main function"""
-    with open('input.txt') as file:
+    with open('input.txt', encoding='utf-8') as file:
         file_contents = file.read()
 
     print(file_contents)
