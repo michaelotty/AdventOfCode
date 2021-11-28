@@ -1,30 +1,38 @@
 """Advent of code Day 5"""
 
+import re
+import string
+
 
 def main():
     """Main function"""
     with open('input.txt', encoding='utf-8') as file:
         text = file.read()
-    did_reduce = True
-
-    while did_reduce:
-        did_reduce, text = reduce(text)
-    print(len(text))
+    print(f'Part 1: {part_1(text)}')
+    print(f'Part 2: {part_2(text)}')
 
 
-def reduce(text: str) -> tuple[bool, str]:
-    """Reduce polymer, bool returns true if reduction was made"""
-    text: tuple = tuple(text)
-    starting_len = len(text)
-    i = 0
-    while True:
-        if i + 1 >= len(text):
-            return starting_len != len(text), ''.join(text)
-        if (text[i] == text[i + 1].upper()
-            and text[i].lower() == text[i + 1]) or (text[i].upper() == text[i + 1]
-                                                    and text[i] == text[i + 1].lower()):
-            text = (*text[:i], *text[i+2:])
-        i += 1
+def part_1(text: str) -> int:
+    """Solve part 1 of the puzzle"""
+    return reduce(text)
+
+
+def part_2(text: str) -> int:
+    """Solve part 2 of the puzzle"""
+    return min(reduce(''.join(re.split(f'[{letter}{letter.upper()}]', text)))
+               for letter in string.ascii_lowercase)
+
+
+def reduce(polymer: str) -> int:
+    """Reduce the polymer"""
+    reduced_polymer = ['']
+    for unit in polymer:
+        end_of_polymer = reduced_polymer[-1]
+        if end_of_polymer != unit and end_of_polymer.lower() == unit.lower():
+            reduced_polymer.pop()
+        else:
+            reduced_polymer.append(unit)
+    return len(reduced_polymer) - 1
 
 
 if __name__ == "__main__":
