@@ -61,8 +61,5 @@ def part_2(puzzle):
     return sum(totals)
 
 
-# 12840 high
-
-
 if __name__ == "__main__":
     main()
