@@ -26,7 +26,11 @@ def part_1(expressions):
 
 def part_2(expressions):
     """Solve part 2."""
-    return 0
+    return sum(
+        True
+        for expr1, expr2 in expressions
+        if len(set(range(expr1[0], expr1[1] + 1)) & set(range(expr2[0], expr2[1] + 1)))
+    )
 
 
 if __name__ == "__main__":
