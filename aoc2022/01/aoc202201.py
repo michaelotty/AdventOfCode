@@ -18,7 +18,7 @@ def part_1(numbers):
 
 
 def part_2(numbers):
-    """Solve part 1."""
+    """Solve part 2."""
     return sum(sorted(sum(items) for items in numbers)[-3:])
 
 

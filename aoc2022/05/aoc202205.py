@@ -16,7 +16,7 @@ def part_1():
 
 
 def part_2():
-    """Solve part 1."""
+    """Solve part 2."""
     return 0
 
 
