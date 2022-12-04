@@ -7,14 +7,11 @@ def main():
     """Main function."""
     with open("aoc2022/04/input.txt", encoding="utf-8") as file:
         nums = [
-            map(int, line)
+            [int(num) for num in line]
             for line in re.findall(r"(\d+)-(\d+),(\d+)-(\d+)", file.read())
         ]
         ranges = [
-            (
-                set(range(num[0], num[1] + 1)),
-                set(range(num[2], num[3] + 1)),
-            )
+            (set(range(num[0], num[1] + 1)), set(range(num[2], num[3] + 1)))
             for num in nums
         ]
 
@@ -31,7 +28,7 @@ def part_1(ranges):
 
 def part_2(ranges):
     """Solve part 2."""
-    return sum(1 for left, right in ranges if len(left & right))
+    return sum(1 for left, right in ranges if left & right)
 
 
 if __name__ == "__main__":
