@@ -1,34 +1,37 @@
 """Advent of code Day 4."""
 
+import re
+
 
 def main():
     """Main function."""
     with open("aoc2022/04/input.txt", encoding="utf-8") as file:
-        expressions = [
-            [tuple(int(num) for num in nums.split("-")) for nums in line.split(",")]
-            for line in file.read().split()
+        nums = [
+            map(int, line)
+            for line in re.findall(r"(\d+)-(\d+),(\d+)-(\d+)", file.read())
         ]
-    expressions = [
-        (set(range(num1[0], num1[1] + 1)), set(range(num2[0], num2[1] + 1)))
-        for num1, num2 in expressions
-    ]
+        ranges = [
+            (
+                set(range(num[0], num[1] + 1)),
+                set(range(num[2], num[3] + 1)),
+            )
+            for num in nums
+        ]
 
-    print(f"Part 1: {part_1(expressions)}")
-    print(f"Part 2: {part_2(expressions)}")
+    print(f"Part 1: {part_1(ranges)}")
+    print(f"Part 2: {part_2(ranges)}")
 
 
-def part_1(expressions):
+def part_1(ranges):
     """Solve part 1."""
     return sum(
-        1
-        for expr1, expr2 in expressions
-        if len(expr1 & expr2) in (len(expr1), len(expr2))
+        1 for left, right in ranges if len(left & right) in (len(left), len(right))
     )
 
 
-def part_2(expressions):
+def part_2(ranges):
     """Solve part 2."""
-    return sum(1 for expr1, expr2 in expressions if len(expr1 & expr2))
+    return sum(1 for left, right in ranges if len(left & right))
 
 
 if __name__ == "__main__":
