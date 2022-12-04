@@ -8,29 +8,27 @@ def main():
             [tuple(int(num) for num in nums.split("-")) for nums in line.split(",")]
             for line in file.read().split()
         ]
+    expressions = [
+        (set(range(num1[0], num1[1] + 1)), set(range(num2[0], num2[1] + 1)))
+        for num1, num2 in expressions
+    ]
+
     print(f"Part 1: {part_1(expressions)}")
     print(f"Part 2: {part_2(expressions)}")
 
 
 def part_1(expressions):
     """Solve part 1."""
-    count = 0
-    for expr1, expr2 in expressions:
-        left_range = set(range(expr1[0], expr1[1] + 1))
-        right_range = set(range(expr2[0], expr2[1] + 1))
-        if len(left_range & right_range) in (len(left_range), len(right_range)):
-            count += 1
-
-    return count
+    return sum(
+        1
+        for expr1, expr2 in expressions
+        if len(expr1 & expr2) in (len(expr1), len(expr2))
+    )
 
 
 def part_2(expressions):
     """Solve part 2."""
-    return sum(
-        True
-        for expr1, expr2 in expressions
-        if len(set(range(expr1[0], expr1[1] + 1)) & set(range(expr2[0], expr2[1] + 1)))
-    )
+    return sum(1 for expr1, expr2 in expressions if len(expr1 & expr2))
 
 
 if __name__ == "__main__":
