@@ -8,13 +8,12 @@ def main():
     """Main function."""
     with open("aoc2022/05/input.txt", encoding="utf-8") as file:
         stacks, instructions = file.read().split("\n\n")
-        stacks = stacks.split("\n")
+        stacks = stacks.split("\n")[:-1]
         instructions = instructions.split("\n")
 
     # Structure stacks as list of lists
-    indexes = range(1, len(stacks[0]), 4)
-    stacks = stacks[:-1]  # Remove the line with the stack IDs
-    stacks = [[line[i] for line in reversed(stacks) if line[i] != " "] for i in indexes]
+    stacks = [line[1::4] for line in reversed(stacks)]
+    stacks = [[item for item in stack if item != " "] for stack in list(zip(*stacks))]
 
     # Convert "move a from b to c" to (a, b, c)
     instructions = [
