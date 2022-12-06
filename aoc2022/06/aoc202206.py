@@ -4,20 +4,21 @@
 def main():
     """Main function."""
     with open("aoc2022/06/input.txt", encoding="utf-8") as file:
-        text = file.read()
-    print(text)
-    print(f"Part 1: {part_1()}")
-    print(f"Part 2: {part_2()}")
+        packet = file.read()
+
+    print(f"Part 1: {solve(packet, 4)}")
+    print(f"Part 2: {solve(packet, 14)}")
 
 
-def part_1():
-    """Solve part 1."""
-    return 0
+def solve(packet: str, length: int):
+    """Solve for any given distict character length."""
+    uniques = [
+        len(set(zip(packet[i + j : length + i + j])))
+        for i in range(length)
+        for j in range(len(packet) - length)
+    ]
 
-
-def part_2():
-    """Solve part 2."""
-    return 0
+    return uniques.index(length) + length
 
 
 if __name__ == "__main__":
