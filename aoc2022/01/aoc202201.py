@@ -7,9 +7,8 @@ def main():
         numbers = [
             [int(num) for num in item.split()] for item in file.read().split("\n\n")
         ]
-    print(numbers)
-    print(f"Part 1: {part_1(numbers)}")
-    print(f"Part 2: {part_2(numbers)}")
+    print("Part 1:", part_1(numbers))
+    print("Part 2:", part_2(numbers))
 
 
 def part_1(numbers):

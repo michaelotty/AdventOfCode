@@ -6,8 +6,8 @@ def main():
     with open("aoc2022/06/input.txt", encoding="utf-8") as file:
         packet = file.read()
 
-    print(f"Part 1: {solve(packet, 4)}")
-    print(f"Part 2: {solve(packet, 14)}")
+    print("Part 1:", solve(packet, 4))
+    print("Part 2:", solve(packet, 14))
 
 
 def solve(packet: str, length: int):

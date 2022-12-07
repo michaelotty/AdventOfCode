@@ -6,8 +6,8 @@ def main():
     with open("aoc2022/24/input.txt", encoding="utf-8") as file:
         text = file.read()
     print(text)
-    print(f"Part 1: {part_1()}")
-    print(f"Part 2: {part_2()}")
+    print("Part 1:", part_1())
+    print("Part 2:", part_2())
 
 
 def part_1():

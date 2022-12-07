@@ -15,8 +15,8 @@ def main():
             for num in nums
         ]
 
-    print(f"Part 1: {part_1(ranges)}")
-    print(f"Part 2: {part_2(ranges)}")
+    print("Part 1:", part_1(ranges))
+    print("Part 2:", part_2(ranges))
 
 
 def part_1(ranges):

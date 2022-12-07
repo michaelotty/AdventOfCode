@@ -5,8 +5,8 @@ def main():
     """Main function."""
     with open("aoc2022/02/input.txt", encoding="utf-8") as file:
         puzzle = [tuple(line.split()) for line in file.read().split("\n")]
-    print(f"Part 1: {part_1(puzzle)}")
-    print(f"Part 2: {part_2(puzzle)}")
+    print("Part 1:", part_1(puzzle))
+    print("Part 2:", part_2(puzzle))
 
 
 def part_1(puzzle):

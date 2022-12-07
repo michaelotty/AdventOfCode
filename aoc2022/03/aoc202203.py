@@ -9,8 +9,8 @@ def main():
         rucksacks = file.read().split()
     priorities = {letter: i for i, letter in enumerate(string.ascii_letters, start=1)}
 
-    print(f"Part 1: {part_1(rucksacks, priorities)}")
-    print(f"Part 2: {part_2(rucksacks, priorities)}")
+    print("Part 1:", part_1(rucksacks, priorities))
+    print("Part 2:", part_2(rucksacks, priorities))
 
 
 def part_1(rucksacks, priorities):

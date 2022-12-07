@@ -21,8 +21,8 @@ def main():
     ]
 
     # Copy so we can use again for part 2
-    print(f"Part 1: {part_1(copy.deepcopy(stacks), instructions)}")
-    print(f"Part 2: {part_2(stacks, instructions)}")
+    print("Part 1:", part_1(copy.deepcopy(stacks), instructions))
+    print("Part 2:", part_2(stacks, instructions))
 
 
 def part_1(stacks: list[list[str]], instructions: list[tuple[int, int, int]]):
