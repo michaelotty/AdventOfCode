@@ -17,15 +17,12 @@ def build_tree(text: list[str], tree: dict) -> tuple[list[str], dict]:
         line = text.pop(0)
         first, second, *third = line.split()
 
-        if first == "$":
-            if second == "cd":
-                if third[0] == "..":
-                    return text, tree
-                text, tree[third[0]] = build_tree(text, tree[third[0]])
-
-            if second == "ls":
-                pass
-
+        if first == "$" and second == "cd":
+            if third[0] == "..":
+                return text, tree
+            text, tree[third[0]] = build_tree(text, tree[third[0]])
+        elif first == "$" and second == "ls":
+            pass
         elif first == "dir":
             tree[second] = {}
         else:
