@@ -52,21 +52,25 @@ def part_2(number_grid: list[list[int]]) -> int:
         "left": (0, -1),
         "up": (-1, 0),
     }
-    for start_row in range(height):
-        for start_col in range(width):
-            tree_count = 0
+    for start_row in range(1, height - 1):
+        for start_col in range(1, width - 1):
+            scenic_score = 1
             for direction in directions.values():
                 row = start_row
                 col = start_col
                 tree_height = number_grid[row][col]
                 row, col = row + direction[0], col + direction[1]
+                tree_count = 0
 
                 while 0 <= row < height and 0 <= col < width:
                     tree_count += 1
                     if number_grid[row][col] >= tree_height:
                         break
                     row, col = row + direction[0], col + direction[1]
-            coords[(start_row, start_col)] = tree_count
+
+                scenic_score *= tree_count
+
+            coords[(start_row, start_col)] = scenic_score
 
     return max(coords.values())  # 127 too low
 
