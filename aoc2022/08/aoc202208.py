@@ -38,34 +38,37 @@ def part_1(number_grid: list[list[int]]) -> int:
                 if not blocked:
                     coords.add((start_row, start_col))
 
-    # debug_coords = coords
-    # debug_coords.remove((0, 0))
-    # debug_coords.remove((1, 0))
-    # debug_coords.remove((2, 0))
-    # debug_coords.remove((3, 0))
-
-    # debug_coords.remove((4, 0))
-    # debug_coords.remove((4, 1))
-    # debug_coords.remove((4, 2))
-    # debug_coords.remove((4, 3))
-
-    # debug_coords.remove((4, 4))
-    # debug_coords.remove((3, 4))
-    # debug_coords.remove((2, 4))
-    # debug_coords.remove((1, 4))
-
-    # debug_coords.remove((0, 4))
-    # debug_coords.remove((0, 3))
-    # debug_coords.remove((0, 2))
-    # debug_coords.remove((0, 1))
-    # print(*sorted(debug_coords))
-
     return len(coords)
 
 
 def part_2(number_grid: list[list[int]]) -> int:
     """Solve part 2."""
-    return 0
+    width = len(number_grid[0])
+    height = len(number_grid)
+    coords = {}
+    directions = {
+        "right": (0, 1),
+        "down": (1, 0),
+        "left": (0, -1),
+        "up": (-1, 0),
+    }
+    for start_row in range(height):
+        for start_col in range(width):
+            tree_count = 0
+            for direction in directions.values():
+                row = start_row
+                col = start_col
+                tree_height = number_grid[row][col]
+                row, col = row + direction[0], col + direction[1]
+
+                while 0 <= row < height and 0 <= col < width:
+                    tree_count += 1
+                    if number_grid[row][col] >= tree_height:
+                        break
+                    row, col = row + direction[0], col + direction[1]
+            coords[(start_row, start_col)] = tree_count
+
+    return max(coords.values())  # 127 too low
 
 
 if __name__ == "__main__":
