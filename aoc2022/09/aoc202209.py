@@ -6,15 +6,14 @@ def main():
     with open("aoc2022/09/input.txt", encoding="utf-8") as file:
         instructions = [line.split() for line in file.read().splitlines()]
         instructions = [(direction, int(amount)) for direction, amount in instructions]
-    print("Part 1:", part_1(instructions))
-    print("Part 2:", part_2(instructions))
+    print("Part 1:", solve(instructions, 2))
+    print("Part 2:", solve(instructions, 10))
 
 
-def part_1(instructions):
-    """Solve part 1."""
-    head_pos = (0, 0)
-    tail_pos = (0, 0)
-    coords = {tail_pos}
+def solve(instructions, length):
+    """Solve for any rope length."""
+    rope = [(0, 0) for _ in range(length)]
+    tail_visited_coords = {rope[-1]}
     directions = {
         "U": (0, 1),
         "R": (1, 0),
@@ -25,15 +24,20 @@ def part_1(instructions):
         "DL": (-1, -1),
         "UL": (-1, 1),
     }
+    indexes = list(range(length))
     for direction, amount in instructions:
-        head_direction = directions[direction]
         for _ in range(amount):
-            head_pos = move_coord(head_pos, head_direction)
-            if distance(head_pos, tail_pos) > 1:
-                tail_direction = directions[tail_move_direction(head_pos, tail_pos)]
-                tail_pos = move_coord(tail_pos, tail_direction)
-                coords.add(tail_pos)
-    return len(coords)
+            head_direction = directions[direction]
+            rope[0] = move_coord(rope[0], head_direction)
+
+            for head_idx, tail_idx in zip(indexes[:-1], indexes[1:]):
+                if distance(rope[head_idx], rope[tail_idx]) > 1:
+                    tail_direction = directions[
+                        tail_move_direction(rope[head_idx], rope[tail_idx])
+                    ]
+                    rope[tail_idx] = move_coord(rope[tail_idx], tail_direction)
+            tail_visited_coords.add(rope[-1])
+    return len(tail_visited_coords)
 
 
 def tail_move_direction(head_pos, tail_pos):
@@ -67,11 +71,6 @@ def move_coord(coord: tuple[int, int], direction: tuple[int, int]) -> tuple[int,
         coord[0] + direction[0],
         coord[1] + direction[1],
     )
-
-
-def part_2(instructions):
-    """Solve part 2."""
-    return 0
 
 
 def distance(a: tuple[int, int], b: tuple[int, int]) -> int:
