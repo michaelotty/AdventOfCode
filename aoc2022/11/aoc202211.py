@@ -9,8 +9,8 @@ def main():
     """Main function."""
     with open("aoc2022/11/input.txt", encoding="utf-8") as file:
         monkey_text = file.read().split("\n\n")
-    print("Part 1:", part_1(monkey_text))
-    print("Part 2:", part_2(monkey_text))
+    print("Part 1:", solve(monkey_text, 20, True))
+    print("Part 2:", solve(monkey_text, 10000, False))
 
 
 def create_monkeys(monkey_text: list[str]):
@@ -72,7 +72,7 @@ def get_divisor(text: str):
     return int(divisor)
 
 
-def run_rounds(monkeys, rounds, part_1=True):
+def run_rounds(monkeys: dict, rounds: int, part_1: bool = True):
     """Run defined amount of rounds of monkey business.
 
     We are checking if the number is divisible, so we can prevent the number becoming
@@ -98,21 +98,11 @@ def run_rounds(monkeys, rounds, part_1=True):
     return monkeys
 
 
-def part_1(monkey_text: list[str]):
-    """Solve part 1."""
+def solve(monkey_text: list[str], rounds: int, part_1: bool):
+    """Solve with arbitrary amount of rounds."""
     monkeys = create_monkeys(monkey_text)
 
-    monkeys = run_rounds(monkeys, 20)
-    inspection_ranking = sorted(monkey["inspections"] for monkey in monkeys)
-    monkey_business = inspection_ranking[-2] * inspection_ranking[-1]
-    return monkey_business
-
-
-def part_2(monkey_text: list[str]):
-    """Solve part 2."""
-    monkeys = create_monkeys(monkey_text)
-
-    monkeys = run_rounds(monkeys, 10000, False)
+    monkeys = run_rounds(monkeys, rounds, part_1)
     inspection_ranking = sorted(monkey["inspections"] for monkey in monkeys)
     monkey_business = inspection_ranking[-2] * inspection_ranking[-1]
     return monkey_business
