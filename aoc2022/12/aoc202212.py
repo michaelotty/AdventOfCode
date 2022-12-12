@@ -13,9 +13,21 @@ def main():
     print("Part 2:", part_2(height_map))
 
 
-def part_1(height_map: list[list[int]]):
+def part_1(height_map: list[list[int]]) -> int:
     """Solve part 1."""
-    start_coord = find("S", height_map)
+    return solve(height_map, find("S", height_map))
+
+
+def part_2(height_map: list[list[int]]) -> int:
+    """Solve part 2."""
+    return min(
+        solve(height_map, starting_coord)
+        for starting_coord in find_all("a", height_map)
+    )
+
+
+def solve(height_map: list[list[int]], start_coord: tuple[int, int]) -> int:
+    """Solve the path length for a given starting position up to E marker."""
     end_coord = find("E", height_map)
 
     frontier = queue.PriorityQueue()
@@ -29,7 +41,6 @@ def part_1(height_map: list[list[int]]):
         _, current_coord = frontier.get()
 
         if current_coord == end_coord:
-            print("finished")
             break
 
         for next_coord in get_neighbors(current_coord, height_map):
@@ -40,30 +51,16 @@ def part_1(height_map: list[list[int]]):
                 frontier.put((priority, next_coord))
                 came_from[next_coord] = current_coord
 
+    if current_coord != end_coord:
+        return len(height_map) * len(height_map[0])
+
     current_coord = end_coord
     path = []
     while current_coord != start_coord:
         path.append(current_coord)
         current_coord = came_from[current_coord]
-    # path.append(start_coord)
-    # path.reverse()
-
-    if True:
-        route = [[" " for _ in line] for line in height_map]
-        for coord in path:
-            route[coord[0]][coord[1]] = "#"
-        route = "\n".join("".join(line) for line in route)
-        print(route)
 
     return len(path)
-
-
-# 452 too high
-
-
-def part_2(height_map: list[list[int]]):
-    """Solve part 2."""
-    return 0
 
 
 def find(char_to_find: str, height_map: list[list[int]]) -> tuple[int, int]:
@@ -73,6 +70,23 @@ def find(char_to_find: str, height_map: list[list[int]]) -> tuple[int, int]:
         for j, char_to_search in enumerate(line):
             if char_to_search == char_to_find:
                 return (i, j)
+
+
+def find_all(char_to_find: str, height_map: list[list[int]]) -> list[tuple[int, int]]:
+    """Find the first coordinate of a character in height map grid."""
+    char_to_find = ord(char_to_find)
+    coords = []
+
+    for i, line in enumerate(height_map):
+        coords.extend(
+            [
+                (i, j)
+                for j, char_to_search in enumerate(line)
+                if char_to_search == char_to_find
+            ]
+        )
+
+    return coords
 
 
 def get_neighbors(
@@ -105,7 +119,7 @@ def get_neighbors(
     return frontier
 
 
-def heuristic(coord_a, coord_b) -> int:
+def heuristic(coord_a: tuple[int, int], coord_b: tuple[int, int]) -> int:
     """Manhattan distance."""
     x1, y1 = coord_a
     x2, y2 = coord_b
