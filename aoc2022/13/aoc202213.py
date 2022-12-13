@@ -4,16 +4,43 @@
 def main():
     """Main function."""
     with open("aoc2022/13/input.txt", encoding="utf-8") as file:
-        packet_pairs = [pair.split() for pair in file.read().split("\n\n")]
+        packet_pairs = [
+            [eval(line) for line in pair.split()] for pair in file.read().split("\n\n")
+        ]
 
-    print(packet_pairs)
     print("Part 1:", part_1(packet_pairs))
     print("Part 2:", part_2(packet_pairs))
 
 
 def part_1(packet_pairs):
     """Solve part 1."""
-    return 0
+    count = 0
+
+    for i, pair in enumerate(packet_pairs, start=1):
+        left, right = pair
+
+        if left_is_less(left, right):
+            count += i
+
+    return count
+
+
+# 2309 too low
+
+
+def left_is_less(left, right):
+    """Compare left and right, return True if left is less than right."""
+    if isinstance(left, int) and isinstance(right, int):
+        return left < right
+    elif isinstance(left, list) and isinstance(right, list):
+        return all(
+            left_is_less(new_left, new_right)
+            for new_left, new_right in zip(left, right)
+        )
+    elif isinstance(left, int) and isinstance(right, list):
+        return left_is_less([left], right)
+    elif isinstance(left, list) and isinstance(right, int):
+        return left_is_less(left, [right])
 
 
 def part_2(packet_pairs):
