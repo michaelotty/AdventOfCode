@@ -25,22 +25,30 @@ def part_1(packet_pairs):
     return count
 
 
-# 2309 too low
-
-
 def left_is_less(left, right):
     """Compare left and right, return True if left is less than right."""
-    if isinstance(left, int) and isinstance(right, int):
+    try:
         return left < right
-    elif isinstance(left, list) and isinstance(right, list):
-        return all(
-            left_is_less(new_left, new_right)
-            for new_left, new_right in zip(left, right)
-        )
-    elif isinstance(left, int) and isinstance(right, list):
-        return left_is_less([left], right)
-    elif isinstance(left, list) and isinstance(right, int):
-        return left_is_less(left, [right])
+    except TypeError:
+        pass
+
+    match left, right:
+        case list(), list():
+            for new_left, new_right in zip(left, right):
+                if new_left == new_right:
+                    continue
+                elif left_is_less(new_left, new_right):
+                    return True
+                return False
+
+        case int(), list():
+            return left_is_less([left], right)
+
+        case list(), int():
+            return left_is_less(left, [right])
+
+        case _:
+            raise TypeError("Not expected type!")
 
 
 def part_2(packet_pairs):
