@@ -5,12 +5,11 @@ def main():
     """Main function."""
     with open("aoc2022/14/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
-    grid = form_grid(lines)
-    print("Part 1:", part_1(grid))
-    print("Part 2:", part_2(grid))
+    print("Part 1:", part_1(form_grid(lines)))
+    print("Part 2:", part_2(form_grid(lines)))
 
 
-def form_grid(lines: list[str]) -> set:
+def form_grid(lines: list[str]) -> set[tuple[int, int]]:
     """Form a grid of filled points with the input text."""
     grid = set()
     for line in lines:
@@ -25,7 +24,7 @@ def form_grid(lines: list[str]) -> set:
     return grid
 
 
-def part_1(grid: set) -> int:
+def part_1(grid: set[tuple[int, int]]) -> int:
     """Solve part 1."""
     start_coord = (500, 0)
     coord = start_coord
@@ -53,9 +52,39 @@ def part_1(grid: set) -> int:
     return count
 
 
-def part_2(grid):
+def part_2(grid: set[tuple[int, int]]) -> int:
     """Solve part 2."""
-    return 0
+    start_coord = (500, 0)
+    coord = start_coord
+    count = 0
+
+    # Add floor
+    large_amount = 10000
+    bottom_y = max(grid, key=lambda x: x[1])[1] + 2
+    min_x = min(grid, key=lambda x: x[0])[0] - large_amount
+    max_x = max(grid, key=lambda x: x[0])[0] + large_amount
+    for x in range(min_x, max_x):
+        grid.add((x, bottom_y))
+
+    while True:
+        coord_below = (coord[0], coord[1] + 1)
+        coord_below_left = (coord[0] - 1, coord[1] + 1)
+        coord_below_right = (coord[0] + 1, coord[1] + 1)
+
+        if coord_below not in grid:
+            coord = coord_below
+        elif coord_below_left not in grid:
+            coord = coord_below_left
+        elif coord_below_right not in grid:
+            coord = coord_below_right
+        else:
+            grid.add(coord)
+            count += 1
+            if coord == start_coord:
+                break
+            coord = start_coord
+
+    return count
 
 
 if __name__ == "__main__":
