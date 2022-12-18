@@ -8,6 +8,7 @@ def main():
     """Main function."""
     with open("aoc2022/18/input.txt", encoding="utf-8") as file:
         voxels = {tuple(map(int, line.split(","))) for line in file.read().splitlines()}
+    print_lava_drop(voxels)
     print("Part 1:", part_1(voxels))
     print("Part 2:", part_2(voxels))
 
@@ -99,14 +100,17 @@ def print_lava_drop(voxels: set[tuple[int, int, int]]) -> None:
     min_y, max_y = min(y for x, y, z in voxels), max(y for x, y, z in voxels)
     min_z, max_z = min(z for x, y, z in voxels), max(z for x, y, z in voxels)
 
-    for x in range(min_x, max_x + 1):
-        for y in range(min_y, max_y + 1):
-            for z in range(min_z, max_z + 1):
-                if (x, y, z) in voxels:
-                    print("#", end="")
-                else:
-                    print(" ", end="")
-            print("\n", end="")
+    print(
+        "\n--------------------\n".join(
+            "\n".join(
+                "".join(
+                    "#" if (x, y, z) in voxels else " " for z in range(min_z, max_z + 1)
+                )
+                for y in range(min_y, max_y + 1)
+            )
+            for x in range(min_x, max_x + 1)
+        )
+    )
 
 
 if __name__ == "__main__":
