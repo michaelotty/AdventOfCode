@@ -1,21 +1,68 @@
 """Advent of code Day 16."""
 
+import re
+from typing import Any
+import itertools
+
 
 def main():
     """Main function."""
-    with open("aoc2022/16/input.txt", encoding="utf-8") as file:
-        text = file.read()
-    print(text)
-    print("Part 1:", part_1())
-    print("Part 2:", part_2())
+    with open("aoc2022/16/test1.txt", encoding="utf-8") as file:
+        regex = r"Valve (\w\w) has flow rate=(\d+); tunnels? leads? to valves? (.*)"
+        lines = [re.findall(regex, line)[0] for line in file.readlines()]
+        valves = {
+            key: {"rate": int(rate), "tunnels": tunnels.split(", ")}
+            for key, rate, tunnels in lines
+        }
+
+    print("Part 1:", part_1(valves))
+    print("Part 2:", part_2(valves))
 
 
-def part_1():
+def part_1(valves: dict[str, Any]) -> int:
     """Solve part 1."""
+    # Find all the valves with a flow rate
+    valves_with_flow_rate = {
+        key: val["rate"] for key, val in valves.items() if val["rate"]
+    }
+    valves_with_flow_rate["AA"] = valves["AA"]["rate"]
+    routes = {}
+    keys = list(itertools.product(valves_with_flow_rate, repeat=2))
+    for key in keys:
+        routes[key] = find_route(key[0], key[1], valves)
+
     return 0
 
 
-def part_2():
+def find_route(start, end, valves):
+    """Find the shortest route from start to end."""
+    current = start
+    frontier = [start]
+    came_from = {start: None}
+
+    while frontier:
+        current = frontier.pop(0)
+        if current == end:
+            break
+
+        neighbors = valves[current]["tunnels"]
+        for neighbor in neighbors:
+            if neighbor not in came_from:
+                frontier.append(neighbor)
+                came_from[neighbor] = current
+
+    current = end
+    path = []
+    while current != start:
+        path.append(current)
+        current = came_from[current]
+    path.append(start)
+    path.reverse()
+
+    return path
+
+
+def part_2(valves: dict[str, Any]) -> int:
     """Solve part 2."""
     return 0
 
