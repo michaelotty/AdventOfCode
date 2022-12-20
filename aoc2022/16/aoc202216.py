@@ -1,8 +1,9 @@
 """Advent of code Day 16."""
 
+# import functools
+import itertools
 import re
 from typing import Any
-import itertools
 
 
 def main():
@@ -21,7 +22,7 @@ def main():
 
 def part_1(valves: dict[str, Any]) -> int:
     """Solve part 1."""
-    # Find all the valves with a flow rate
+    # Find all the valves with a flow rate and shortest paths
     valves_with_flow_rate = {
         key: val["rate"] for key, val in valves.items() if val["rate"]
     }
@@ -31,7 +32,23 @@ def part_1(valves: dict[str, Any]) -> int:
     for key in keys:
         routes[key] = find_route(key[0], key[1], valves)
 
-    return 0
+    # Some dynamic programming algorithm to find solution
+    return find_max_pressure(30, "AA", set(), valves_with_flow_rate, routes)
+
+
+# @functools.cache
+def find_max_pressure(time_left, current_position, nodes_on, valves, routes):
+    """Find the maximum pressure that can be released."""
+    frontier = [current_position]
+
+    while frontier:
+        current_position = frontier.pop(0)
+        if time_left == 0:
+            break
+
+        neighbors = valves - current_position
+        for neighbor in neighbors:
+            frontier.append(neighbor)
 
 
 def find_route(start, end, valves):
