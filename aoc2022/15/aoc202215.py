@@ -11,7 +11,7 @@ def main():
         coords = [map(int, nums) for nums in re.findall(regex, file.read())]
         coords = {(x1, y1): (x2, y2) for x1, y1, x2, y2 in coords}
 
-    print("Part 1:", part_1(coords, 2000000))
+    print("Part 1:", part_1(coords, 2_000_000))
     print("Part 2:", part_2(coords))
 
 
@@ -37,7 +37,41 @@ def manhattan_distance(start: tuple[int, int], end: tuple[int, int]) -> int:
 
 def part_2(coords: dict[tuple[int, int], tuple[int, int]]) -> int:
     """Solve part 2."""
-    return 0
+    distances = {
+        sensor: manhattan_distance(sensor, beacon) for sensor, beacon in coords.items()
+    }
+    upper_lim = 4_000_000
+
+    for sensor in coords:
+        outside_edges = set()
+
+        sensor_x, sensor_y = sensor
+        distance = distances[sensor] + 1
+        edge_pos = (sensor_x, sensor_y + distance)
+        if all(0 <= axis <= upper_lim for axis in edge_pos):
+            outside_edges.add(edge_pos)
+        directions = [(+1, -1), (-1, -1), (-1, +1), (+1, +1)]
+        corners = {
+            (sensor_x, sensor_y + distance),
+            (sensor_x, sensor_y - distance),
+            (sensor_x + distance, sensor_y),
+            (sensor_x - distance, sensor_y),
+        }
+
+        for direction in directions:
+            while True:
+                edge_pos = (edge_pos[0] + direction[0], edge_pos[1] + direction[1])
+                if all(0 <= axis <= upper_lim for axis in edge_pos):
+                    outside_edges.add(edge_pos)
+                if edge_pos in corners:
+                    break
+
+        for point_on_edge in outside_edges:
+            if all(
+                manhattan_distance(sensor, point_on_edge) > distances[sensor]
+                for sensor in coords
+            ):
+                return point_on_edge[0] * upper_lim + point_on_edge[1]
 
 
 if __name__ == "__main__":
