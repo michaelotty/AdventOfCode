@@ -3,6 +3,8 @@
 import itertools
 from abc import ABC, abstractmethod
 
+import tqdm
+
 
 def main():
     """Main function."""
@@ -114,11 +116,14 @@ class Grid:
         for shape in itertools.cycle(shapes):
             yield shape()
 
-    def get_max_row(self, grid):
-        if not grid:
-            grid = self.grid
+    def get_height(self, grid) -> int:
+        """Get the height of any grid tower."""
+        return max(row for row, _ in grid) + 1
 
-        return max(row for row, _ in grid)
+    @property
+    def height(self) -> int:
+        """Get the height of the grid tower."""
+        return self.get_height(self.grid)
 
     def _move_shape(self, shape, direction):
         direction_mapping = {"right": (0, 1), "left": (0, -1), "down": (-1, 0)}
@@ -129,7 +134,7 @@ class Grid:
         """String representation of a grid."""
         rows_to_print = []
 
-        for row in range(self.get_max_row(grid) + 1):
+        for row in range(self.get_height(grid)):
             row_line = []
             for col in range(7):
                 if (row, col) in grid:
@@ -150,7 +155,7 @@ class Grid:
         height = 0
 
         if self.grid:
-            height = self.get_max_row(self.grid) + 1
+            height = self.height
 
         active_shape = {(row + height + 3, col + 2) for row, col in shape.coords}
 
@@ -202,12 +207,17 @@ def part_1():
     for _ in range(2022):
         next(grid)
 
-    return grid.get_max_row(grid.grid) + 1
+    return grid.height
 
 
 def part_2():
     """Solve part 2."""
-    return 0
+    grid = Grid("aoc2022/17/test1.txt")
+
+    for _ in tqdm.tqdm(range(1000000000000)):
+        next(grid)
+
+    return grid.height
 
 
 if __name__ == "__main__":
