@@ -1,15 +1,10 @@
 """Advent of code Day 17."""
 
 import itertools
+import pathlib
 from abc import ABC, abstractmethod
 
-import tqdm
-
-
-def main():
-    """Main function."""
-    print("Part 1:", part_1())
-    print("Part 2:", part_2())
+debug = True
 
 
 class Shape(ABC):
@@ -105,8 +100,7 @@ class Grid:
 
     def _direction_generator(self):
         """Generate the infinite looping directions from the file."""
-        for i, char in itertools.cycle(enumerate(self.directions_string)):
-            # print(i, char)
+        for char in itertools.cycle(self.directions_string):
             yield char
 
     def _shape_generator(self):
@@ -116,14 +110,17 @@ class Grid:
         for shape in itertools.cycle(shapes):
             yield shape()
 
-    def get_height(self, grid) -> int:
+    def get_a_grid_height(self, grid) -> int:
         """Get the height of any grid tower."""
+        if not grid:
+            return 0
+
         return max(row for row, _ in grid) + 1
 
     @property
     def height(self) -> int:
         """Get the height of the grid tower."""
-        return self.get_height(self.grid)
+        return self.get_a_grid_height(self.grid)
 
     def _move_shape(self, shape, direction):
         direction_mapping = {"right": (0, 1), "left": (0, -1), "down": (-1, 0)}
@@ -134,7 +131,7 @@ class Grid:
         """String representation of a grid."""
         rows_to_print = []
 
-        for row in range(self.get_height(grid)):
+        for row in range(self.get_a_grid_height(grid)):
             row_line = []
             for col in range(7):
                 if (row, col) in grid:
@@ -170,9 +167,6 @@ class Grid:
                 next_active_shape, direction_mapping[next(self.direction_generator)]
             )
 
-            # print(self._str_of_grid(next_active_shape))
-            # print()
-
             for row, col in next_active_shape:
                 if not 0 <= col < 7:
                     next_active_shape = active_shape.copy()
@@ -201,24 +195,31 @@ class Grid:
         return self._str_of_grid(self.grid)
 
 
-def part_1():
+def main(file_name: pathlib.Path):
+    """Main function."""
+    print("Part 1:", part_1(file_name))
+    print("Part 2:", part_2(file_name.with_stem("test1")))
+
+
+def part_1(file_name):
     """Solve part 1."""
-    grid = Grid("aoc2022/17/input.txt")
+    grid = Grid(file_name)
     for _ in range(2022):
         next(grid)
 
     return grid.height
 
 
-def part_2():
+def part_2(file_name):
     """Solve part 2."""
-    grid = Grid("aoc2022/17/test1.txt")
+    grid = Grid(file_name)
 
-    for _ in tqdm.tqdm(range(1000000000000)):
-        next(grid)
+    if not debug:
+        for _ in range(1000000000000):
+            next(grid)
 
     return grid.height
 
 
 if __name__ == "__main__":
-    main()
+    main(pathlib.Path("aoc2022/17/input.txt"))
