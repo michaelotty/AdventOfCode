@@ -17,19 +17,24 @@ def advent_of_code():
 
     args = parser.parse_args()
 
+    december = date.fromisoformat("2023-12-01")
+    today = date.today()
+
     if args.year:
         folder = Path(f"aoc{args.year}")
     else:
-        folder = Path(f"aoc{date.today().year}")
+        if today.month < december.month:
+            folder = Path(f"aoc{today.year-1}")
+        else:
+            folder = Path(f"aoc{today.year-1}")
 
     if args.day:
         folder /= f"{args.day:02}"
     else:
-        december = date.fromisoformat("2023-12-01")
-        if date.today().month < december.month:
-            day = 1
+        if today.month == december.month:
+            day = today.day
         else:
-            day = date.day
+            day = 1
         folder /= f"{day:02}"
 
     folder = folder.resolve()
