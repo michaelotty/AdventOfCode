@@ -25,14 +25,17 @@ def part_1(data: str):
 def part_2(data: str):
     """Solve part 2."""
 
-    data = data.split()
-    for i, _ in enumerate(data):
-        matches = re.findall(
-            r"one|two|three|four|five|six|seven|eight|nine|1|2|3|4|5|6|7|8|9", data[i]
-        )
-        data[i] = int(give_digit(matches[0]) + give_digit(matches[-1]))
+    data = data.strip().split("\n")
+    output = []
+    for line in data:
+        matches = re.findall(r"one|two|three|four|five|six|seven|eight|nine|\d", line)
+        print(matches)
+        output.append(int(give_digit(matches[0]) + give_digit(matches[-1])))
 
-    return data
+    return sum(output)
+
+
+# 54194 too low
 
 
 def give_digit(in_word: str):
@@ -46,12 +49,17 @@ def give_digit(in_word: str):
         "seven": "7",
         "eight": "8",
         "nine": "9",
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "9": "9",
     }
-    for word in numbers:
-        if in_word == word:
-            return numbers[in_word]
-
-    return in_word
+    return numbers[in_word]
 
 
 if __name__ == "__main__":
