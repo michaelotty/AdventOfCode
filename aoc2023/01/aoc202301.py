@@ -10,8 +10,6 @@ def main():
     with open("aoc2023/01/input.txt", encoding="utf-8") as file:
         data = file.read()
 
-    print(data)
-
     print("Part 1:", part_1(data))
     print("Part 2:", part_2(data))
 
@@ -24,21 +22,6 @@ def part_1(data: str):
 
 def part_2(data: str):
     """Solve part 2."""
-
-    data = data.strip().split("\n")
-    output = []
-    for line in data:
-        matches = re.findall(r"one|two|three|four|five|six|seven|eight|nine|\d", line)
-        print(matches)
-        output.append(int(give_digit(matches[0]) + give_digit(matches[-1])))
-
-    return sum(output)
-
-
-# 54194 too low
-
-
-def give_digit(in_word: str):
     numbers = {
         "one": "1",
         "two": "2",
@@ -59,7 +42,22 @@ def give_digit(in_word: str):
         "8": "8",
         "9": "9",
     }
-    return numbers[in_word]
+
+    data = data.strip().split("\n")
+    output = []
+
+    match = re.compile(r"one|two|three|four|five|six|seven|eight|nine|\d")
+    rev_match = re.compile(
+        r"one|two|three|four|five|six|seven|eight|nine"[::-1] + r"|\d"
+    )
+
+    for line in data:
+        first = re.search(match, line)[0]
+        rev_last = re.search(rev_match, line[::-1])[0]
+        last = rev_last[::-1]
+        output.append(int(numbers[first] + numbers[last]))
+
+    return sum(output)
 
 
 if __name__ == "__main__":
