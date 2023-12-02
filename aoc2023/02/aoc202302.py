@@ -6,12 +6,6 @@ def main():
     with open("aoc2023/02/input.txt", encoding="utf-8") as file:
         data = [line.split(": ")[1].split("; ") for line in file.read().split("\n")]
 
-    print("Part 1:", part_1(data))
-    print("Part 2:", part_2())
-
-
-def part_1(data: list[list[str]]):
-    """Solve part 1."""
     games = []
 
     for line in data:
@@ -26,6 +20,12 @@ def part_1(data: list[list[str]]):
             game.append(new_subset)
         games.append(game)
 
+    print("Part 1:", part_1(games))
+    print("Part 2:", part_2())
+
+
+def part_1(games: list[list[dict[str, int]]]):
+    """Solve part 1."""
     max_cubes = {"red": 12, "green": 13, "blue": 14}
 
     id_sum = 0
