@@ -1,5 +1,7 @@
 """Advent of code day 2."""
 
+import math
+
 
 def main():
     """Main function."""
@@ -21,7 +23,7 @@ def main():
         games.append(game)
 
     print("Part 1:", part_1(games))
-    print("Part 2:", part_2())
+    print("Part 2:", part_2(games))
 
 
 def part_1(games: list[list[dict[str, int]]]):
@@ -43,8 +45,18 @@ def part_1(games: list[list[dict[str, int]]]):
     return id_sum
 
 
-def part_2():
+def part_2(games: list[list[dict[str, int]]]):
     """Solve part 2."""
+    powers = []
+    for game in games:
+        min_cubes = {"red": 0, "green": 0, "blue": 0}
+        for subset in game:
+            for key in subset:
+                if subset[key] > min_cubes[key]:
+                    min_cubes[key] = subset[key]
+        powers.append(math.prod(min_cubes.values()))
+
+    return sum(powers)
 
 
 if __name__ == "__main__":
