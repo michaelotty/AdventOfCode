@@ -38,7 +38,7 @@ class Grid:
 
 def part_1(grid: Grid):
     """Solve part 1."""
-    for i in range(10):
+    for _ in range(10):
         next(grid)
         print(grid, "\n")
     return 0
@@ -46,7 +46,7 @@ def part_1(grid: Grid):
 
 def part_2(grid: Grid):
     """Solve part 2."""
-    return 0
+    return grid
 
 
 if __name__ == "__main__":
