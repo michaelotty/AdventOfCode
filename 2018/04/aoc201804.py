@@ -16,7 +16,7 @@ class Guard:
         self.shift_record: list[Shift] = []
 
     def __repr__(self) -> str:
-        return 'Guard(' + str(self.id) + ')'
+        return "Guard(" + str(self.id) + ")"
 
     def __gt__(self, other):
         return self.calculate_minutes_asleep() > other.calculate_minutes_asleep()
@@ -84,7 +84,7 @@ class Shift:
             last_time = current_time
 
     def __repr__(self) -> str:
-        return 'Shift(' + str(self.time_awake) + ')'
+        return "Shift(" + str(self.time_awake) + ")"
 
     def get_minutes_asleep(self) -> int:
         """Gets the total minutes asleep on the shift"""
@@ -93,41 +93,43 @@ class Shift:
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
-        lines = [(datetime.fromisoformat(date_time), desc)
-                 for date_time, desc in re.findall(r'\[(.+)\] (.+)',
-                                                   file.read())]
+    with open("input.txt", encoding="utf-8") as file:
+        lines = [
+            (datetime.fromisoformat(date_time), desc)
+            for date_time, desc in re.findall(r"\[(.+)\] (.+)", file.read())
+        ]
 
     lines: list[tuple[datetime, str]] = sorted(lines, key=itemgetter(0))
 
-    guard_ids = [int(x) for x in re.findall(r'#(\d+)', ''.join(str(lines)))]
+    guard_ids = [int(x) for x in re.findall(r"#(\d+)", "".join(str(lines)))]
     guards: dict[Guard] = {}
 
     for guard_id in sorted(set(guard_ids)):
         guards[guard_id] = Guard(guard_id)
 
-    shift_starts = [i for i, line in enumerate(
-        lines) if line[1].startswith('Guard')]
+    shift_starts = [i for i, line in enumerate(lines) if line[1].startswith("Guard")]
 
     for i, shift_start in enumerate(shift_starts):
         guard_id = int(lines[shift_start][1].split()[1][1:])
 
         if shift_start == shift_starts[-1]:
-            guards[guard_id].add_shift(Shift(lines[shift_start+1:]))
+            guards[guard_id].add_shift(Shift(lines[shift_start + 1 :]))
         else:
             guards[guard_id].add_shift(
-                Shift(lines[shift_start+1:shift_starts[i+1]]))
+                Shift(lines[shift_start + 1 : shift_starts[i + 1]])
+            )
 
     most_sleepy_guard = max(guards.values())
 
-    print('Part 1')
+    print("Part 1")
     print(most_sleepy_guard.most_sleepy_minute * most_sleepy_guard.id)
 
     guard_id, time_asleep = max(
         ((key, max(item.asleep_time)) for key, item in guards.items()),
-        key=itemgetter(1))
+        key=itemgetter(1),
+    )
 
-    print('\nPart 2')
+    print("\nPart 2")
     print(guard_id * guards[guard_id].asleep_time.index(time_asleep))
 
 
