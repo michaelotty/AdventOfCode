@@ -5,7 +5,7 @@ from collections import OrderedDict
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
+    with open("input.txt", encoding="utf-8") as file:
         puzzle = [int(x) for x in file.read().split()]
 
     solved_puzzles = OrderedDict()

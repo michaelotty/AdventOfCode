@@ -3,7 +3,7 @@
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
+    with open("input.txt", encoding="utf-8") as file:
         puzzle_input = list(map(int, file.read().split()))
 
     steps = 0

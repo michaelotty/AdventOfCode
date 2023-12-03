@@ -3,13 +3,13 @@
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
+    with open("input.txt", encoding="utf-8") as file:
         numbers = [int(x) for x in file.read()]
 
     answer = 0
 
     for i, _ in enumerate(numbers):
-        if numbers[i] == numbers[(i + len(numbers)//2) % len(numbers)]:
+        if numbers[i] == numbers[(i + len(numbers) // 2) % len(numbers)]:
             answer += numbers[i]
 
     print(answer)

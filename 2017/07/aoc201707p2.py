@@ -14,33 +14,30 @@ def get_weight(tree: dict, weights: dict, key: str) -> tuple[int, str]:
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
+    with open("input.txt", encoding="utf-8") as file:
         lines = file.readlines()
 
     weights = {}
     tree = {}
 
     for line in lines:
-        label, weight, *extra = re.findall(r'\w+', line)
+        label, weight, *extra = re.findall(r"\w+", line)
         weights[label] = int(weight)
         tree[label] = tuple(extra)
 
-    root_key = (set(weights) - {child for children in tree.values()
-                                for child in children}).pop()
+    root_key = (
+        set(weights) - {child for children in tree.values() for child in children}
+    ).pop()
 
     # Manually go through each layer by inspection
-    print(sorted((get_weight(tree, weights, key)
-          for key in tree[root_key])))
-    print(sorted((get_weight(tree, weights, key)
-          for key in tree['nhrla'])))
-    print(sorted((get_weight(tree, weights, key)
-          for key in tree['idfyy'])))
-    print(sorted((get_weight(tree, weights, key)
-          for key in tree['aobgmc'])))
+    print(sorted((get_weight(tree, weights, key) for key in tree[root_key])))
+    print(sorted((get_weight(tree, weights, key) for key in tree["nhrla"])))
+    print(sorted((get_weight(tree, weights, key) for key in tree["idfyy"])))
+    print(sorted((get_weight(tree, weights, key) for key in tree["aobgmc"])))
 
-    weight_heavy, _ = get_weight(tree, weights, 'aobgmc')
-    weight_light, _ = get_weight(tree, weights, 'iqwspxd')
-    print(weights['aobgmc'] - (weight_heavy - weight_light))
+    weight_heavy, _ = get_weight(tree, weights, "aobgmc")
+    weight_light, _ = get_weight(tree, weights, "iqwspxd")
+    print(weights["aobgmc"] - (weight_heavy - weight_light))
 
 
 if __name__ == "__main__":

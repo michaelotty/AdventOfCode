@@ -3,9 +3,10 @@
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
-        rows = tuple(tuple(int(element) for element in row.split())
-                     for row in file.readlines())
+    with open("input.txt", encoding="utf-8") as file:
+        rows = tuple(
+            tuple(int(element) for element in row.split()) for row in file.readlines()
+        )
     print(sum(max(row) - min(row) for row in rows))
 
 
