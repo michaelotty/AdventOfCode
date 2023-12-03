@@ -1,7 +1,6 @@
 """Advent of code Day 23."""
 
 import io
-import operator
 
 
 def main():
@@ -27,11 +26,6 @@ class Grid:
 
     def __repr__(self) -> str:
         """Grid as string."""
-        min_x = min(self.grid, key=operator.index(0))
-        max_x = max(self.grid, key=operator.index(0))
-        min_y = min(self.grid, key=operator.index(1))
-        max_y = max(self.grid, key=operator.index(1))
-
         lines = ("".join("#" if item else "." for item in line) for line in self.grid)
         return "\n".join(lines)
 

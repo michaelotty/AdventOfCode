@@ -15,9 +15,9 @@ def main():
     # c = Packet([1, [2, [3, [4, [5, 6, 7]]]], 8, 9])
     # d = Packet([[1], 4])
 
-    # print(left_is_less(a, b))
-    # print(left_is_less(b, c))
-    # print(left_is_less(c, d))
+    # print(compare(a, b))
+    # print(compare(b, c))
+    # print(compare(c, d))
 
     print("Part 1:", part_1(packet_pairs))
     print("Part 2:", part_2(packet_pairs))
@@ -32,7 +32,7 @@ class Packet:
 
     def __lt__(self, other: Packet):
         """Find if Packet is less than other packet."""
-        return left_is_less(self.packet, other.packet)
+        return compare(self.packet, other.packet)
 
     def __eq__(self, other: Packet):
         """Find if Packet is equal to other packet."""
@@ -50,7 +50,7 @@ def part_1(packet_pairs):
     for i, pair in enumerate(packet_pairs, start=1):
         left, right = pair
 
-        if left_is_less(left, right):
+        if compare(left, right):
             count += i
 
     return count
@@ -102,7 +102,7 @@ def compare(left, right):
                 if new_left == new_right:
                     continue
 
-                elif left_is_less(new_left, new_right):
+                elif compare(new_left, new_right):
                     return True
                 return False
 
@@ -113,16 +113,16 @@ def compare(left, right):
                 return False
 
             # if len(right) < len(left):
-            # return left_is_less(new_left, new_right)
+            # return compare(new_left, new_right)
             print(left)
             print(right)
             print()
 
         case int(), list():
-            return left_is_less([left], right)
+            return compare([left], right)
 
         case list(), int():
-            return left_is_less(left, [right])
+            return compare(left, [right])
 
         case _:
             raise TypeError("Not expected type!")
