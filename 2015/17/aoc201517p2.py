@@ -5,7 +5,7 @@ from itertools import combinations
 
 def main():
     """Main function"""
-    with open('input.txt') as file:
+    with open("input.txt", encoding="utf-8") as file:
         data = file.readlines()
 
     comb = 0

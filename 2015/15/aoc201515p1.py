@@ -6,14 +6,14 @@ from itertools import combinations_with_replacement
 
 def main():
     """Main function"""
-    with open('input.txt') as file:
+    with open("input.txt", encoding="utf-8") as file:
         data = file.readlines()
 
     ingredients = []
     best_score = 0
 
     for line in data:
-        numbers = re.findall(r'[+-]?\d', line)
+        numbers = re.findall(r"[+-]?\d", line)
         ingredients.append(tuple(int(i) for i in numbers))
 
     for comb in combinations_with_replacement(ingredients, 100):

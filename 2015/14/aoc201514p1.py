@@ -3,14 +3,30 @@
 
 def main():
     """Main function"""
-    with open('input.txt') as file:
+    with open("input.txt", encoding="utf-8") as file:
         data = file.readlines()
 
     reindeer = {}
     time = 2503
 
     for line in data:
-        name, _, _, speed, _, _, speed_time, _, _, _, _, _, _, rest_time, _ = line.split()
+        (
+            name,
+            _,
+            _,
+            speed,
+            _,
+            _,
+            speed_time,
+            _,
+            _,
+            _,
+            _,
+            _,
+            _,
+            rest_time,
+            _,
+        ) = line.split()
 
         name = name[0:3]
         speed = int(speed)
@@ -30,7 +46,7 @@ def main():
         extra_distance = extra_time * speed
         total_distance = cycle_distance + extra_distance
 
-        print(f'{name}: {total_distance}km')
+        print(f"{name}: {total_distance}km")
 
 
 if __name__ == "__main__":

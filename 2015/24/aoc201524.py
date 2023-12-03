@@ -5,7 +5,7 @@ from itertools import permutations
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
+    with open("input.txt", encoding="utf-8") as file:
         present_weights = tuple(int(i) for i in file.read().split())
 
     presents_in_group_1 = 2
@@ -17,7 +17,7 @@ def main():
         for permutation in permutations(present_weights):
             group_1 = permutation[:presents_in_group_1]
             group_2_and_3 = permutation[presents_in_group_1:]
-            for i in range(2, len(group_2_and_3)-2):
+            for i in range(2, len(group_2_and_3) - 2):
                 group_2 = group_2_and_3[:i]
                 group_3 = group_2_and_3[i:]
 

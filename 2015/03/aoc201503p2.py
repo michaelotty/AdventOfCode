@@ -2,22 +2,22 @@
 
 
 def move_location(location, char):
-    """Move the location stored in the tuple depending on the instruction from the char"""
-    if char == '^':
-        location = (location[0], location[1]+1)
-    elif char == '>':
-        location = (location[0]+1, location[1])
-    elif char == 'v':
-        location = (location[0], location[1]-1)
-    elif char == '<':
-        location = (location[0]-1, location[1])
+    """Move the location tuple using instruction from the char."""
+    if char == "^":
+        location = (location[0], location[1] + 1)
+    elif char == ">":
+        location = (location[0] + 1, location[1])
+    elif char == "v":
+        location = (location[0], location[1] - 1)
+    elif char == "<":
+        location = (location[0] - 1, location[1])
 
     return location
 
 
 def main():
-    """Main function"""
-    with open('input.txt') as f:
+    """Main function."""
+    with open("input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 
     santa_location = (0, 0)

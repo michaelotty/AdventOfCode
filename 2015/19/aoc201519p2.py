@@ -8,19 +8,19 @@ def gen_sequence(X, replacements):
     """Ngl, stole this from reddit"""
     for j, i in replacements:
         for k in range(len(X)):
-            if X[k:k+len(i)] == i:
-                y = X[:k] + j + X[k+len(i):]
+            if X[k : k + len(i)] == i:
+                y = X[:k] + j + X[k + len(i) :]
                 yield y
 
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
+    with open("input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
 
     replacements = []
     for i in lines[:-2]:
-        molecule = re.findall(r'(\S+) => (\S+)', i)
+        molecule = re.findall(r"(\S+) => (\S+)", i)
         replacements.append(molecule[0])
     medicine_molecule = lines[-1]
     while True:

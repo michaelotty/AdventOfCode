@@ -5,7 +5,7 @@ import json
 
 def main():
     """Main function"""
-    with open('input.txt') as f:
+    with open("input.txt", encoding="utf-8") as f:
         data = json.load(f)
     print(sum_of_elements(data))
 
@@ -23,7 +23,7 @@ def sum_of_elements(data) -> int:
 
     if isinstance(data, dict):
         for i in data:
-            if data[i] == 'red':
+            if data[i] == "red":
                 return sum_val
 
     for i in data:

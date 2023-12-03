@@ -5,10 +5,10 @@ from itertools import permutations
 
 def main():
     """Main function"""
-    with open('input.txt') as file:
+    with open("input.txt", encoding="utf-8") as file:
         data = file.readlines()
 
-    operations = {'gain': 1, 'lose': -1}
+    operations = {"gain": 1, "lose": -1}
     names = dict()
 
     for i in data:
@@ -23,8 +23,8 @@ def main():
     for arrangement in perms:
         happiness = 0
         for i in range(len(arrangement)):
-            happiness += names[arrangement[i]][arrangement[i-1]]
-            happiness += names[arrangement[i-1]][arrangement[i]]
+            happiness += names[arrangement[i]][arrangement[i - 1]]
+            happiness += names[arrangement[i - 1]][arrangement[i]]
         if happiness > best_happiness:
             best_happiness = happiness
             best_combination = arrangement

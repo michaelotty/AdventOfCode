@@ -3,11 +3,21 @@
 
 def main():
     """Main function"""
-    with open('input.txt') as file:
+    with open("input.txt", encoding="utf-8") as file:
         data = file.readlines()
 
-    matches = ('children: 3', 'cats: 7', 'samoyeds: 2', 'pomeranians: 3', 'akitas: 0',
-               'vizslas: 0', 'goldfish: 5', 'trees: 3', 'cars: 2', 'perfumes: 1')
+    matches = (
+        "children: 3",
+        "cats: 7",
+        "samoyeds: 2",
+        "pomeranians: 3",
+        "akitas: 0",
+        "vizslas: 0",
+        "goldfish: 5",
+        "trees: 3",
+        "cars: 2",
+        "perfumes: 1",
+    )
 
     for match in matches:
         data = [line for line in data if match_or_missing(match, line)]

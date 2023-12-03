@@ -5,32 +5,33 @@ import re
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
+    with open("input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
 
-    print(f'Part 1: {run_computer(0, lines)}')
-    print(f'Part 2: {run_computer(1, lines)}')
+    print(f"Part 1: {run_computer(0, lines)}")
+    print(f"Part 2: {run_computer(1, lines)}")
 
 
 def run_computer(input_val: int, instructions: list[str]) -> int:
     """Runs the computer"""
-    instruction_fn = {'hlf': hlf,
-                      'tpl': tpl,
-                      'inc': inc,
-                      'jmp': jmp,
-                      'jie': jie,
-                      'jio': jio}
-    registers = {'a': input_val, 'b': 0}
+    instruction_fn = {
+        "hlf": hlf,
+        "tpl": tpl,
+        "inc": inc,
+        "jmp": jmp,
+        "jie": jie,
+        "jio": jio,
+    }
+    registers = {"a": input_val, "b": 0}
 
     address = 0
 
     while True:
-        instruction, *parameters = re.split(r'[ ,]+', instructions[address])
-        address_offset, registers = instruction_fn[instruction](
-            registers, *parameters)
+        instruction, *parameters = re.split(r"[ ,]+", instructions[address])
+        address_offset, registers = instruction_fn[instruction](registers, *parameters)
         address += address_offset
         if not 0 <= address < len(instructions):
-            return registers['b']
+            return registers["b"]
 
 
 def hlf(registers: dict, register: str):

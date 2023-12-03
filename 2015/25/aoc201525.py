@@ -6,7 +6,7 @@ def part_1() -> int:
     for val, row, col in diagonal_sequence(20151125):
         if (row, col) == (2947, 3029):
             return val
-    raise RuntimeError('Solution not found')
+    raise RuntimeError("Solution not found")
 
 
 def part_2() -> int:
@@ -28,5 +28,5 @@ def diagonal_sequence(starting_val):
 
 
 if __name__ == "__main__":
-    print(f'Part 1: {part_1()}')
-    print(f'Part 2: {part_2()}')
+    print(f"Part 1: {part_1()}")
+    print(f"Part 2: {part_2()}")

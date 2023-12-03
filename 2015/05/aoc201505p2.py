@@ -4,9 +4,9 @@
 def contains_repeated_pair(string: str) -> bool:
     """Finds if string contains a pair of letters which occurs twice"""
     for i in range(len(string) - 1):
-        search_string = string[i:i+2]
+        search_string = string[i : i + 2]
         string1_to_search = string[0:i]
-        string2_to_search = string[i+2:-1]
+        string2_to_search = string[i + 2 : -1]
 
         if search_string in string1_to_search or search_string in string2_to_search:
             return True
@@ -17,7 +17,7 @@ def contains_repeated_pair(string: str) -> bool:
 def contains_spaced_repeated_letter(string: str) -> bool:
     """Finds if a letter repeats after with a 1 letter jump"""
     for i in range(len(string) - 2):
-        if string[i] == string[i+2]:
+        if string[i] == string[i + 2]:
             return True
     return False
 
@@ -32,7 +32,7 @@ def is_nice_string(string: str) -> bool:
 
 def main():
     """Main function"""
-    with open('input.txt') as f:
+    with open("input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 
     nice_strings = []

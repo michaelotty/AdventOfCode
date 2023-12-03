@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-import re
+# import re
 from operator import itemgetter
 
-from spells import Effect, Spell
+# from spells import Effect, Spell
 
 
 class Character:
@@ -19,7 +19,7 @@ class Character:
         self.money_spent: int = 0
 
     def __str__(self) -> str:
-        return f'HP: {self.hit_points}\nDA: {self.damage}\nAR: {self.armor}'
+        return f"HP: {self.hit_points}\nDA: {self.damage}\nAR: {self.armor}"
 
     @property
     def alive(self) -> bool:
@@ -46,20 +46,20 @@ def main():
     winning_combos = []
     losing_combos = []
 
-    with open('input.txt', encoding='utf-8') as file:
-        enemy_file = {name.lower().replace(' ', '_'): int(value)
-                      for name, value in re.findall(r'(.*): (\d+)', file.read())}
+    # with open("input.txt", encoding="utf-8") as file:
+    #     enemy_file = {
+    #         name.lower().replace(" ", "_"): int(value)
+    #         for name, value in re.findall(r"(.*): (\d+)", file.read())
+    #     }
 
-    for weapon, armor in (0, 0):
-        for i in range(3):
-            enemy = Character(**enemy_file)
-            player = Character()
-            if does_player_win(player, enemy):
-                winning_combos.append(
-                    (player.money_spent, player.inventory))
-            else:
-                losing_combos.append(
-                    (player.money_spent, player.inventory))
+    # for weapon, armor in (0, 0):
+    #     for i in range(3):
+    #         enemy = Character(**enemy_file)
+    #         player = Character()
+    #         if does_player_win(player, enemy):
+    #             winning_combos.append((player.money_spent, player.inventory))
+    #         else:
+    #             losing_combos.append((player.money_spent, player.inventory))
     print(sorted(winning_combos, key=itemgetter(0))[0][0])
     print(sorted(losing_combos, key=itemgetter(0))[-1][0])
 

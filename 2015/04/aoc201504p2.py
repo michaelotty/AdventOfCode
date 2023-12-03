@@ -5,7 +5,7 @@ import hashlib
 
 def main():
     """Main function"""
-    with open('input.txt') as f:
+    with open("input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 
     found = False
@@ -14,8 +14,9 @@ def main():
     while not found:
         i += 1
         hash_val = hashlib.md5(
-            ''.join((file_contents, str(i))).encode('utf-8')).hexdigest()
-        found = hash_val[0:6] == '000000'
+            "".join((file_contents, str(i))).encode("utf-8")
+        ).hexdigest()
+        found = hash_val[0:6] == "000000"
 
     print(i)
 

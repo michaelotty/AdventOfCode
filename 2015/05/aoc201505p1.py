@@ -4,14 +4,14 @@
 def has_double_letter(string: str) -> bool:
     """Finds if the string has a repeated letter"""
     for i in range(len(string) - 1):
-        if string[i] == string[i+1]:
+        if string[i] == string[i + 1]:
             return True
     return False
 
 
 def count_vowels(string: str) -> int:
     """Counts the amount of vowels in a string"""
-    vowels = ('a', 'e', 'i', 'o', 'u')
+    vowels = ("a", "e", "i", "o", "u")
     num_of_vowels = 0
     for vowel in vowels:
         num_of_vowels += string.count(vowel)
@@ -21,7 +21,7 @@ def count_vowels(string: str) -> int:
 
 def is_banned_string(string: str) -> bool:
     """Finds if the string contains at least one banned string"""
-    banned_strings = ('ab', 'cd', 'pq', 'xy')
+    banned_strings = ("ab", "cd", "pq", "xy")
     for banned_string in banned_strings:
         if banned_string in string:
             return True
@@ -39,7 +39,7 @@ def is_nice_string(string: str) -> bool:
 
 def main():
     """Main function"""
-    with open('input.txt') as f:
+    with open("input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 
     nice_strings = []

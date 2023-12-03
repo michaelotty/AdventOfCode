@@ -5,15 +5,24 @@ import re
 
 def main():
     """Main function"""
-    with open('input.txt') as file:
+    with open("input.txt", encoding="utf-8") as file:
         data = file.readlines()
 
-    greaters = ('cats: 7', 'trees: 3')
+    greaters = ("cats: 7", "trees: 3")
 
-    fewers = ('pomeranians: 3', 'goldfish: 5', )
+    fewers = (
+        "pomeranians: 3",
+        "goldfish: 5",
+    )
 
-    matches = ('children: 3', 'samoyeds: 2', 'akitas: 0',
-               'vizslas: 0', 'cars: 2', 'perfumes: 1')
+    matches = (
+        "children: 3",
+        "samoyeds: 2",
+        "akitas: 0",
+        "vizslas: 0",
+        "cars: 2",
+        "perfumes: 1",
+    )
 
     for match in matches:
         data = [line for line in data if match_or_missing(match, line)]
@@ -37,7 +46,7 @@ def match_or_missing(match: str, line: str) -> bool:
 
 def greater_or_missing(match: str, line: str) -> bool:
     """Returns true if the value is greater than or if it isn't there at all"""
-    regex_match = re.search(match.split()[0] + r' (\d+)', line)
+    regex_match = re.search(match.split()[0] + r" (\d+)", line)
     if regex_match is not None:
         return int(regex_match.group(1)) > int(match.split()[1])
     return True
@@ -45,7 +54,7 @@ def greater_or_missing(match: str, line: str) -> bool:
 
 def fewer_or_missing(match: str, line: str) -> bool:
     """Returns true if the value is less than or if it isn't there at all"""
-    regex_match = re.search(match.split()[0] + r' (\d+)', line)
+    regex_match = re.search(match.split()[0] + r" (\d+)", line)
     if regex_match is not None:
         return int(regex_match.group(1)) < int(match.split()[1])
     return True

@@ -4,15 +4,15 @@
 def main():
     """Start of program"""
 
-    with open('input.txt') as f:
+    with open("input.txt", encoding="utf-8") as f:
         text = str(f.read())
 
     up = text.count("(")
     down = text.count(")")
 
-    print(f'up: {up}')
-    print(f'down: {down}')
-    print(f'up - down: {up-down}')
+    print(f"up: {up}")
+    print(f"down: {down}")
+    print(f"up - down: {up-down}")
 
 
 if __name__ == "__main__":

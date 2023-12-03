@@ -8,14 +8,14 @@ def area_of_cuboid(length, width, height):
     side_1 = length * width
     side_2 = length * height
     side_3 = height * width
-    area = 2*side_1 + 2*side_2 + 2*side_3
+    area = 2 * side_1 + 2 * side_2 + 2 * side_3
     smallest_side = min(side_1, side_2, side_3)
     return (area, smallest_side)
 
 
 def main():
     """Main function"""
-    with open('input.txt') as f:
+    with open("input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 
     file_contents = file_contents.split()
@@ -23,7 +23,7 @@ def main():
     amount_of_wrapping_paper = 0
 
     for line in file_contents:
-        length, width, height = tuple(int(i) for i in line.split('x'))
+        length, width, height = tuple(int(i) for i in line.split("x"))
         area, smallest_side = area_of_cuboid(length, width, height)
         amount_of_wrapping_paper += area + smallest_side
 

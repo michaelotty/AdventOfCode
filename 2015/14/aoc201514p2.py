@@ -3,14 +3,30 @@
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
+    with open("input.txt", encoding="utf-8") as file:
         data = file.readlines()
 
     reindeers = []
     time = 2503
 
     for line in data:
-        name, _, _, speed, _, _, speed_time, _, _, _, _, _, _, rest_time, _ = line.split()
+        (
+            name,
+            _,
+            _,
+            speed,
+            _,
+            _,
+            speed_time,
+            _,
+            _,
+            _,
+            _,
+            _,
+            _,
+            rest_time,
+            _,
+        ) = line.split()
 
         speed = int(speed)
         speed_time = int(speed_time)
@@ -27,11 +43,12 @@ def main():
             if reindeer.position == max(reindeer_positions):
                 reindeer.add_point()
 
-    print(', '.join(str(reindeer) for reindeer in reindeers))
+    print(", ".join(str(reindeer) for reindeer in reindeers))
 
 
 class Reindeer:
     """Reindeer class"""
+
     def __init__(self, name: str, speed: int, speed_time: int, rest_time: int) -> None:
         """Create a Reindeer"""
         self.name = name
@@ -66,7 +83,7 @@ class Reindeer:
 
     def __str__(self) -> str:
         """Returns string representation"""
-        return f'{self.name}: {self.points}'
+        return f"{self.name}: {self.points}"
 
     def add_point(self) -> None:
         """Adds 1 point to points tally"""

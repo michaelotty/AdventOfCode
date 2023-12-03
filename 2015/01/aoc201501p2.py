@@ -4,7 +4,7 @@
 def main():
     """Start of program"""
 
-    with open('input.txt') as f:
+    with open("input.txt", encoding="utf-8") as f:
         text = str(f.read())
 
     floor = 0
@@ -16,9 +16,8 @@ def main():
         elif char == ")":
             floor -= 1
         if floor == basement_floor:
+            print(f"basement steps: {i+1}")
             break
-
-    print(f'basement steps: {i+1}')
 
 
 if __name__ == "__main__":
