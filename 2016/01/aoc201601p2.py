@@ -4,6 +4,7 @@ from turtle import Screen, Turtle
 
 
 def find_position(instructions):
+    """Find position."""
     screen = Screen()
     turtle = Turtle()
 

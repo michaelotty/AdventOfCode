@@ -1,7 +1,7 @@
 """Advent of code Day 14 part 1"""
 
 
-def main():
+def main():  # pylint: disable=too-many-locals
     """Main function"""
     with open("input.txt", encoding="utf-8") as file:
         data = file.readlines()

@@ -9,19 +9,22 @@ def main():
     places = set()
     distances = {}
 
-    for line in open("input.txt", encoding="utf-8"):
+    with open("input.txt", encoding="utf-8") as fp:
+        data = fp.read()
+
+    for line in data.splitlines():
         source, _, destination, _, distance = line.split()
         places.add(source)
         places.add(destination)
         distance = int(distance)
 
-        distances.setdefault(source, dict())[destination] = distance
-        distances.setdefault(destination, dict())[source] = distance
+        distances.setdefault(source, {})[destination] = distance
+        distances.setdefault(destination, {})[source] = distance
 
     shortest = sys.maxsize
     longest = 0
     for items in permutations(places):
-        distance = sum([distances[edge[0]][edge[1]] for edge in zip(items, items[1:])])
+        distance = sum(distances[edge[0]][edge[1]] for edge in zip(items, items[1:]))
         shortest = min(shortest, distance)
         longest = max(longest, distance)
 

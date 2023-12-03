@@ -2,4 +2,5 @@
 
 disable=
       duplicate-code,
-      eval-used
+      eval-used,
+      too-few-public-methods

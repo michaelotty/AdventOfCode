@@ -46,7 +46,7 @@ def main():
     print(", ".join(str(reindeer) for reindeer in reindeers))
 
 
-class Reindeer:
+class Reindeer:  # pylint: disable=too-many-instance-attributes
     """Reindeer class"""
 
     def __init__(self, name: str, speed: int, speed_time: int, rest_time: int) -> None:

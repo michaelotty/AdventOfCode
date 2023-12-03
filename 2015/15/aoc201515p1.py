@@ -19,25 +19,21 @@ def main():
     for comb in combinations_with_replacement(ingredients, 100):
         capacity = 0
         durability = 0
-        flavor = 0
+        flavour = 0
         texture = 0
 
         for ingredient in comb:
             capacity += ingredient[0]
             durability += ingredient[1]
-            flavor += ingredient[2]
+            flavour += ingredient[2]
             texture += ingredient[3]
 
-        if capacity < 0:
-            capacity = 0
-        if durability < 0:
-            durability = 0
-        if flavor < 0:
-            flavor = 0
-        if texture < 0:
-            texture = 0
+        capacity = max(capacity, 0)
+        durability = max(durability, 0)
+        flavour = max(flavour, 0)
+        texture = max(texture, 0)
 
-        score = capacity * durability * flavor * texture
+        score = capacity * durability * flavour * texture
         if score > best_score:
             best_score = score
 

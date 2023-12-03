@@ -39,7 +39,7 @@ class GameOfLife:
     @property
     def num_of_lights_on(self) -> int:
         """Gets the total number of lights switched on"""
-        return sum([sum(line) for line in self.grid])
+        return sum(sum(line) for line in self.grid)
 
     def __next__(self) -> None:
         """Update the game of life"""

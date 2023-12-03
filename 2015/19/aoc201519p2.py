@@ -4,12 +4,12 @@ import re
 from random import shuffle
 
 
-def gen_sequence(X, replacements):
+def gen_sequence(x, replacements):
     """Ngl, stole this from reddit"""
     for j, i in replacements:
-        for k in range(len(X)):
-            if X[k : k + len(i)] == i:
-                y = X[:k] + j + X[k + len(i) :]
+        for k in range(len(x)):
+            if x[k : k + len(i)] == i:
+                y = x[:k] + j + x[k + len(i) :]
                 yield y
 
 

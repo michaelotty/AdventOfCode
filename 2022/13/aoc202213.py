@@ -77,7 +77,7 @@ def part_2(packet_pairs):
 # 4104 too low
 
 
-def compare(left, right):
+def compare(left, right):  # pylint: disable=too-many-return-statements
     """Compare left and right.
 
     Return 1 if left is less than right.
