@@ -6,7 +6,7 @@ import re
 
 def main():
     """Main function."""
-    with open("aoc2022/05/input.txt", encoding="utf-8") as file:
+    with open("2022/05/input.txt", encoding="utf-8") as file:
         stacks, instructions = file.read().split("\n\n")
         stacks = stacks.split("\n")[:-1]
         instructions = instructions.split("\n")

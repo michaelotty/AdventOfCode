@@ -3,7 +3,7 @@
 
 def main():
     """Main function."""
-    with open("aoc2022/14/input.txt", encoding="utf-8") as file:
+    with open("2022/14/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
     print("Part 1:", part_1(form_grid(lines)))
     print("Part 2:", part_2(form_grid(lines)))

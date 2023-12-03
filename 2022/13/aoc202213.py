@@ -5,7 +5,7 @@ from __future__ import annotations
 
 def main():
     """Main function."""
-    with open("aoc2022/13/input.txt", encoding="utf-8") as file:
+    with open("2022/13/input.txt", encoding="utf-8") as file:
         packet_pairs = [
             [eval(line) for line in pair.split()] for pair in file.read().split("\n\n")
         ]
@@ -64,7 +64,7 @@ def part_2(packet_pairs):
     packets.sort()
 
     listing = "\n".join(str(packet) for packet in packets)
-    with open("aoc2022/13/debug.txt", "wt", encoding="utf-8") as file:
+    with open("2022/13/debug.txt", "wt", encoding="utf-8") as file:
         file.write(listing)
 
     divider_1, divider_2 = [

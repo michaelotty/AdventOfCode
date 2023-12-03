@@ -7,7 +7,7 @@ def main():
     """Main function."""
     regex = r"Sensor at x=(-*\d+), y=(-*\d+): closest beacon is at x=(-*\d+), y=(-*\d+)"
 
-    with open("aoc2022/15/input.txt", encoding="utf-8") as file:
+    with open("2022/15/input.txt", encoding="utf-8") as file:
         coords = [map(int, nums) for nums in re.findall(regex, file.read())]
         coords = {(x1, y1): (x2, y2) for x1, y1, x2, y2 in coords}
 

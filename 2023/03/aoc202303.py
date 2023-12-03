@@ -6,7 +6,7 @@ from itertools import product
 
 def main():
     """Main function."""
-    with open("aoc2023/03/test.txt", encoding="utf-8") as file:
+    with open("2023/03/test.txt", encoding="utf-8") as file:
         rows = file.read().splitlines()
 
     print("Part 1:", part_1(rows))
@@ -67,11 +67,8 @@ def part_2(rows):
                     if 0 <= i + x < height and 0 <= j + y < width and not x == y == 0
                 ]
 
-                
-
                 for row_id, col_id in adjacent_coords:
                     if re.match(r"\d", rows[row_id][col_id]):
-                        
 
                 print(adjacent_coords)
                 gear_coords.add((i, j))

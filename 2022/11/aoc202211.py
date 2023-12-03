@@ -7,7 +7,7 @@ import re
 
 def main():
     """Main function."""
-    with open("aoc2022/11/input.txt", encoding="utf-8") as file:
+    with open("2022/11/input.txt", encoding="utf-8") as file:
         monkey_text = file.read().split("\n\n")
     print("Part 1:", solve(monkey_text, 20, True))
     print("Part 2:", solve(monkey_text, 10000, False))

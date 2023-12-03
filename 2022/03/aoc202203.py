@@ -5,7 +5,7 @@ import string
 
 def main():
     """Main function."""
-    with open("aoc2022/03/input.txt", encoding="utf-8") as file:
+    with open("2022/03/input.txt", encoding="utf-8") as file:
         rucksacks = file.read().split()
     priorities = {letter: i for i, letter in enumerate(string.ascii_letters, start=1)}
 

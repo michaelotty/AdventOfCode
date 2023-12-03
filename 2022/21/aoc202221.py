@@ -11,7 +11,7 @@ monkeys = {}
 def main():
     """Main function."""
     global monkeys
-    with open("aoc2022/21/input.txt", encoding="utf-8") as file:
+    with open("2022/21/input.txt", encoding="utf-8") as file:
         monkeys = dict(line.split(": ") for line in file.read().splitlines())
     print("Part 1:", part_1())
     print("Part 2:", part_2())

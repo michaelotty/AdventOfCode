@@ -8,7 +8,7 @@ from typing import Any
 
 def main():
     """Main function."""
-    with open("aoc2022/16/test1.txt", encoding="utf-8") as file:
+    with open("2022/16/test1.txt", encoding="utf-8") as file:
         regex = r"Valve (\w\w) has flow rate=(\d+); tunnels? leads? to valves? (.*)"
         lines = [re.findall(regex, line)[0] for line in file.readlines()]
         valves = {

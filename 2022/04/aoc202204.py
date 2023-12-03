@@ -5,7 +5,7 @@ import re
 
 def main():
     """Main function."""
-    with open("aoc2022/04/input.txt", encoding="utf-8") as file:
+    with open("2022/04/input.txt", encoding="utf-8") as file:
         nums = [
             [int(num) for num in line]
             for line in re.findall(r"(\d+)-(\d+),(\d+)-(\d+)", file.read())

@@ -3,7 +3,7 @@
 
 def main():
     """Main function."""
-    with open("aoc2022/06/input.txt", encoding="utf-8") as file:
+    with open("2022/06/input.txt", encoding="utf-8") as file:
         packet = file.read()
 
     print("Part 1:", solve(packet, 4))

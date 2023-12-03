@@ -3,7 +3,7 @@
 
 def main():
     """Main function."""
-    with open("aoc2022/07/input.txt", encoding="utf-8") as file:
+    with open("2022/07/input.txt", encoding="utf-8") as file:
         text = file.read().splitlines()[1:]
     tree = {}
     text, tree = build_tree(text, tree)

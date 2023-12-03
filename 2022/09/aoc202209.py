@@ -3,7 +3,7 @@
 
 def main():
     """Main function."""
-    with open("aoc2022/09/input.txt", encoding="utf-8") as file:
+    with open("2022/09/input.txt", encoding="utf-8") as file:
         instructions = [line.split() for line in file.read().splitlines()]
         instructions = [(direction, int(amount)) for direction, amount in instructions]
     print("Part 1:", solve(instructions, 2))

@@ -3,7 +3,7 @@
 
 def main():
     """Main function."""
-    with open("aoc2022/10/input.txt", encoding="utf-8") as file:
+    with open("2022/10/input.txt", encoding="utf-8") as file:
         instructions = file.read().splitlines()
     part_1_solution, x_register = part_1(instructions)
     print("Part 1:", part_1_solution)

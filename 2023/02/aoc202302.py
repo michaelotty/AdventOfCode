@@ -5,7 +5,7 @@ import math
 
 def main():
     """Main function."""
-    with open("aoc2023/02/input.txt", encoding="utf-8") as file:
+    with open("2023/02/input.txt", encoding="utf-8") as file:
         data = [line.split(": ")[1].split("; ") for line in file.read().split("\n")]
 
     games = []

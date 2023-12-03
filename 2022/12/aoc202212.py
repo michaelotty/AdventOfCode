@@ -5,7 +5,7 @@ import queue
 
 def main():
     """Main function."""
-    with open("aoc2022/12/input.txt", encoding="utf-8") as file:
+    with open("2022/12/input.txt", encoding="utf-8") as file:
         height_map = file.read().splitlines()
         height_map = [list(map(ord, line)) for line in height_map]
 

@@ -203,7 +203,7 @@ class Grid:
 
 def part_1():
     """Solve part 1."""
-    grid = Grid("aoc2022/17/input.txt")
+    grid = Grid("2022/17/input.txt")
     for _ in range(2022):
         next(grid)
 
@@ -212,7 +212,7 @@ def part_1():
 
 def part_2():
     """Solve part 2."""
-    grid = Grid("aoc2022/17/test1.txt")
+    grid = Grid("2022/17/test1.txt")
 
     for _ in tqdm.tqdm(range(1000000000000)):
         next(grid)
