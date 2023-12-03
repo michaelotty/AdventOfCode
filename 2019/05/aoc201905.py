@@ -6,6 +6,7 @@ from enum import IntEnum, unique
 @unique
 class Opcode(IntEnum):
     """Opcodes"""
+
     ADD = 1
     MULTIPLY = 2
     INPUT = 3
@@ -20,17 +21,18 @@ class Opcode(IntEnum):
 @unique
 class ParameterMode(IntEnum):
     """Parameter modes"""
+
     POSITION = 0
     IMMEDIATE = 1
 
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
-        file_input = tuple(int(i) for i in file.read().split(','))
+    with open("input.txt", encoding="utf-8") as file:
+        file_input = tuple(int(i) for i in file.read().split(","))
 
-    print(f'Part 1: {solve_puzzle(file_input, 1)}')
-    print(f'Part 2: {solve_puzzle(file_input, 5)}')
+    print(f"Part 1: {solve_puzzle(file_input, 1)}")
+    print(f"Part 2: {solve_puzzle(file_input, 5)}")
 
 
 def solve_puzzle(file_input: tuple[int], input_val: int) -> int:
@@ -38,15 +40,17 @@ def solve_puzzle(file_input: tuple[int], input_val: int) -> int:
     numbers = list(file_input)
     address = 0
     return_val = None
-    opcode_fns = {Opcode.ADD: add_op,
-                  Opcode.MULTIPLY: multiply_op,
-                  Opcode.JMP_IF_TRUE: jmp_if_true_op,
-                  Opcode.JMP_IF_FALSE: jmp_if_false_op,
-                  Opcode.LESS_THAN: less_than_op,
-                  Opcode.EQUALS: equals_op}
+    opcode_fns = {
+        Opcode.ADD: add_op,
+        Opcode.MULTIPLY: multiply_op,
+        Opcode.JMP_IF_TRUE: jmp_if_true_op,
+        Opcode.JMP_IF_FALSE: jmp_if_false_op,
+        Opcode.LESS_THAN: less_than_op,
+        Opcode.EQUALS: equals_op,
+    }
 
     while True:
-        opcode = f'{numbers[address]:05d}'
+        opcode = f"{numbers[address]:05d}"
         parameter_modes = [int(i) for i in opcode[2::-1]]
         opcode = int(opcode[-2:])
         address += 1
@@ -55,23 +59,19 @@ def solve_puzzle(file_input: tuple[int], input_val: int) -> int:
             return return_val
 
         if opcode == Opcode.INPUT:
-            address, numbers = input_op(
-                address, numbers, parameter_modes, input_val)
+            address, numbers = input_op(address, numbers, parameter_modes, input_val)
         elif opcode == Opcode.OUTPUT:
-            address, numbers, return_val = output_op(
-                address, numbers, parameter_modes)
+            address, numbers, return_val = output_op(address, numbers, parameter_modes)
         else:
             try:
-                address, numbers = opcode_fns[opcode](
-                    address, numbers, parameter_modes)
+                address, numbers = opcode_fns[opcode](address, numbers, parameter_modes)
             except KeyError:
-                raise ValueError(
-                    f'Opcode: {opcode} not supported') from KeyError
+                raise ValueError(f"Opcode: {opcode} not supported") from KeyError
 
 
-def add_op(address: int,
-           numbers: list[int],
-           parameter_modes: list[int]) -> tuple[int, list[int]]:
+def add_op(
+    address: int, numbers: list[int], parameter_modes: list[int]
+) -> tuple[int, list[int]]:
     """Add operator"""
     value = 0
     for parameter_mode in parameter_modes[:2]:
@@ -87,9 +87,9 @@ def add_op(address: int,
     return address, numbers
 
 
-def multiply_op(address: int,
-                numbers: list[int],
-                parameter_modes: list[int]) -> tuple[int, list[int]]:
+def multiply_op(
+    address: int, numbers: list[int], parameter_modes: list[int]
+) -> tuple[int, list[int]]:
     """Multiply operator"""
     values = []
     for parameter_mode in parameter_modes[:2]:
@@ -104,9 +104,9 @@ def multiply_op(address: int,
     return address, numbers
 
 
-def input_op(address: int, numbers: list[int],
-             parameter_modes: list[int],
-             input_val: int) -> tuple[int, list[int]]:
+def input_op(
+    address: int, numbers: list[int], parameter_modes: list[int], input_val: int
+) -> tuple[int, list[int]]:
     """Input operator"""
     if parameter_modes[0] == ParameterMode.POSITION:
         numbers[numbers[address]] = input_val
@@ -116,9 +116,9 @@ def input_op(address: int, numbers: list[int],
     return address, numbers
 
 
-def output_op(address: int,
-              numbers: list[int],
-              parameter_modes: list[int]) -> tuple[int, list[int]]:
+def output_op(
+    address: int, numbers: list[int], parameter_modes: list[int]
+) -> tuple[int, list[int]]:
     """Output operator"""
     if parameter_modes[0] == ParameterMode.POSITION:
         return_val = numbers[numbers[address]]
@@ -128,9 +128,9 @@ def output_op(address: int,
     return address, numbers, return_val
 
 
-def jmp_if_true_op(address: int,
-                   numbers: list[int],
-                   parameter_modes: list[int]) -> tuple[int, list[int]]:
+def jmp_if_true_op(
+    address: int, numbers: list[int], parameter_modes: list[int]
+) -> tuple[int, list[int]]:
     """Jump if true operator"""
     if parameter_modes[0] == ParameterMode.POSITION:
         value = bool(numbers[numbers[address]])
@@ -148,9 +148,9 @@ def jmp_if_true_op(address: int,
     return address, numbers
 
 
-def jmp_if_false_op(address: int,
-                    numbers: list[int],
-                    parameter_modes: list[int]) -> tuple[int, list[int]]:
+def jmp_if_false_op(
+    address: int, numbers: list[int], parameter_modes: list[int]
+) -> tuple[int, list[int]]:
     """Jump if false operator"""
     if parameter_modes[0] == ParameterMode.POSITION:
         value = bool(numbers[numbers[address]])
@@ -168,9 +168,9 @@ def jmp_if_false_op(address: int,
     return address, numbers
 
 
-def less_than_op(address: int,
-                 numbers: list[int],
-                 parameter_modes: list[int]) -> tuple[int, list[int]]:
+def less_than_op(
+    address: int, numbers: list[int], parameter_modes: list[int]
+) -> tuple[int, list[int]]:
     """Less than operator"""
     values = []
     for parameter_mode in parameter_modes[:2]:
@@ -185,9 +185,9 @@ def less_than_op(address: int,
     return address, numbers
 
 
-def equals_op(address: int,
-              numbers: list[int],
-              parameter_modes: list[int]) -> tuple[int, list[int]]:
+def equals_op(
+    address: int, numbers: list[int], parameter_modes: list[int]
+) -> tuple[int, list[int]]:
     """Equals operator"""
     values = []
     for parameter_mode in parameter_modes[:2]:

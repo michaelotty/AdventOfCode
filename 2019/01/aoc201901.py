@@ -3,9 +3,9 @@
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
+    with open("input.txt", encoding="utf-8") as file:
         numbers = [int(i) for i in file.readlines()]
-    print(f'Part 1: {sum(max(num // 3 - 2, 0) for num in numbers)}')
+    print(f"Part 1: {sum(max(num // 3 - 2, 0) for num in numbers)}")
 
     part_2_answer = 0
     for num in numbers:
@@ -16,7 +16,7 @@ def main():
             else:
                 break
 
-    print(f'Part 2: {part_2_answer}')
+    print(f"Part 2: {part_2_answer}")
 
 
 if __name__ == "__main__":
