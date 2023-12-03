@@ -1,37 +1,37 @@
 """Advent of code Day 1 part 2"""
 
-from turtle import forward, left, mode, position, right, setposition, speed
+import turtle
 
 
 def find_position(instructions):
-    setposition((0, 0))
-    mode('logo')
-    speed(0)
+    turtle.setposition((0, 0))
+    turtle.mode("logo")
+    turtle.speed(0)
 
-    visited_locations = {position()}
+    visited_locations = {turtle.position()}
 
     for instruction in instructions:
         direction = instruction[0]
         steps = int(instruction[1:])
 
-        if direction == 'R':
-            right(90)
-        elif direction == 'L':
-            left(90)
+        if direction == "R":
+            turtle.right(90)
+        elif direction == "L":
+            turtle.left(90)
         else:
             raise ValueError
 
         for _ in range(steps):
-            forward(1)
-            if position() in visited_locations:
-                return position()
-            visited_locations.add(position())
+            turtle.forward(1)
+            if turtle.position() in visited_locations:
+                return turtle.position()
+            visited_locations.add(turtle.position())
 
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as f:
-        instructions = f.read().split(', ')
+    with open("2016/01/input.txt", encoding="utf-8") as f:
+        instructions = f.read().split(", ")
 
     x, y = find_position(instructions)
 

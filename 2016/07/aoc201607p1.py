@@ -10,7 +10,9 @@ def has_abba(test_string: str) -> bool:
     Not aaaa or tttt."""
     num_of_substr = len(test_string) - 3
     for i in range(num_of_substr):
-        if (test_string[i] != test_string[i+1]) and (test_string[i:i+2] == test_string[i+3:i+1:-1]):
+        if (test_string[i] != test_string[i + 1]) and (
+            test_string[i : i + 2] == test_string[i + 3 : i + 1 : -1]
+        ):
             return True
     return False
 
@@ -26,12 +28,16 @@ def supports_tls(ips: list[str], hypernets: list[str]) -> bool:
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
+    with open("input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
 
-    re_expr = re.compile(r'\W+')
-    print(sum(supports_tls(x[::2], x[1::2])
-          for x in (re_expr.split(line) for line in lines)))
+    re_expr = re.compile(r"\W+")
+    print(
+        sum(
+            supports_tls(x[::2], x[1::2])
+            for x in (re_expr.split(line) for line in lines)
+        )
+    )
 
 
 if __name__ == "__main__":
