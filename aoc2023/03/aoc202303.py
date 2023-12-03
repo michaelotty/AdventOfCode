@@ -6,7 +6,7 @@ from itertools import product
 
 def main():
     """Main function."""
-    with open("aoc2023/03/input.txt", encoding="utf-8") as file:
+    with open("aoc2023/03/test.txt", encoding="utf-8") as file:
         rows = file.read().splitlines()
 
     print("Part 1:", part_1(rows))
@@ -54,7 +54,28 @@ def part_1(rows: list[str]):
 
 def part_2(rows):
     """Solve part 2."""
-    return 0
+    height = len(rows)
+    width = len(rows[0])
+
+    gear_coords = set()
+    for i, row in enumerate(rows):
+        for j, char in enumerate(row):
+            if char == "*":
+                adjacent_coords = [
+                    (i + x, j + y)
+                    for x, y in product(range(-1, 2), range(-1, 2))
+                    if 0 <= i + x < height and 0 <= j + y < width and not x == y == 0
+                ]
+
+                
+
+                for row_id, col_id in adjacent_coords:
+                    if re.match(r"\d", rows[row_id][col_id]):
+                        
+
+                print(adjacent_coords)
+                gear_coords.add((i, j))
+    return gear_coords
 
 
 if __name__ == "__main__":
