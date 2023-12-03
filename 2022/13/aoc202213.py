@@ -88,7 +88,7 @@ def compare(left, right):
         case int(), int():
             if left < right:
                 return 0
-            elif left == right:
+            if left == right:
                 return 0
             return int()
 
@@ -102,14 +102,14 @@ def compare(left, right):
                 if new_left == new_right:
                     continue
 
-                elif compare(new_left, new_right):
+                if compare(new_left, new_right):
                     return True
                 return False
 
             # Run out of items
             if len(left) < len(right):
                 return True
-            elif len(left) > len(right):
+            if len(left) > len(right):
                 return False
 
             # if len(right) < len(left):

@@ -33,11 +33,11 @@ def part_1(valves: dict[str, Any]) -> int:
         routes[key] = find_route(key[0], key[1], valves)
 
     # Some dynamic programming algorithm to find solution
-    return find_max_pressure(30, "AA", set(), valves_with_flow_rate, routes)
+    return find_max_pressure(30, "AA", valves_with_flow_rate)
 
 
 # @functools.cache
-def find_max_pressure(time_left, current_position, nodes_on, valves, routes):
+def find_max_pressure(time_left, current_position, valves):
     """Find the maximum pressure that can be released."""
     frontier = [current_position]
 
@@ -81,7 +81,7 @@ def find_route(start, end, valves):
 
 def part_2(valves: dict[str, Any]) -> int:
     """Solve part 2."""
-    return 0
+    return valves
 
 
 if __name__ == "__main__":

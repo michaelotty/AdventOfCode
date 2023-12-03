@@ -32,8 +32,8 @@ def solve(height_map: list[list[int]], start_coord: tuple[int, int]) -> int:
 
     frontier = queue.PriorityQueue()
     frontier.put((0, start_coord))
-    came_from = dict()
-    cost_so_far = dict()
+    came_from = {}
+    cost_so_far = {}
     came_from[start_coord] = None
     cost_so_far[start_coord] = 0
 
@@ -63,13 +63,15 @@ def solve(height_map: list[list[int]], start_coord: tuple[int, int]) -> int:
     return len(path)
 
 
-def find(char_to_find: str, height_map: list[list[int]]) -> tuple[int, int]:
+def find(char_to_find: str, height_map: list[list[int]]) -> tuple[int, int] | None:
     """Find the first coordinate of a character in height map grid."""
     char_to_find = ord(char_to_find)
     for i, line in enumerate(height_map):
         for j, char_to_search in enumerate(line):
             if char_to_search == char_to_find:
                 return (i, j)
+
+    return None
 
 
 def find_all(char_to_find: str, height_map: list[list[int]]) -> list[tuple[int, int]]:
@@ -108,10 +110,8 @@ def get_neighbors(
 
         # Remap S and E to a and z
         remapping = {ord("S"): ord("a"), ord("E"): ord("z")}
-        if from_height in remapping:
-            from_height = remapping[from_height]
-        if to_height in remapping:
-            to_height = remapping[to_height]
+        from_height = remapping.get(from_height, from_height)
+        to_height = remapping.get(to_height, to_height)
 
         if to_height - from_height <= 1:
             frontier.append(to_coord)

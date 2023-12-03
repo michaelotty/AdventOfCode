@@ -13,7 +13,7 @@ def contains_pair(password: str, exclusive: bool = False) -> bool:
     """Returns true if password contains a pair"""
     if exclusive:
         for digit in string.digits:
-            if (digit + digit) in password and (digit + digit + digit) not in password:
+            if digit + digit in password and (digit + digit + digit) not in password:
                 return True
         return False
 

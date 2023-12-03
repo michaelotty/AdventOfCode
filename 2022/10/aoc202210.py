@@ -27,7 +27,7 @@ def part_1(instructions: list[str]):
     return signal_strength, x_register
 
 
-def noop(x_register: list[int], value: int):
+def noop(x_register: list[int], _):
     """Execute the no op operation."""
     x_register.append(x_register[-1])
     return x_register

@@ -9,7 +9,7 @@ with open("question.txt", encoding="utf-8") as f:
     text = text.replace("R", "1")
 
     text = text.split("\n")
-    IDs = list()
+    IDs = []
     for line in text:
         ID = int(line, 2)
         IDs.append(ID)

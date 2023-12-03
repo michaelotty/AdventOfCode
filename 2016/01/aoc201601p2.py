@@ -1,11 +1,14 @@
 """Advent of code Day 1 part 2"""
 
-import turtle
+from turtle import Screen, Turtle
 
 
 def find_position(instructions):
+    screen = Screen()
+    turtle = Turtle()
+
     turtle.setposition((0, 0))
-    turtle.mode("logo")
+    screen.mode("logo")
     turtle.speed(0)
 
     visited_locations = {turtle.position()}
@@ -24,8 +27,11 @@ def find_position(instructions):
         for _ in range(steps):
             turtle.forward(1)
             if turtle.position() in visited_locations:
+                screen.mainloop()
                 return turtle.position()
             visited_locations.add(turtle.position())
+
+    return None
 
 
 def main():

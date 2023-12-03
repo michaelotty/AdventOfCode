@@ -31,15 +31,9 @@ def test_snafu():
     }
     for key, val in test_cases.items():
         test = snafu_to_int(key)
-        assert test == val, "SNAFU to int unsuccessful: (%d != %d)" % (
-            test,
-            val,
-        )
+        assert test == val, f"SNAFU to int unsuccessful: ({test} != {val})"
         test = int_to_snafu(val)
-        assert test == key, "int to SNAFU unsuccessful: (%s != %s)" % (
-            test,
-            key,
-        )
+        assert test == key, f"int to SNAFU unsuccessful: ({test} != {key})"
 
 
 def snafu_to_int(snafu: str) -> int:
@@ -76,7 +70,7 @@ def part_1(nums):
 
 def part_2(nums):
     """Solve part 2."""
-    return 0
+    return nums
 
 
 if __name__ == "__main__":

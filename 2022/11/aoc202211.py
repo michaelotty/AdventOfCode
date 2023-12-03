@@ -32,20 +32,14 @@ def create_operation_fn(text: str):
     """Create a new function for the operation defined by the string."""
     op_char, num = re.findall(r"(\+|\*) (\d+|old)", text)[0]
     op_mapping = {"*": operator.mul, "+": operator.add}
-    if num == "old":
 
-        def operation(old):
-            return op_mapping[op_char](old, old)
+    def operation(old):
+        return op_mapping[op_char](old, num)
 
-        return operation
-    else:
+    if num != "old":
         num = int(num)
 
-        def operation(old):
-            return op_mapping[op_char](old, num)
-
-        return operation
-    raise RuntimeError("No operators detected in string!")
+    return operation
 
 
 def create_test_fn(text: str):
@@ -60,8 +54,7 @@ def create_test_fn(text: str):
     def operation(num):
         if not num % nums[0]:
             return nums[1]
-        else:
-            return nums[2]
+        return nums[2]
 
     return operation
 

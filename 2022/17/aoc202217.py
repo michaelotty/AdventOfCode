@@ -105,8 +105,7 @@ class Grid:
 
     def _direction_generator(self):
         """Generate the infinite looping directions from the file."""
-        for i, char in itertools.cycle(enumerate(self.directions_string)):
-            # print(i, char)
+        for char in itertools.cycle(self.directions_string):
             yield char
 
     def _shape_generator(self):

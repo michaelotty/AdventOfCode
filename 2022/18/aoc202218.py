@@ -33,26 +33,27 @@ def part_1(voxels: set[tuple[int, int, int]]) -> int:
 
 def part_2(lava_drop: set[tuple[int, int, int]]) -> int:
     """Solve part 2."""
-    min_x, max_x = (
-        min(x for x, y, z in lava_drop) - 1,
-        max(x for x, y, z in lava_drop) + 1,
-    )
-    min_y, max_y = (
-        min(y for x, y, z in lava_drop) - 1,
-        max(y for x, y, z in lava_drop) + 1,
-    )
-    min_z, max_z = (
-        min(z for x, y, z in lava_drop) - 1,
-        max(z for x, y, z in lava_drop) + 1,
-    )
-    locations_to_search = {
-        (x, y, z)
-        for x, y, z in itertools.product(
-            range(min_x, max_x + 1), range(min_y, max_y + 1), range(min_z, max_z + 1)
-        )
-    }
+    mins = {}
+    maxs = {}
 
-    start = (min_x, min_y, min_z)
+    mins["x"] = min(x for x, y, z in lava_drop) - 1
+    maxs["x"] = max(x for x, y, z in lava_drop) + 1
+
+    mins["y"] = min(y for x, y, z in lava_drop) - 1
+    maxs["y"] = max(y for x, y, z in lava_drop) + 1
+
+    mins["z"] = min(z for x, y, z in lava_drop) - 1
+    maxs["z"] = max(z for x, y, z in lava_drop) + 1
+
+    locations_to_search = set(
+        itertools.product(
+            range(mins["x"], maxs["x"] + 1),
+            range(mins["y"], maxs["y"] + 1),
+            range(mins["z"], maxs["z"] + 1),
+        )
+    )
+
+    start = (mins["x"], mins["y"], mins["z"])
     frontier = []
     open_air = set()
     air = locations_to_search - lava_drop

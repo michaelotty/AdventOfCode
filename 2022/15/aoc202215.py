@@ -35,7 +35,7 @@ def manhattan_distance(start: tuple[int, int], end: tuple[int, int]) -> int:
     return abs(end[0] - start[0]) + abs(end[1] - start[1])
 
 
-def part_2(coords: dict[tuple[int, int], tuple[int, int]]) -> int:
+def part_2(coords: dict[tuple[int, int], tuple[int, int]]) -> int | None:
     """Solve part 2."""
     distances = {
         sensor: manhattan_distance(sensor, beacon) for sensor, beacon in coords.items()
@@ -72,6 +72,8 @@ def part_2(coords: dict[tuple[int, int], tuple[int, int]]) -> int:
                 for sensor in coords
             ):
                 return point_on_edge[0] * upper_lim + point_on_edge[1]
+
+    return None
 
 
 if __name__ == "__main__":

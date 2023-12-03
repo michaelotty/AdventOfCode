@@ -5,29 +5,22 @@ import re
 from sympy.parsing import sympy_parser
 import sympy
 
-monkeys = {}
-
 
 def main():
     """Main function."""
-    global monkeys
     with open("2022/21/input.txt", encoding="utf-8") as file:
         monkeys = dict(line.split(": ") for line in file.read().splitlines())
-    print("Part 1:", part_1())
-    print("Part 2:", part_2())
+    print("Part 1:", part_1(monkeys))
+    print("Part 2:", part_2(monkeys))
 
 
-def part_1() -> int:
+def part_1(monkeys) -> int:
     """Solve part 1."""
-    global monkeys
-
-    return find_value("root")
+    return find_value("root", monkeys)
 
 
-def find_value(key: str):
+def find_value(key: str, monkeys):
     """Find the value of a monkey given by key."""
-    global monkeys
-
     val = monkeys[key]
     try:
         return int(val)
@@ -36,8 +29,8 @@ def find_value(key: str):
 
     left, op, right = val.split()
 
-    left = find_value(left)
-    right = find_value(right)
+    left = find_value(left, monkeys)
+    right = find_value(right, monkeys)
 
     match op:
         case "+":
@@ -50,14 +43,12 @@ def find_value(key: str):
             return left // right
 
 
-def part_2():
+def part_2(monkeys):
     """Solve part 2."""
-    global monkeys
-
     left, _, right = monkeys["root"].split()
     monkeys["root"] = left + " - " + right
 
-    algebra = find_path_to_humn()
+    algebra = find_path_to_humn(monkeys)
     algebra.pop(0)
 
     last_expression = algebra.pop(0)
@@ -73,10 +64,8 @@ def part_2():
     return last_expression[0]
 
 
-def find_path_to_humn(key="root") -> list[str]:
+def find_path_to_humn(monkeys, key="root") -> list[str] | None:
     """Find the path to humn."""
-    global monkeys
-
     if key == "humn":
         return ["humn"]
 
@@ -89,15 +78,16 @@ def find_path_to_humn(key="root") -> list[str]:
 
     left, op, right = val.split()
 
-    left_val = find_path_to_humn(left)
-    right_val = find_path_to_humn(right)
+    left_val = find_path_to_humn(monkeys, left)
+    right_val = find_path_to_humn(monkeys, right)
 
     if left_val:
-        left_val.append(f"{left} {op} {find_value(right)}")
+        left_val.append(f"{left} {op} {find_value(monkeys, right)}")
         return left_val
     if right_val:
-        right_val.append(f"{find_value(left)} {op} {right}")
+        right_val.append(f"{find_value(monkeys, left)} {op} {right}")
         return right_val
+    return None
 
 
 if __name__ == "__main__":

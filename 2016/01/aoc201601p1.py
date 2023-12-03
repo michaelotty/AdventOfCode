@@ -1,6 +1,6 @@
 """Advent of code Day 1 part 1"""
 
-import turtle
+from turtle import Screen, Turtle
 
 
 def main():
@@ -8,8 +8,11 @@ def main():
     with open("2016/01/input.txt", encoding="utf-8") as f:
         instructions = f.read().split(", ")
 
+    screen = Screen()
+    turtle = Turtle()
+
     turtle.setposition((0, 0))
-    turtle.mode("logo")
+    screen.mode("logo")
     turtle.speed(0)
 
     for instruction in instructions:
@@ -27,6 +30,8 @@ def main():
 
     x, y = turtle.position()
     print(round(x + y))
+
+    screen.mainloop()
 
 
 if __name__ == "__main__":
