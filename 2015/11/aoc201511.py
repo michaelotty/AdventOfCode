@@ -5,7 +5,7 @@ import string
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2015/11/input.txt", encoding="utf-8") as file:
         passwords = [file.read()]
 
     passwords.append(find_next_password(passwords[0]))

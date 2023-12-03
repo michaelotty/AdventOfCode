@@ -6,7 +6,7 @@ import random
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2016/05/input.txt", encoding="utf-8") as file:
         content = file.read()
 
     index = 0

@@ -5,7 +5,7 @@ import re
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2017/07/input.txt", encoding="utf-8") as file:
         lines = file.readlines()
 
     weights = {}

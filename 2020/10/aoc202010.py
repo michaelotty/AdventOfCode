@@ -6,7 +6,7 @@ from typing import Generator, Iterable
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2020/10/input.txt", encoding="utf-8") as file:
         file_input = tuple(sorted(int(i) for i in file.read().split()))
 
     print(f"Part 1: {solve_part_1(file_input)}")

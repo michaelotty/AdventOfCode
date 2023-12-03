@@ -3,7 +3,7 @@
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2017/02/input.txt", encoding="utf-8") as file:
         rows = tuple(
             tuple(int(element) for element in row.split()) for row in file.readlines()
         )

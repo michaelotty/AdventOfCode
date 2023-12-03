@@ -86,7 +86,7 @@ def main():
     winning_combos = []
     losing_combos = []
 
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2015/21/input.txt", encoding="utf-8") as file:
         enemy_file = {
             name.lower().replace(" ", "_"): int(value)
             for name, value in re.findall(r"(.*): (\d+)", file.read())

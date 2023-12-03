@@ -86,7 +86,7 @@ def path_distance(coordinate: tuple[int, int], step_records: tuple[dict, dict]) 
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2019/03/input.txt", encoding="utf-8") as file:
         wires = tuple(tuple(i.split(",")) for i in file.read().split())
 
     intersections, step_records = find_intersections(wires)

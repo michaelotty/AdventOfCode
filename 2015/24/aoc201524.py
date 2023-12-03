@@ -5,7 +5,7 @@ from itertools import permutations
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2015/24/input.txt", encoding="utf-8") as file:
         present_weights = tuple(int(i) for i in file.read().split())
 
     presents_in_group_1 = 2

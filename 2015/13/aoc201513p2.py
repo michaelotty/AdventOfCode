@@ -5,7 +5,7 @@ from itertools import permutations
 
 def main():
     """Main function"""
-    with open("input_part_2.txt", encoding="utf-8") as file:
+    with open("2015/13/input_part_2.txt", encoding="utf-8") as file:
         data = file.readlines()
 
     operations = {"gain": 1, "lose": -1}

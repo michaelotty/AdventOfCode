@@ -15,7 +15,7 @@ def gen_sequence(x, replacements):
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2015/19/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
 
     replacements = []

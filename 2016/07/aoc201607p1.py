@@ -28,7 +28,7 @@ def supports_tls(ips: list[str], hypernets: list[str]) -> bool:
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2016/07/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
 
     re_expr = re.compile(r"\W+")

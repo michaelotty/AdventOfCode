@@ -9,7 +9,7 @@ def main():
     places = set()
     distances = {}
 
-    with open("input.txt", encoding="utf-8") as fp:
+    with open("2015/09/input.txt", encoding="utf-8") as fp:
         data = fp.read()
 
     for line in data.splitlines():

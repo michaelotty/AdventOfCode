@@ -21,7 +21,7 @@ def calculate_checksum(lines: list[str]) -> int:
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2018/02/input.txt", encoding="utf-8") as file:
         lines = file.read().split()
 
     print(calculate_checksum(lines))

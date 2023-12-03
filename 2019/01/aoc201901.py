@@ -3,7 +3,7 @@
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2019/01/input.txt", encoding="utf-8") as file:
         numbers = [int(i) for i in file.readlines()]
     print(f"Part 1: {sum(max(num // 3 - 2, 0) for num in numbers)}")
 

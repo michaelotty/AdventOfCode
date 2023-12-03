@@ -39,7 +39,7 @@ def ascending_numbers(password: str) -> bool:
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2019/04/input.txt", encoding="utf-8") as file:
         password_range = tuple(int(i) for i in file.read().split("-"))
 
     print(

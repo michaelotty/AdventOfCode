@@ -93,7 +93,7 @@ class Shift:
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2018/04/input.txt", encoding="utf-8") as file:
         lines = [
             (datetime.fromisoformat(date_time), desc)
             for date_time, desc in re.findall(r"\[(.+)\] (.+)", file.read())

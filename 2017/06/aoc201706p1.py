@@ -3,7 +3,7 @@
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2017/06/input.txt", encoding="utf-8") as file:
         puzzle = [int(x) for x in file.read().split()]
 
     solved_puzzles = set()

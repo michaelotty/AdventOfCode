@@ -5,7 +5,7 @@ import re
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2015/19/input.txt", encoding="utf-8") as file:
         file_contents = file.read()
 
     replacements, formula = file_contents.split("\n\n")

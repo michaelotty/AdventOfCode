@@ -4,8 +4,8 @@
 def main():
     """Start of program"""
 
-    with open("input.txt", encoding="utf-8") as f:
-        text = str(f.read())
+    with open("2015/01/input.txt", encoding="utf-8") as f:
+        text = f.read()
 
     up = text.count("(")
     down = text.count(")")

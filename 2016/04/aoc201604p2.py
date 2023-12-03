@@ -14,7 +14,7 @@ def shift_cipher(encoded_text: str, room_number: int) -> str:
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2016/04/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
 
     real_rooms = []

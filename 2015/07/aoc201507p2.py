@@ -3,7 +3,7 @@
 
 def main():
     """Main function"""
-    with open("input_for_part_2.txt", encoding="utf-8") as f:
+    with open("2015/07/input_for_part_2.txt", encoding="utf-8") as f:
         file_contents = f.read().split("\n")
 
     parser = Parser(file_contents)

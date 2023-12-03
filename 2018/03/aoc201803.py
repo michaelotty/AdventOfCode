@@ -6,7 +6,7 @@ from itertools import product
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2018/03/input.txt", encoding="utf-8") as file:
         lines = [
             tuple(map(int, line))
             for line in re.findall(r"(\d+),(\d+): (\d+)x(\d+)", file.read())

@@ -16,7 +16,7 @@ def find_shortest_perimeter(length, width, height):
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as f:
+    with open("2015/02/input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 
     file_contents = file_contents.split()

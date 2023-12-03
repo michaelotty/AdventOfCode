@@ -5,7 +5,7 @@ import re
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2015/16/input.txt", encoding="utf-8") as file:
         data = file.readlines()
 
     greaters = ("cats: 7", "trees: 3")

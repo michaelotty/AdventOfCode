@@ -3,7 +3,7 @@
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as f:
+    with open("2015/08/input.txt", encoding="utf-8") as f:
         file_lines = f.read().split("\n")
 
     code_len = sum(len(i) for i in file_lines)

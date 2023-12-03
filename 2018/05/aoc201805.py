@@ -6,7 +6,7 @@ import string
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2018/05/input.txt", encoding="utf-8") as file:
         text = file.read()
     print(f"Part 1: {part_1(text)}")
     print(f"Part 2: {part_2(text)}")

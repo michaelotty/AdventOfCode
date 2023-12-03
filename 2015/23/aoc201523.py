@@ -5,7 +5,7 @@ import re
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2015/23/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
 
     print(f"Part 1: {run_computer(0, lines)}")

@@ -3,7 +3,7 @@
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2017/04/input.txt", encoding="utf-8") as file:
         puzzle_input = [
             ["".join(sorted(word)) for word in line.split()]
             for line in file.readlines()

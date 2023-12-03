@@ -5,7 +5,7 @@ from itertools import combinations, permutations
 
 def main():
     """Main function"""
-    with open("input.txt", encoding="utf-8") as file:
+    with open("2016/03/input.txt", encoding="utf-8") as file:
         triangles = [
             tuple(int(x) for x in line.split()) for line in file.read().split("\n")
         ]
