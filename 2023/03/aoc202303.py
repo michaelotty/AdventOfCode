@@ -67,8 +67,8 @@ def part_2(rows):
                     if 0 <= i + x < height and 0 <= j + y < width and not x == y == 0
                 ]
 
-                for row_id, col_id in adjacent_coords:
-                    if re.match(r"\d", rows[row_id][col_id]):
+                # for row_id, col_id in adjacent_coords:
+                #     if re.match(r"\d", rows[row_id][col_id]):
 
                 print(adjacent_coords)
                 gear_coords.add((i, j))

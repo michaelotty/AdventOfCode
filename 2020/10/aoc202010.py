@@ -6,11 +6,11 @@ from typing import Generator, Iterable
 
 def main():
     """Main function"""
-    with open('input.txt', encoding='utf-8') as file:
+    with open("input.txt", encoding="utf-8") as file:
         file_input = tuple(sorted(int(i) for i in file.read().split()))
 
-    print(f'Part 1: {solve_part_1(file_input)}')
-    print(f'Part 2: {solve_part_2(file_input)}')
+    print(f"Part 1: {solve_part_1(file_input)}")
+    print(f"Part 2: {solve_part_2(file_input)}")
 
 
 def solve_part_1(file_input: tuple[int, ...]) -> int:
@@ -26,8 +26,7 @@ def solve_part_2(file_input: tuple[int, ...]) -> int:
     counter = {0: 1}
 
     for adapter in adapters:
-        counter[adapter] = sum(counter.get(adapter - i, 0)
-                               for i in range(1, 4))
+        counter[adapter] = sum(counter.get(adapter - i, 0) for i in range(1, 4))
     return counter[adapters[-1]]
 
 

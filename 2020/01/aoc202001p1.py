@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 
-data = pd.read_csv('question.txt', header=None)
+data = pd.read_csv("question.txt", header=None)
 data = np.array(data[0])
 
 for point in data:

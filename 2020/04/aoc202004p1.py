@@ -2,30 +2,29 @@
 
 import re
 
+
 def part_1(lines):
     """Part 1 of puzzle"""
     valid_records = 0
 
     for line in lines:
-        record = dict(re.findall(r'(\w+):(\w+)', line))
+        record = dict(re.findall(r"(\w+):(\w+)", line))
 
-        numeric_keys = ['byr', 'iyr', 'eyr', 'pid', 'cid']
+        numeric_keys = ["byr", "iyr", "eyr", "pid", "cid"]
         for numeric_key in numeric_keys:
-            if 
+            # if
             record.get(numeric_key)
-        record = dict(i.split(':') for i in line)
+        record = dict(i.split(":") for i in line)
         print(record)
-
-
 
         # record = {'ecl': None, 'pid': None, 'eyr': None, 'hcl': None,
         #           'byr': None, 'iyr': None, 'cid': None, 'hgt': None}
         for item in line:
-            item = item.split(':')
+            item = item.split(":")
             key = item[0]
-            val = int(item[1].replace('cm', ''))
+            val = int(item[1].replace("cm", ""))
             record[key] = val
-        record.pop('cid')
+        record.pop("cid")
 
         if None in record.values():
             pass
@@ -42,11 +41,11 @@ def part_2(lines):
 
 def main():
     """Start of program execution"""
-    with open('test.txt', encoding='utf-8') as file:
-        lines = file.read().split('\n\n')
+    with open("test.txt", encoding="utf-8") as file:
+        lines = file.read().split("\n\n")
 
-    print(f'Part 1: {part_1(lines)}')
-    print(f'Part 2: {part_2(lines)}')
+    print(f"Part 1: {part_1(lines)}")
+    print(f"Part 2: {part_2(lines)}")
 
 
 if __name__ == "__main__":
