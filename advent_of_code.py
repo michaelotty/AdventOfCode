@@ -21,12 +21,12 @@ def advent_of_code():
     today = date.today()
 
     if args.year:
-        folder = Path(f"aoc{args.year}")
+        folder = Path(f"{args.year}")
     else:
         if today.month < december.month:
-            folder = Path(f"aoc{today.year-1}")
+            folder = Path(f"{today.year-1}")
         else:
-            folder = Path(f"aoc{today.year-1}")
+            folder = Path(f"{today.year-1}")
 
     if args.day:
         folder /= f"{args.day:02}"
