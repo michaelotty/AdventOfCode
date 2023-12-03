@@ -10,7 +10,7 @@ def main():
         rows = file.read().splitlines()
 
     print("Part 1:", part_1(rows))
-    # print("Part 2:", part_2(rows))
+    print("Part 2:", part_2(rows))
 
 
 def part_1(rows: list[str]):
@@ -43,16 +43,18 @@ def part_1(rows: list[str]):
                 part_numbers.append(int("".join(number)))
                 number = []
                 is_part_number = False
+            else:
+                number = []
 
         if number and is_part_number:
             part_numbers.append(int("".join(number)))
 
-    return sum(part_numbers)  # 258681945906 too high
+    return sum(part_numbers)
 
 
 def part_2(rows):
     """Solve part 2."""
-    return rows
+    return 0
 
 
 if __name__ == "__main__":
