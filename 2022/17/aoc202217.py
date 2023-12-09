@@ -95,7 +95,7 @@ class Grid:
 
     def __init__(self, file_name) -> None:
         """Create a grid."""
-        self.grid = set()
+        self.grid: set[tuple[int, int]] = set()
 
         with open(file_name, encoding="utf-8") as file:
             self.directions_string = file.read()

@@ -43,7 +43,7 @@ def part_2(data: str):
         "9": "9",
     }
 
-    data = data.strip().split("\n")
+    split_data = data.strip().split("\n")
     output = []
 
     match = re.compile(r"one|two|three|four|five|six|seven|eight|nine|\d")
@@ -51,9 +51,14 @@ def part_2(data: str):
         r"one|two|three|four|five|six|seven|eight|nine"[::-1] + r"|\d"
     )
 
-    for line in data:
-        first = re.search(match, line)[0]
-        rev_last = re.search(rev_match, line[::-1])[0]
+    for line in split_data:
+        matches = re.search(match, line)
+        rev_matches = re.search(rev_match, line[::-1])
+        assert matches
+        assert rev_matches
+
+        first = matches[0]
+        rev_last = rev_matches[0]
         last = rev_last[::-1]
         output.append(int(numbers[first] + numbers[last]))
 

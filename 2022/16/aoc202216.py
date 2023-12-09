@@ -79,7 +79,7 @@ def find_route(start, end, valves):
     return path
 
 
-def part_2(valves: dict[str, Any]) -> int:
+def part_2(valves: dict[str, Any]) -> dict[str, Any]:
     """Solve part 2."""
     return valves
 

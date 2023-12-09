@@ -56,9 +56,9 @@ def extract_shop_data(file_name: str) -> dict:
 
     shops = {}
     for shop in shops_file:
-        name, items = shop.split(":")
-        titles = tuple(title.lower() for title in re.findall(r"\w+", items)[:3])
-        items = re.findall(r"\n(.+) +(\d+) +(\d+) +(\d+)", items)
+        name, items_str = shop.split(":")
+        titles = tuple(title.lower() for title in re.findall(r"\w+", items_str)[:3])
+        items = re.findall(r"\n(.+) +(\d+) +(\d+) +(\d+)", items_str)
         names = tuple(x[0].strip().lower().replace(" +", "_") for x in items)
         shops[name.lower()] = [
             Item(name=item_name, **dict(zip(titles, map(int, value[1:]))))

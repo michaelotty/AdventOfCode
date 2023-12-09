@@ -1,7 +1,9 @@
 """Advent of code Day 3 part 1 and 2"""
 
+from typing import Callable
 
-def find_visited_locations(wire: tuple[str]) -> tuple[set[tuple[int, int]], dict]:
+
+def find_visited_locations(wire: tuple[str, ...]) -> tuple[set[tuple[int, int]], dict]:
     """Create set of visited locations"""
     position = (0, 0)
     visited_locations = set()
@@ -9,8 +11,8 @@ def find_visited_locations(wire: tuple[str]) -> tuple[set[tuple[int, int]], dict
     step = 1
 
     for branch in wire:
-        direction, *amount = branch
-        amount = int("".join(amount))
+        direction, *rest = list(branch)
+        amount = int("".join(rest))
         for _ in range(amount):
             position = move_position(position, direction)
             visited_locations.add(position)
@@ -21,7 +23,7 @@ def find_visited_locations(wire: tuple[str]) -> tuple[set[tuple[int, int]], dict
 
 
 def find_intersections(
-    wires: tuple[tuple[str]],
+    wires: tuple[tuple[str, ...], ...],
 ) -> tuple[set[tuple[int, int]], tuple[dict, dict]]:
     """Find all coords of all intersections of the wires"""
     wire_visits = [find_visited_locations(wire) for wire in wires]
@@ -48,10 +50,13 @@ def move_position(position: tuple[int, int], direction: str) -> tuple[int, int]:
 def distance_to_closest_intersection(
     intersections: set[tuple[int, int]],
     method: str,
-    step_records: tuple[dict, dict] = None,
+    step_records: tuple[dict, dict] | None = None,
 ) -> int:
     """Find the closest intersection"""
-    distance_funcs = {"manhattan": manhattan_distance, "path": path_distance}
+    distance_funcs: dict[str, Callable] = {
+        "manhattan": manhattan_distance,
+        "path": path_distance,
+    }
     try:
         distance_func = distance_funcs[method]
     except KeyError:
@@ -62,9 +67,9 @@ def distance_to_closest_intersection(
     if distance_func is path_distance and step_records is None:
         raise ValueError(f"step_records must be defined if method={method}")
 
-    intersections = list(intersections)
+    intersections_list = list(intersections)
     intersection_distances = (
-        distance_func(intersection, step_records) for intersection in intersections
+        distance_func(intersection, step_records) for intersection in intersections_list
     )
     return min(intersection_distances)
 

@@ -16,9 +16,9 @@ def main():
 def create_monkeys(monkey_text: list[str]):
     """Create monkeys from the text input."""
     monkeys = []
-    for monkey_text_block in monkey_text:
-        monkey_text_block = monkey_text_block.splitlines()
-        monkey = {}
+    for monkey_text_line in monkey_text:
+        monkey_text_block = monkey_text_line.splitlines()
+        monkey: dict[str, int | list[int]] = {}
         monkey["items"] = [int(i) for i in re.findall(r"\d+", monkey_text_block[1])]
         monkey["operation"] = create_operation_fn(monkey_text_block[2])
         monkey["test"] = create_test_fn("\n".join(monkey_text_block[3:]))
@@ -59,13 +59,13 @@ def create_test_fn(text: str):
     return operation
 
 
-def get_divisor(text: str):
+def get_divisor(text: str) -> int:
     """Get the divisor for the monkey test."""
     divisor = re.findall(r"divisible by (\d+)", text)[0]
     return int(divisor)
 
 
-def run_rounds(monkeys: dict, rounds: int, part_1: bool = True):
+def run_rounds(monkeys: list, rounds: int, part_1: bool = True) -> list:
     """Run defined amount of rounds of monkey business.
 
     We are checking if the number is divisible, so we can prevent the number becoming

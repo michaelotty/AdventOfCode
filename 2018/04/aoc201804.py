@@ -91,18 +91,18 @@ class Shift:
         return self.time_asleep.seconds // 60
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2018/04/input.txt", encoding="utf-8") as file:
-        lines = [
+        unsorted_lines = [
             (datetime.fromisoformat(date_time), desc)
             for date_time, desc in re.findall(r"\[(.+)\] (.+)", file.read())
         ]
 
-    lines: list[tuple[datetime, str]] = sorted(lines, key=itemgetter(0))
+    lines: list[tuple[datetime, str]] = sorted(unsorted_lines, key=itemgetter(0))
 
     guard_ids = [int(x) for x in re.findall(r"#(\d+)", "".join(str(lines)))]
-    guards: dict[Guard] = {}
+    guards: dict[int, Guard] = {}
 
     for guard_id in sorted(set(guard_ids)):
         guards[guard_id] = Guard(guard_id)

@@ -26,8 +26,8 @@ def part_1(voxels: set[tuple[int, int, int]]) -> int:
             ("z", x, y, z + 1),
         ]
         faces += new_faces
-    faces = collections.Counter(faces)
-    uncovered_faces = [face for face, count in faces.most_common() if count == 1]
+    faces_counted = collections.Counter(faces).most_common()
+    uncovered_faces = [face for face, count in faces_counted if count == 1]
     return len(uncovered_faces)
 
 

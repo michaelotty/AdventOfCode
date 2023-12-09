@@ -6,7 +6,7 @@ import re
 from itertools import permutations
 
 import numpy as np
-from scipy.spatial.transform import Rotation as R
+from scipy.spatial.transform import Rotation  # type: ignore
 
 
 def main():
@@ -39,7 +39,7 @@ def day_19(scanners):
 
     for sub_set_a in permutations(scanners[0], 12):
         for sub_set_b in permutations(scanners[1], 12):
-            angles, distance, _ = R.align_vectors(
+            angles, distance, _ = Rotation.align_vectors(
                 sub_set_a, sub_set_b, return_sensitivity=True
             )
             if distance < 500**2:

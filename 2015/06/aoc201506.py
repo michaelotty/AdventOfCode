@@ -35,9 +35,9 @@ def main(part2: bool):
             command.remove("turn")
 
         # Convert coords to int tuples
-        command[1] = tuple(int(i) for i in command[1].split(","))
-        command[2] = tuple(int(i) for i in command[2].split(","))
-        lights = actions[command[0]](command[1], command[2], lights)
+        command_a = tuple(int(i) for i in command[1].split(","))
+        command_b = tuple(int(i) for i in command[2].split(","))
+        lights = actions[command[0]](command_a, command_b, lights)
 
     print(sum(sum(line) for line in lights))
 

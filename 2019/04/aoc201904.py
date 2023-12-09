@@ -5,8 +5,8 @@ import string
 
 def valid_password(password: int, is_part_2: bool) -> bool:
     """Returns true if password is valid according to part 1 rules"""
-    password = str(password)
-    return contains_pair(password, is_part_2) and ascending_numbers(password)
+    password_str = str(password)
+    return contains_pair(password_str, is_part_2) and ascending_numbers(password_str)
 
 
 def contains_pair(password: str, exclusive: bool = False) -> bool:
@@ -29,44 +29,40 @@ def contains_pair(password: str, exclusive: bool = False) -> bool:
 def ascending_numbers(password: str) -> bool:
     """Returns true if each number ascends the next"""
     highest_digit = 0
-    for digit in password:
-        digit = int(digit)
+    for digit_char in password:
+        digit = int(digit_char)
         if digit < highest_digit:
             return False
         highest_digit = digit
     return True
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2019/04/input.txt", encoding="utf-8") as file:
         password_range = tuple(int(i) for i in file.read().split("-"))
 
     print(
-        "Part 1: "
-        + str(
-            sum(
-                1
-                for _ in (
-                    password
-                    for password in range(password_range[0], password_range[1])
-                    if valid_password(password, False)
-                )
+        "Part 1:",
+        sum(
+            1
+            for _ in (
+                password
+                for password in range(password_range[0], password_range[1])
+                if valid_password(password, False)
             )
-        )
+        ),
     )
     print(
-        "Part 2: "
-        + str(
-            sum(
-                1
-                for _ in (
-                    password
-                    for password in range(password_range[0], password_range[1])
-                    if valid_password(password, True)
-                )
+        "Part 2:",
+        sum(
+            1
+            for _ in (
+                password
+                for password in range(password_range[0], password_range[1])
+                if valid_password(password, True)
             )
-        )
+        ),
     )
 
 
