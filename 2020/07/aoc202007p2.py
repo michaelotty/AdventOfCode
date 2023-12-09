@@ -33,12 +33,19 @@ def main() -> None:
     with open("question.txt", encoding="utf-8") as file:
         file_content = file.read()
 
-    first_match = re.search(
+    matches = re.search(
         r"shiny gold bags contain ((?:(?:\d+ \w+ \w+ \w+)(?:, )*)+)\.", file_content
-    )[1].split(", ")
+    )
+    assert matches
+    first_match = matches[1].split(", ")
+
+    match_list: list[re.Match[str] | None] = [
+        re.search(r"\d+ (\w+ \w+)", i) for i in first_match
+    ]
+
     pop_list = zip(
         [int(i) for i in re.findall(r"\d+", "".join(first_match))],
-        [re.search(r"\d+ (\w+ \w+)", i)[1] for i in first_match],
+        [match[1] for match in match_list if match is not None],
     )
     root = BagTree(Bag("shiny gold"))
 

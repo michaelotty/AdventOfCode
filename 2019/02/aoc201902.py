@@ -12,7 +12,7 @@ class Opcode(IntEnum):
     END = 99
 
 
-def init_puzzle_input(file_input: tuple[int], noun: int, verb: int) -> list[int]:
+def init_puzzle_input(file_input: tuple[int, ...], noun: int, verb: int) -> list[int]:
     """Inits the puzzle input"""
     numbers = list(file_input)
     numbers[1] = noun
@@ -20,7 +20,7 @@ def init_puzzle_input(file_input: tuple[int], noun: int, verb: int) -> list[int]
     return numbers
 
 
-def solve_puzzle(file_input: tuple[int], noun: int, verb: int) -> int:
+def solve_puzzle(file_input: tuple[int, ...], noun: int, verb: int) -> int:
     """Solve the puzzle with corrected input"""
     numbers = init_puzzle_input(file_input=file_input, noun=noun, verb=verb)
     i = 0

@@ -5,7 +5,7 @@ from random import shuffle
 from typing import Generator
 
 
-def gen_sequence(x, replacements) -> Generator[int, None, None]:
+def gen_sequence(x, replacements: list) -> Generator[str, None, None]:
     """Ngl, stole this from reddit"""
     for j, i in replacements:
         for k in range(len(x)):

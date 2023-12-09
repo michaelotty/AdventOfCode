@@ -19,11 +19,11 @@ def main() -> None:
     with open("2015/02/input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 
-    file_contents = file_contents.split()
+    data = file_contents.split()
 
     length_of_ribbon = 0
 
-    for line in file_contents:
+    for line in data:
         length, width, height = tuple(int(i) for i in line.split("x"))
         length_of_ribbon += find_shortest_perimeter(
             length, width, height

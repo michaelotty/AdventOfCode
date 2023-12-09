@@ -14,24 +14,24 @@ def main() -> None:  # pylint: disable=too-many-locals
             name,
             _,
             _,
-            speed,
+            speed_str,
             _,
             _,
-            speed_time,
-            _,
-            _,
-            _,
+            speed_time_str,
             _,
             _,
             _,
-            rest_time,
+            _,
+            _,
+            _,
+            rest_time_str,
             _,
         ) = line.split()
 
         name = name[0:3]
-        speed = int(speed)
-        speed_time = int(speed_time)
-        rest_time = int(rest_time)
+        speed = int(speed_str)
+        speed_time = int(speed_time_str)
+        rest_time = int(rest_time_str)
 
         reindeer[name] = speed
         period = speed_time + rest_time

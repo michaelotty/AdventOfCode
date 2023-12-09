@@ -1,7 +1,7 @@
 """Advent of code Day 1 part 2"""
 
 
-def find_frequency(numbers: tuple[int]) -> int:
+def find_frequency(numbers: tuple[int, ...]) -> int:
     """Finds the frequency"""
     result = 0
     numbers_reached = set()

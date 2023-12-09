@@ -35,7 +35,7 @@ def run_computer(input_val: int, instructions: list[str]) -> int:
             return registers["b"]
 
 
-def hlf(registers: dict, register: str) -> tuple[int, int]:
+def hlf(registers: dict, register: str) -> tuple[int, dict]:
     """Half"""
     address_offset = 1
     registers[register] //= 2

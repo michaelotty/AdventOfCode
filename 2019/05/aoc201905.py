@@ -36,7 +36,7 @@ def main() -> None:
     print(f"Part 2: {solve_puzzle(file_input, 5)}")
 
 
-def solve_puzzle(file_input: tuple[int], input_val: int) -> int | None:
+def solve_puzzle(file_input: tuple[int, ...], input_val: int) -> int | None:
     """Solve the puzzle with corrected input"""
     numbers = list(file_input)
     address = 0
