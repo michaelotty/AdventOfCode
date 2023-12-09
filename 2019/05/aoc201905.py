@@ -27,7 +27,7 @@ class ParameterMode(IntEnum):
     IMMEDIATE = 1
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2019/05/input.txt", encoding="utf-8") as file:
         file_input = tuple(int(i) for i in file.read().split(","))

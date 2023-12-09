@@ -4,7 +4,7 @@ import collections
 import itertools
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2022/18/input.txt", encoding="utf-8") as file:
         voxels = {tuple(map(int, line.split(","))) for line in file.read().splitlines()}

@@ -1,21 +1,24 @@
 """Advent of code Day 3 part 2"""
 
+from typing import Literal
 
-def move_location(location, char):
+
+def move_location(
+    location: tuple[int, int], char: Literal["^", ">", "v", "<"] | str
+) -> tuple[int, int]:
     """Move the location tuple using instruction from the char."""
     if char == "^":
-        location = (location[0], location[1] + 1)
-    elif char == ">":
-        location = (location[0] + 1, location[1])
-    elif char == "v":
-        location = (location[0], location[1] - 1)
-    elif char == "<":
-        location = (location[0] - 1, location[1])
-
+        return (location[0], location[1] + 1)
+    if char == ">":
+        return (location[0] + 1, location[1])
+    if char == "v":
+        return (location[0], location[1] - 1)
+    if char == "<":
+        return (location[0] - 1, location[1])
     return location
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2015/03/input.txt", encoding="utf-8") as f:
         file_contents = f.read()

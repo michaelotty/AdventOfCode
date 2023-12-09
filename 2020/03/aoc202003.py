@@ -28,7 +28,7 @@ def part_2(lines):
     return val
 
 
-def main():
+def main() -> None:
     """Start of program execution"""
     with open("question.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()

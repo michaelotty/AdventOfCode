@@ -3,7 +3,7 @@
 from itertools import permutations
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2015/24/input.txt", encoding="utf-8") as file:
         present_weights = tuple(int(i) for i in file.read().split())
@@ -29,7 +29,7 @@ def main():
     print(min(multiply(i[0]) for i in valid_combos))
 
 
-def multiply(*iterable):
+def multiply(*iterable) -> int:
     """Multiply all elements and sub-elements"""
     multiple = 1
     for i in iterable:

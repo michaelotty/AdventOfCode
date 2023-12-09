@@ -39,7 +39,7 @@ def part_2(lines):
     return lines
 
 
-def main():
+def main() -> None:
     """Start of program execution"""
     with open("test.txt", encoding="utf-8") as file:
         lines = file.read().split("\n\n")

@@ -1,7 +1,7 @@
 """Advent of code Day 2."""
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2022/02/input.txt", encoding="utf-8") as file:
         puzzle = [tuple(line.split()) for line in file.read().split("\n")]

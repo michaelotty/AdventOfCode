@@ -3,7 +3,7 @@
 import copy
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2015/18/input.txt", encoding="utf-8") as file:
         lines = file.read().split()

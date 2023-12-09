@@ -3,7 +3,7 @@
 from itertools import combinations, permutations
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2016/03/input.txt", encoding="utf-8") as file:
         file_content = [

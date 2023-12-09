@@ -1,7 +1,7 @@
 """Advent of code Day 1 part 1 and 2"""
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2019/01/input.txt", encoding="utf-8") as file:
         numbers = [int(i) for i in file.readlines()]

@@ -4,7 +4,7 @@ import copy
 import re
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2022/05/input.txt", encoding="utf-8") as file:
         stacks, instructions = file.read().split("\n\n")

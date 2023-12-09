@@ -2,11 +2,12 @@
 
 import itertools
 from abc import ABC, abstractmethod
+from typing import Generator
 
 import tqdm
 
 
-def main():
+def main() -> None:
     """Main function."""
     print("Part 1:", part_1())
     print("Part 2:", part_2())
@@ -103,12 +104,14 @@ class Grid:
         self.direction_generator = self._direction_generator()
         self.shape_generator = self._shape_generator()
 
-    def _direction_generator(self):
+    def _direction_generator(self) -> Generator[str, None, None]:
         """Generate the infinite looping directions from the file."""
         for char in itertools.cycle(self.directions_string):
             yield char
 
-    def _shape_generator(self):
+    def _shape_generator(
+        self,
+    ) -> Generator[MinusShape | PlusShape | LShape | IShape | BoxShape, None, None]:
         """Generate the shape to use infinitely."""
         shapes = (MinusShape, PlusShape, LShape, IShape, BoxShape)
 

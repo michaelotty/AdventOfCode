@@ -37,7 +37,7 @@ def is_nice_string(string: str) -> bool:
     return condition_1 and condition_2 and condition_3
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2015/05/input.txt", encoding="utf-8") as f:
         file_contents = f.read()

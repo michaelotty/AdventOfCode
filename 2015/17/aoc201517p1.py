@@ -3,7 +3,7 @@
 from itertools import combinations
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2015/17/input.txt", encoding="utf-8") as file:
         data = file.readlines()

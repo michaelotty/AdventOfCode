@@ -1,7 +1,7 @@
 """Advent of code Day 5 part 1"""
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2017/05/input.txt", encoding="utf-8") as file:
         puzzle_input = list(map(int, file.read().split()))

@@ -17,7 +17,7 @@ def move(position: tuple[int, int], direction: str) -> tuple:
     return position
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2017/03/input.txt", encoding="utf-8") as file:
         puzzle_input = int(file.read())

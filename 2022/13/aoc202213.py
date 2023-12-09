@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2022/13/input.txt", encoding="utf-8") as file:
         packet_pairs = [

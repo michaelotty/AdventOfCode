@@ -2,9 +2,10 @@
 
 import re
 from random import shuffle
+from typing import Generator
 
 
-def gen_sequence(x, replacements):
+def gen_sequence(x, replacements) -> Generator[int, None, None]:
     """Ngl, stole this from reddit"""
     for j, i in replacements:
         for k in range(len(x)):
@@ -13,7 +14,7 @@ def gen_sequence(x, replacements):
                 yield y
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2015/19/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()

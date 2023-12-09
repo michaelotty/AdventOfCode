@@ -1,7 +1,7 @@
 """Advent of code Day 10 part 1 and 2"""
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2015/10/input.txt", encoding="utf-8") as f:
         file_input = f.read()

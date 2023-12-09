@@ -3,7 +3,7 @@
 from collections import Counter
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2016/06/input.txt", encoding="utf-8") as file:
         content = file.read().splitlines()

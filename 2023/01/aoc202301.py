@@ -4,7 +4,7 @@ import re
 from string import ascii_lowercase
 
 
-def main():
+def main() -> None:
     """Main function."""
 
     with open("2023/01/input.txt", encoding="utf-8") as file:

@@ -1,7 +1,7 @@
 """Advent of code day 9."""
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2023/09/input.txt", encoding="utf-8") as file:
         histories = [
@@ -28,8 +28,9 @@ def part_1(histories: list[list[int]]) -> int:
     return sum(values)
 
 
-def part_2():
+def part_2() -> int:
     """Solve part 2."""
+    return 0
 
 
 if __name__ == "__main__":

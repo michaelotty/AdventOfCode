@@ -3,7 +3,7 @@
 import re
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2015/19/input.txt", encoding="utf-8") as file:
         file_contents = file.read()

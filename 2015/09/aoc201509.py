@@ -4,7 +4,7 @@ import sys
 from itertools import permutations
 
 
-def main():
+def main() -> None:
     """Main function"""
     places = set()
     distances = {}

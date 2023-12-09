@@ -19,7 +19,7 @@ def calculate_checksum(lines: list[str]) -> int:
     return count_of_twos * count_of_threes
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2018/02/input.txt", encoding="utf-8") as file:
         lines = file.read().split()

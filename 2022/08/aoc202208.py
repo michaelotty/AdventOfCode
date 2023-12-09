@@ -1,7 +1,7 @@
 """Advent of code Day 8."""
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2022/08/input.txt", encoding="utf-8") as file:
         number_grid = [[int(num) for num in line] for line in file.read().splitlines()]

@@ -4,7 +4,7 @@ import re
 from itertools import product
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2023/03/test.txt", encoding="utf-8") as file:
         rows = file.read().splitlines()

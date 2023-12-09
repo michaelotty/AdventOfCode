@@ -1,7 +1,7 @@
 """Advent of code Day 6."""
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2022/06/input.txt", encoding="utf-8") as file:
         packet = file.read()

@@ -1,7 +1,7 @@
 """Advent of code Day 25."""
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2022/25/input.txt", encoding="utf-8") as file:
         nums = file.read().splitlines()
@@ -10,7 +10,7 @@ def main():
     print("Part 2:", part_2(nums))
 
 
-def test_snafu():
+def test_snafu() -> None:
     """Test the SNAFU converters."""
     test_cases = {
         "1": 1,

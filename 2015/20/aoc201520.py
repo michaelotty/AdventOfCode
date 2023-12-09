@@ -10,7 +10,7 @@ def find_lowest_house(houses: list[int], value: int) -> tuple[int, int]:
     raise ValueError(f"Could not find lowest house for {value} in list given")
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2015/20/input.txt", encoding="utf-8") as file:
         puzzle_input = int(file.read())

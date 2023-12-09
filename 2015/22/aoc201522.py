@@ -41,7 +41,7 @@ def does_player_win(player: Character, enemy: Character) -> bool:
     return False
 
 
-def main():
+def main() -> None:
     """Main function"""
     winning_combos = []
     losing_combos = []

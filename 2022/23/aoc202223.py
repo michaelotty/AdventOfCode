@@ -3,7 +3,7 @@
 import io
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2022/23/test1.txt", encoding="utf-8") as file:
         grid = Grid(file)

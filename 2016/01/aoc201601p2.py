@@ -1,9 +1,9 @@
 """Advent of code Day 1 part 2"""
 
-from turtle import Screen, Turtle
+from turtle import Screen, Turtle, Vec2D
 
 
-def find_position(instructions):
+def find_position(instructions) -> Vec2D | None:
     """Find position."""
     screen = Screen()
     turtle = Turtle()
@@ -35,7 +35,7 @@ def find_position(instructions):
     return None
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2016/01/input.txt", encoding="utf-8") as f:
         instructions = f.read().split(", ")

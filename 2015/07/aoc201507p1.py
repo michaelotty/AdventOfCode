@@ -1,7 +1,7 @@
 """Advent of code Day 7 part 1"""
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2015/07/input.txt", encoding="utf-8") as f:
         file_contents = f.read().split("\n")
@@ -13,7 +13,7 @@ def main():
 class Parser:
     """Parses the input of the file"""
 
-    def __init__(self, file_contents):
+    def __init__(self, file_contents) -> None:
         self.calc = {}
         self.results = {}
 

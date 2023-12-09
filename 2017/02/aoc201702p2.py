@@ -3,7 +3,7 @@
 from itertools import combinations
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2017/02/input.txt", encoding="utf-8") as file:
         rows = tuple(

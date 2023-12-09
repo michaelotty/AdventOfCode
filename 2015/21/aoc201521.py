@@ -78,7 +78,7 @@ def does_player_win(player: Character, enemy: Character) -> bool:
     return False
 
 
-def main():
+def main() -> None:
     """Main function"""
     shop = extract_shop_data("shop.txt")
     shop["armor"].append(Item(name="no_armor", cost=0, damage=0, armor=0))

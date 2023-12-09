@@ -37,7 +37,7 @@ def solve_puzzle(file_input: tuple[int], noun: int, verb: int) -> int:
         i += 4
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2019/02/input.txt", encoding="utf-8") as file:
         file_input = tuple(int(i) for i in file.read().split(","))

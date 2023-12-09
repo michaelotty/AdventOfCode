@@ -6,7 +6,7 @@ import re
 from typing import Any
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2022/16/test1.txt", encoding="utf-8") as file:
         regex = r"Valve (\w\w) has flow rate=(\d+); tunnels? leads? to valves? (.*)"

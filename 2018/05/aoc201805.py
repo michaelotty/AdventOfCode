@@ -4,7 +4,7 @@ import re
 import string
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2018/05/input.txt", encoding="utf-8") as file:
         text = file.read()

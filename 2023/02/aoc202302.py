@@ -3,7 +3,7 @@
 import math
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2023/02/input.txt", encoding="utf-8") as file:
         data = [line.split(": ")[1].split("; ") for line in file.read().split("\n")]

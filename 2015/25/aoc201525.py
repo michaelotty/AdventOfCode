@@ -1,5 +1,7 @@
 """Advent of code Day 25"""
 
+from typing import Generator
+
 
 def part_1() -> int:
     """Solve part 1 of the puzzle"""
@@ -14,7 +16,7 @@ def part_2() -> int:
     return 0
 
 
-def diagonal_sequence(starting_val):
+def diagonal_sequence(starting_val) -> Generator[tuple[int, int, int], None, None]:
     """Diagonal sequence"""
     row = 1
     col = 1

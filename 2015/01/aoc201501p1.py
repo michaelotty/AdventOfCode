@@ -1,7 +1,7 @@
 """Advent of Code 2015 day 1 part 1"""
 
 
-def main():
+def main() -> None:
     """Start of program"""
 
     with open("2015/01/input.txt", encoding="utf-8") as f:

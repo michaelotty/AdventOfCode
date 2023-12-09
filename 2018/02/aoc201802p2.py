@@ -15,7 +15,7 @@ def calculate_solution(lines: list[str]) -> str:
     raise ValueError("Answer not found")
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2018/02/input.txt", encoding="utf-8") as file:
         print(calculate_solution(file.read().split()))

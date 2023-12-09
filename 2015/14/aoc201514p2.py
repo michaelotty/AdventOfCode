@@ -1,7 +1,9 @@
 """Advent of code Day 14 part 2"""
 
+from __future__ import annotations
 
-def main():
+
+def main() -> None:
     """Main function"""
     with open("2015/14/input.txt", encoding="utf-8") as file:
         data = file.readlines()
@@ -65,10 +67,10 @@ class Reindeer:  # pylint: disable=too-many-instance-attributes
         self.position = 0
         self.points = 0
 
-    def __iter__(self):
+    def __iter__(self) -> Reindeer:
         return self
 
-    def __next__(self):
+    def __next__(self) -> None:
         if self.is_flying:
             self.position += self.speed
             self.speed_timer -= 1

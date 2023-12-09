@@ -3,7 +3,7 @@
 import re
 
 
-def main():
+def main() -> None:
     """Main function."""
     regex = r"Sensor at x=(-*\d+), y=(-*\d+): closest beacon is at x=(-*\d+), y=(-*\d+)"
 

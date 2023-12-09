@@ -12,7 +12,7 @@ def get_weight(tree: dict, weights: dict, key: str) -> tuple[int, str]:
     return (weights[key] + child_weight, key)
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2017/07/input.txt", encoding="utf-8") as file:
         lines = file.readlines()

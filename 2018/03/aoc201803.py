@@ -4,7 +4,7 @@ import re
 from itertools import product
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2018/03/input.txt", encoding="utf-8") as file:
         lines = [

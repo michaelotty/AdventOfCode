@@ -3,7 +3,7 @@
 from turtle import Screen, Turtle
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2016/01/input.txt", encoding="utf-8") as f:
         instructions = f.read().split(", ")

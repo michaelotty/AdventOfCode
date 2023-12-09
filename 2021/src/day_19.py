@@ -9,7 +9,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation  # type: ignore
 
 
-def main():
+def main() -> None:
     """Program starts here."""
     scanners = []
     i = -1

@@ -28,7 +28,7 @@ class BagTree(Bag):
         super().__init__(self.root.data)
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("question.txt", encoding="utf-8") as file:
         file_content = file.read()

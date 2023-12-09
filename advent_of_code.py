@@ -6,7 +6,7 @@ from datetime import date
 from pathlib import Path
 
 
-def advent_of_code():
+def advent_of_code() -> None:
     """Advent of code."""
     parser = argparse.ArgumentParser(
         prog="Advent of code", description="Advent of code runner"

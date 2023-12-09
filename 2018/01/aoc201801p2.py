@@ -14,7 +14,7 @@ def find_frequency(numbers: tuple[int]) -> int:
                 return result
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2018/01/input.txt", encoding="utf-8") as file:
         numbers = tuple(int(i) for i in file.readlines())

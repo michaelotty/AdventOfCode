@@ -3,7 +3,7 @@
 import json
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2015/12/input.txt", encoding="utf-8") as f:
         data = json.load(f)

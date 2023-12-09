@@ -5,7 +5,7 @@ import operator
 import re
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2022/11/input.txt", encoding="utf-8") as file:
         monkey_text = file.read().split("\n\n")

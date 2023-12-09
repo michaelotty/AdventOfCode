@@ -1,7 +1,7 @@
 """Advent of code Day 14."""
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2022/14/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()

@@ -3,7 +3,7 @@
 import hashlib
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2016/05/input.txt", encoding="utf-8") as file:
         content = file.read()

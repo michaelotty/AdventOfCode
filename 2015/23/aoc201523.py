@@ -4,7 +4,7 @@ import re
 from typing import Callable
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2015/23/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
@@ -35,34 +35,34 @@ def run_computer(input_val: int, instructions: list[str]) -> int:
             return registers["b"]
 
 
-def hlf(registers: dict, register: str):
+def hlf(registers: dict, register: str) -> tuple[int, int]:
     """Half"""
     address_offset = 1
     registers[register] //= 2
     return address_offset, registers
 
 
-def tpl(registers: dict, register: str):
+def tpl(registers: dict, register: str) -> tuple[int, dict]:
     """Triple"""
     address_offset = 1
     registers[register] *= 3
     return address_offset, registers
 
 
-def inc(registers: dict, register: str):
+def inc(registers: dict, register: str) -> tuple[int, dict]:
     """Increment"""
     address_offset = 1
     registers[register] += 1
     return address_offset, registers
 
 
-def jmp(registers: dict, offset: str):
+def jmp(registers: dict, offset: str) -> tuple[int, dict]:
     """Jump"""
     address_offset = int(offset)
     return address_offset, registers
 
 
-def jie(registers: dict, register: str, offset: str):
+def jie(registers: dict, register: str, offset: str) -> tuple[int, dict]:
     """Jump if even"""
     if registers[register] % 2 == 0:
         address_offset = int(offset)

@@ -3,7 +3,7 @@
 import queue
 
 
-def main():
+def main() -> None:
     """Main function."""
     with open("2022/12/input.txt", encoding="utf-8") as file:
         height_map = file.read().splitlines()

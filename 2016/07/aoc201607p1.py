@@ -26,7 +26,7 @@ def supports_tls(ips: list[str], hypernets: list[str]) -> bool:
     return any(map(has_abba, ips)) and not any(map(has_abba, hypernets))
 
 
-def main():
+def main() -> None:
     """Main function"""
     with open("2016/07/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
