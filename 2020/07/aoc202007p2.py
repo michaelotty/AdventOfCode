@@ -8,7 +8,7 @@ class Bag:
 
     def __init__(self, data) -> None:
         self.data = data
-        self.children = []
+        self.children: list = []
 
     def add_bags(self, bag, num):
         """Add multiple nodes"""

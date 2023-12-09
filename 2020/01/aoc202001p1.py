@@ -3,8 +3,8 @@
 import numpy as np
 import pandas as pd
 
-data = pd.read_csv("question.txt", header=None)
-data = np.array(data[0])
+dataframe = pd.read_csv("question.txt", header=None)
+data = np.array(dataframe[0])
 
 for point in data:
     sums = data + point

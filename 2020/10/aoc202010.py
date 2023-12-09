@@ -1,7 +1,7 @@
 """Advent of code 2020 day 10"""
 
 from collections import Counter
-from typing import Generator, Iterable
+from typing import Generator
 
 
 def main():
@@ -30,7 +30,7 @@ def solve_part_2(file_input: tuple[int, ...]) -> int:
     return counter[adapters[-1]]
 
 
-def diff(list_of_numbers: Iterable[int]) -> Generator:
+def diff(list_of_numbers: tuple[int, ...]) -> Generator:
     """Creates a diff generator"""
     return (j - i for i, j in zip(list_of_numbers[:-1], list_of_numbers[1:]))
 

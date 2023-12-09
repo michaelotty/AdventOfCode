@@ -34,8 +34,10 @@ class Packet:
         """Find if Packet is less than other packet."""
         return compare(self.packet, other.packet)
 
-    def __eq__(self, other: Packet):
+    def __eq__(self, other):
         """Find if Packet is equal to other packet."""
+        if not isinstance(other, Packet):
+            return NotImplemented
         return self.packet == other.packet
 
     def __repr__(self) -> str:

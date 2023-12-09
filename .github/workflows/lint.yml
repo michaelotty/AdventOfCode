@@ -18,7 +18,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install black flake8 isort mypy pylint
+        pip install black flake8 isort mypy pandas-stubs pylint types-tqdm
     - name: Analysing the code with black
       run: |
         black $(git ls-files '*.py') --check

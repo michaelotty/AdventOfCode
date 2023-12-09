@@ -26,13 +26,13 @@ def part_2(height_map: list[list[int]]) -> int:
     )
 
 
-def solve(height_map: list[list[int]], start_coord: tuple[int, int]) -> int:
+def solve(height_map: list[list[int]], start_coord: tuple[int, int] | None) -> int:
     """Solve the path length for a given starting position up to E marker."""
     end_coord = find("E", height_map)
 
-    frontier = queue.PriorityQueue()
+    frontier: queue.PriorityQueue = queue.PriorityQueue()
     frontier.put((0, start_coord))
-    came_from = {}
+    came_from: dict[tuple[int, int] | None, tuple[int, int] | None] = {}
     cost_so_far = {}
     came_from[start_coord] = None
     cost_so_far[start_coord] = 0
@@ -65,10 +65,10 @@ def solve(height_map: list[list[int]], start_coord: tuple[int, int]) -> int:
 
 def find(char_to_find: str, height_map: list[list[int]]) -> tuple[int, int] | None:
     """Find the first coordinate of a character in height map grid."""
-    char_to_find = ord(char_to_find)
+    char_code_to_find = ord(char_to_find)
     for i, line in enumerate(height_map):
         for j, char_to_search in enumerate(line):
-            if char_to_search == char_to_find:
+            if char_to_search == char_code_to_find:
                 return (i, j)
 
     return None
@@ -76,7 +76,7 @@ def find(char_to_find: str, height_map: list[list[int]]) -> tuple[int, int] | No
 
 def find_all(char_to_find: str, height_map: list[list[int]]) -> list[tuple[int, int]]:
     """Find the first coordinate of a character in height map grid."""
-    char_to_find = ord(char_to_find)
+    char_code_to_find = ord(char_to_find)
     coords = []
 
     for i, line in enumerate(height_map):
@@ -84,7 +84,7 @@ def find_all(char_to_find: str, height_map: list[list[int]]) -> list[tuple[int, 
             [
                 (i, j)
                 for j, char_to_search in enumerate(line)
-                if char_to_search == char_to_find
+                if char_to_search == char_code_to_find
             ]
         )
 
@@ -119,8 +119,10 @@ def get_neighbors(
     return frontier
 
 
-def heuristic(coord_a: tuple[int, int], coord_b: tuple[int, int]) -> int:
+def heuristic(coord_a: tuple[int, int] | None, coord_b: tuple[int, int] | None) -> int:
     """Manhattan distance."""
+    if coord_a is None or coord_b is None:
+        return 0
     x1, y1 = coord_a
     x2, y2 = coord_b
     return abs(x1 - x2) + abs(y1 - y2)

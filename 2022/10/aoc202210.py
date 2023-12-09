@@ -17,10 +17,10 @@ def part_1(instructions: list[str]):
     for instruction in instructions:
         op, *amount = instruction.split()
         if amount:
-            amount = int(amount[0])
+            amount_int = int(amount[0])
         else:
-            amount = 0
-        x_register = ops[op](x_register, amount)
+            amount_int = 0
+        x_register = ops[op](x_register, amount_int)
 
     indexes = list(range(20, 220 + 1, 40))
     signal_strength = sum(i * x_register[i - 1] for i in indexes)
@@ -51,11 +51,11 @@ def part_2(x_register: list[int]):
                 crt_row.append("#")
             else:
                 crt_row.append(" ")
-        crt_row = "".join(crt_row)
-        crt_rows.append(crt_row)
-    crt_rows = "\n".join(crt_rows)
+        crt_row_str = "".join(crt_row)
+        crt_rows.append(crt_row_str)
+    crt_rows_str = "\n".join(crt_rows)
 
-    return crt_rows
+    return crt_rows_str
 
 
 if __name__ == "__main__":

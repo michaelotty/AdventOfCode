@@ -8,9 +8,9 @@ with open("question.txt", encoding="utf-8") as f:
     text = text.replace("L", "0")
     text = text.replace("R", "1")
 
-    text = text.split("\n")
+    data = text.split("\n")
     IDs = []
-    for line in text:
+    for line in data:
         ID = int(line, 2)
         IDs.append(ID)
     for i in range(min(IDs), max(IDs)):
