@@ -1,7 +1,7 @@
 """Advent of code 2020 day 1"""
 
-import pandas as pd
 import numpy as np
+import pandas as pd
 
 data = pd.read_csv("question.txt", header=None)
 data = np.array(data[0])

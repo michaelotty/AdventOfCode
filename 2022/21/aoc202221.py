@@ -2,8 +2,8 @@
 
 import re
 
-from sympy.parsing import sympy_parser
 import sympy
+from sympy.parsing import sympy_parser
 
 
 def main():

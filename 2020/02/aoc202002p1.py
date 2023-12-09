@@ -1,6 +1,7 @@
 """Advent of code 2020 day 2"""
 
 import re
+
 import pandas as pd
 
 data = pd.read_csv("question.txt", header=None, delimiter=" ")
