@@ -33,4 +33,4 @@ jobs:
         pylint $(git ls-files '*.py')
     - name: Analysing the code with mypy
       run: |
-        python -m mypy $(git ls-files '*.py')
+        mypy $(git ls-files '*.py')
