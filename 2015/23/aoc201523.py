@@ -1,6 +1,7 @@
 """Advent of code Day 23"""
 
 import re
+from typing import Callable
 
 
 def main():
@@ -14,7 +15,7 @@ def main():
 
 def run_computer(input_val: int, instructions: list[str]) -> int:
     """Runs the computer"""
-    instruction_fn = {
+    instruction_fn: dict[str, Callable] = {
         "hlf": hlf,
         "tpl": tpl,
         "inc": inc,

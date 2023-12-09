@@ -7,9 +7,9 @@ def calculate_checksum(lines: list[str]) -> int:
     """Calculates the checksum"""
     count_of_twos = 0
     count_of_threes = 0
-    lines = [Counter(line).most_common() for line in lines]
+    sorted_lines = [Counter(line).most_common() for line in lines]
 
-    for line in lines:
+    for line in sorted_lines:
         count_of_letters = set(i for _, i in line)
         if 2 in count_of_letters:
             count_of_twos += 1

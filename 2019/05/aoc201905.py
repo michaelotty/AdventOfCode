@@ -1,6 +1,7 @@
 """Advent of code day 5 part 1 and 2, derived from day 2"""
 
 from enum import IntEnum, unique
+from typing import Callable
 
 
 @unique
@@ -35,12 +36,12 @@ def main():
     print(f"Part 2: {solve_puzzle(file_input, 5)}")
 
 
-def solve_puzzle(file_input: tuple[int], input_val: int) -> int:
+def solve_puzzle(file_input: tuple[int], input_val: int) -> int | None:
     """Solve the puzzle with corrected input"""
     numbers = list(file_input)
     address = 0
     return_val = None
-    opcode_fns = {
+    opcode_fns: dict[int, Callable] = {
         Opcode.ADD: add_op,
         Opcode.MULTIPLY: multiply_op,
         Opcode.JMP_IF_TRUE: jmp_if_true_op,
@@ -50,9 +51,9 @@ def solve_puzzle(file_input: tuple[int], input_val: int) -> int:
     }
 
     while True:
-        opcode = f"{numbers[address]:05d}"
-        parameter_modes = [int(i) for i in opcode[2::-1]]
-        opcode = int(opcode[-2:])
+        opcode_str = f"{numbers[address]:05d}"
+        parameter_modes = [int(i) for i in opcode_str[2::-1]]
+        opcode = int(opcode_str[-2:])
         address += 1
 
         if opcode == Opcode.END:
@@ -118,7 +119,7 @@ def input_op(
 
 def output_op(
     address: int, numbers: list[int], parameter_modes: list[int]
-) -> tuple[int, list[int]]:
+) -> tuple[int, list[int], int]:
     """Output operator"""
     if parameter_modes[0] == ParameterMode.POSITION:
         return_val = numbers[numbers[address]]
