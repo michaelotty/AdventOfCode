@@ -6,17 +6,17 @@ from itertools import permutations
 
 def main() -> None:
     """Main function"""
-    places = set()
-    distances = {}
+    places: set[str] = set()
+    distances: dict[dict[str], int] = {}
 
     with open("2015/09/input.txt", encoding="utf-8") as fp:
         data = fp.read()
 
     for line in data.splitlines():
-        source, _, destination, _, distance = line.split()
+        source, _, destination, _, distance_str = line.split()
         places.add(source)
         places.add(destination)
-        distance = int(distance)
+        distance = int(distance_str)
 
         distances.setdefault(source, {})[destination] = distance
         distances.setdefault(destination, {})[source] = distance

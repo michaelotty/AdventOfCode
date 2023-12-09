@@ -5,7 +5,7 @@ def main() -> None:
     """Main function."""
     with open("2022/07/input.txt", encoding="utf-8") as file:
         text = file.read().splitlines()[1:]
-    tree = {}
+    tree: dict = {}
     text, tree = build_tree(text, tree)
     print("Part 1:", part_1(tree))
     print("Part 2:", part_2(tree))

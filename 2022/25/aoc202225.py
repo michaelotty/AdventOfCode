@@ -30,10 +30,10 @@ def test_snafu() -> None:
         "1121-1110-1=0": 314159265,
     }
     for key, val in test_cases.items():
-        test = snafu_to_int(key)
-        assert test == val, f"SNAFU to int unsuccessful: ({test} != {val})"
-        test = int_to_snafu(val)
-        assert test == key, f"int to SNAFU unsuccessful: ({test} != {key})"
+        test1 = snafu_to_int(key)
+        assert test1 == val, f"SNAFU to int unsuccessful: ({test1} != {val})"
+        test2 = int_to_snafu(val)
+        assert test2 == key, f"int to SNAFU unsuccessful: ({test2} != {key})"
 
 
 def snafu_to_int(snafu: str) -> int:

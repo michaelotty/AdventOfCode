@@ -8,8 +8,12 @@ def main() -> None:
     regex = r"Sensor at x=(-*\d+), y=(-*\d+): closest beacon is at x=(-*\d+), y=(-*\d+)"
 
     with open("2022/15/input.txt", encoding="utf-8") as file:
-        coords = [map(int, nums) for nums in re.findall(regex, file.read())]
-        coords = {(x1, y1): (x2, y2) for x1, y1, x2, y2 in coords}
+        coords = {
+            (x1, y1): (x2, y2)
+            for x1, y1, x2, y2 in [
+                map(int, nums) for nums in re.findall(regex, file.read())
+            ]
+        }
 
     print("Part 1:", part_1(coords, 2_000_000))
     print("Part 2:", part_2(coords))

@@ -15,13 +15,13 @@ class Parser:
 
     def __init__(self, file_contents) -> None:
         self.calc = {}
-        self.results = {}
+        self.results: dict[str, int] = {}
 
         for line in file_contents:
             option, result = line.split("->")
             self.calc[result.strip()] = option.strip().split(" ")
 
-    def parse_instruction(self, var_name) -> int:
+    def parse_instruction(self, var_name: str) -> int:
         """Recursive function"""
         try:
             return int(var_name)

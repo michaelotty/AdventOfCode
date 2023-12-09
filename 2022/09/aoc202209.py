@@ -4,8 +4,10 @@
 def main() -> None:
     """Main function."""
     with open("2022/09/input.txt", encoding="utf-8") as file:
-        instructions = [line.split() for line in file.read().splitlines()]
-        instructions = [(direction, int(amount)) for direction, amount in instructions]
+        instructions = [
+            (direction, int(amount))
+            for direction, amount in [line.split() for line in file.read().splitlines()]
+        ]
     print("Part 1:", solve(instructions, 2))
     print("Part 2:", solve(instructions, 10))
 

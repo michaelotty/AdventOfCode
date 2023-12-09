@@ -44,9 +44,9 @@ def main() -> None:
 
     nice_strings = []
 
-    file_contents = file_contents.split()
+    data = file_contents.split()
 
-    for line in file_contents:
+    for line in data:
         if is_nice_string(line):
             nice_strings.append(line)
 
