@@ -14,14 +14,14 @@ def main() -> None:
 
 
 def find_next_password(password: str) -> str:
-    """Finds the next valid password given the rules."""
+    """Find the next valid password given the rules."""
     while not is_password_valid(password):
         password = increment_password(password)
     return password
 
 
 def is_password_valid(password: str) -> bool:
-    """Finds if a password if valid."""
+    """Find if a password if valid."""
     valid_password = (
         contains_straight_letters(password)
         and not contains_illegal_characters(password)
@@ -31,7 +31,7 @@ def is_password_valid(password: str) -> bool:
 
 
 def contains_straight_letters(password: str) -> bool:
-    """Includes a straight set of letters."""
+    """Include a straight set of letters."""
     straight_sets = {
         string.ascii_lowercase[i : i + 3]
         for i in range(len(string.ascii_lowercase) - 2)
@@ -40,7 +40,7 @@ def contains_straight_letters(password: str) -> bool:
 
 
 def contains_illegal_characters(password: str) -> bool:
-    """Finds if a password includes illegal characters."""
+    """Find if a password includes illegal characters."""
     illegal_characters = {"i", "o", "l"}
     return any(x in password for x in illegal_characters)
 
@@ -52,7 +52,7 @@ def contains_two_non_overlapping_character_pairs(password: str) -> bool:
 
 
 def increment_password(password: str) -> str:
-    """Increments the password."""
+    """Increment the password."""
     shifted_alphabet = string.digits + string.ascii_lowercase[: -len(string.digits)]
     trans_down = str.maketrans(string.ascii_lowercase, shifted_alphabet)
     trans_up = str.maketrans(shifted_alphabet, string.ascii_lowercase)
@@ -68,7 +68,7 @@ def increment_password(password: str) -> str:
 
 
 def int_to_base26(x: int, base: int = 26) -> str:
-    """Converts an integer to base26. Opposite of int('abc', base=26)."""
+    """Convert an integer to base26. Opposite of int('abc', base=26)."""
     shifted_alphabet = string.digits + string.ascii_lowercase[: -len(string.digits)]
     digits: list[str] = []
     while x:

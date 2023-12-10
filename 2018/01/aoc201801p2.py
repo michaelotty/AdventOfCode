@@ -2,7 +2,7 @@
 
 
 def find_frequency(numbers: tuple[int, ...]) -> int:
-    """Finds the frequency."""
+    """Find the frequency."""
     result = 0
     numbers_reached = set()
 

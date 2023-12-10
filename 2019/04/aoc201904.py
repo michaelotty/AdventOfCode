@@ -4,13 +4,13 @@ import string
 
 
 def valid_password(password: int, is_part_2: bool) -> bool:
-    """Returns true if password is valid according to part 1 rules."""
+    """Return true if password is valid according to part 1 rules."""
     password_str = str(password)
     return contains_pair(password_str, is_part_2) and ascending_numbers(password_str)
 
 
 def contains_pair(password: str, exclusive: bool = False) -> bool:
-    """Returns true if password contains a pair."""
+    """Return true if password contains a pair."""
     if exclusive:
         for digit in string.digits:
             if digit + digit in password and (digit + digit + digit) not in password:
@@ -27,7 +27,7 @@ def contains_pair(password: str, exclusive: bool = False) -> bool:
 
 
 def ascending_numbers(password: str) -> bool:
-    """Returns true if each number ascends the next."""
+    """Return true if each number ascends the next."""
     highest_digit = 0
     for digit_char in password:
         digit = int(digit_char)

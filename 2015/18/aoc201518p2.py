@@ -75,7 +75,7 @@ class GameOfLife:
 
     @staticmethod
     def _process_cell(prev_value: bool, sum_of_neighbors: int) -> bool:
-        """Processes the cells next value."""
+        """Process the cells next value."""
         if prev_value:
             return sum_of_neighbors in (2, 3)
         return sum_of_neighbors == 3

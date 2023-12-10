@@ -75,12 +75,12 @@ def distance_to_closest_intersection(
 
 
 def manhattan_distance(coordinate: tuple[int, int], *_) -> int:
-    """Calculates the manhattan distance to a coordinate."""
+    """Calculate the manhattan distance to a coordinate."""
     return sum(abs(dimension) for dimension in coordinate)
 
 
 def path_distance(coordinate: tuple[int, int], step_records: tuple[dict, dict]) -> int:
-    """Calculates the path distance to a coordinate."""
+    """Calculate the path distance to a coordinate."""
     return sum(
         step_count
         for step_record in step_records

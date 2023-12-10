@@ -2,12 +2,12 @@
 
 
 def volume_of_cuboid(length: int, width: int, height: int) -> int:
-    """Finds the volume of a cuboid."""
+    """Find the volume of a cuboid."""
     return length * width * height
 
 
 def find_shortest_perimeter(length: int, width: int, height: int) -> int:
-    """Finds the shortest perimeter for a bow for a cuboid."""
+    """Find the shortest perimeter for a bow for a cuboid."""
     dimensions = [length, width, height]
     dimensions.sort()
     dimensions.pop()

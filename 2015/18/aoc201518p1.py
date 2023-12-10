@@ -40,7 +40,7 @@ class GameOfLife:
 
     @property
     def num_of_lights_on(self) -> int:
-        """Gets the total number of lights switched on."""
+        """Get the total number of lights switched on."""
         return sum(sum(line) for line in self.grid)
 
     def __next__(self) -> None:
@@ -72,7 +72,7 @@ class GameOfLife:
 
     @staticmethod
     def _process_cell(prev_value: bool, sum_of_neighbors: int) -> bool:
-        """Processes the cells next value."""
+        """Process the cell's next value."""
         if prev_value:
             return sum_of_neighbors in (2, 3)
         return sum_of_neighbors == 3

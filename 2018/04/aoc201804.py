@@ -11,7 +11,7 @@ class Guard:
     """A guard who has a record of shifts."""
 
     def __init__(self, guard_id: int) -> None:
-        """Creates a Guard."""
+        """Create a Guard."""
         self.id: int = guard_id
         self.shift_record: list[Shift] = []
 
@@ -44,7 +44,7 @@ class Guard:
         return min(enumerate(self.awake_time), key=itemgetter(1))[0]
 
     def add_shift(self, shift: Shift) -> None:
-        """Adds a shift to the shift record."""
+        """Add a shift to the shift record."""
         self.shift_record.append(shift)
 
     def calculate_minutes_asleep(self) -> int:
@@ -56,7 +56,7 @@ class Shift:
     """Work shift."""
 
     def __init__(self, lines: list[tuple[datetime, str]]) -> None:
-        """Creates the Shift object."""
+        """Create the Shift object."""
         # If empty list, they were awake the whole time
         if not lines:
             self.time_awake = timedelta(minutes=60)

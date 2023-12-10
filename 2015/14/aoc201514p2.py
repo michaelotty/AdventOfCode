@@ -81,11 +81,11 @@ class Reindeer:  # pylint: disable=too-many-instance-attributes
                 self.is_flying = True
 
     def __str__(self) -> str:
-        """Returns string representation."""
+        """Return string representation."""
         return f"{self.name}: {self.points}"
 
     def add_point(self) -> None:
-        """Adds 1 point to points tally."""
+        """Add 1 point to points tally."""
         self.points += 1
 
 

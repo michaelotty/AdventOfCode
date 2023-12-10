@@ -22,7 +22,7 @@ class Character:
     """Character attributes."""
 
     def __init__(self, damage: int = 0, armor: int = 0, hit_points: int = 100) -> None:
-        """Defines variables."""
+        """Define variables."""
         self.hit_points: int = hit_points
         self.damage: int = damage
         self.armor: int = armor
@@ -39,7 +39,7 @@ class Character:
         return self.hit_points > 0
 
     def attack(self, opponent: Character) -> None:
-        """The opponent attacks the self."""
+        """Get attacked by opponent."""
         opponent.hit_points -= max(self.damage - opponent.armor, 1)
 
     def add_item(self, item: Item) -> None:

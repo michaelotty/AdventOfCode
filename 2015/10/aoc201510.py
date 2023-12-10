@@ -17,7 +17,7 @@ def main() -> None:
 
 
 def find_look_and_say_string(in_str: str) -> str:
-    """Finds the look-and-say sequence string."""
+    """Find the look-and-say sequence string."""
     output = str()
     count = 0
     last_ch = None

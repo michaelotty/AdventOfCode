@@ -2,7 +2,7 @@
 
 
 def find_lowest_house(houses: list[int], value: int) -> tuple[int, int]:
-    """Finds the smallest house ID.
+    """Find the smallest house ID.
 
     By amount of presents for the first house that contains the presents that exceeds
     the value.

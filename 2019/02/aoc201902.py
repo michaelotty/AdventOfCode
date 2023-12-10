@@ -13,7 +13,7 @@ class Opcode(IntEnum):
 
 
 def init_puzzle_input(file_input: tuple[int, ...], noun: int, verb: int) -> list[int]:
-    """Inits the puzzle input."""
+    """Init the puzzle input."""
     numbers = list(file_input)
     numbers[1] = noun
     numbers[2] = verb

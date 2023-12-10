@@ -4,7 +4,7 @@ import re
 
 
 def get_weight(tree: dict, weights: dict, key: str) -> tuple[int, str]:
-    """Returns the corrected value for the unbalanced child."""
+    """Return the corrected value for the unbalanced child."""
     child_weight = 0
     for child in tree[key]:
         weight, _ = get_weight(tree, weights, child)

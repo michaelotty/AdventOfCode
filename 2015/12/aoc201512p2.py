@@ -11,7 +11,7 @@ def main() -> None:
 
 
 def sum_of_elements(data) -> int:
-    """Sums all the numbers in the data."""
+    """Sum all the numbers in the data."""
     try:
         return int(data)
     except TypeError:
