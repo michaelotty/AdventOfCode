@@ -116,7 +116,7 @@ class Grid:
         shapes = (MinusShape, PlusShape, LShape, IShape, BoxShape)
 
         for shape in itertools.cycle(shapes):
-            yield shape()
+            yield shape()  # type: ignore
 
     def get_height(self, grid) -> int:
         """Get the height of any grid tower."""

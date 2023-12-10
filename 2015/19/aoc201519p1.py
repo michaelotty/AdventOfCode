@@ -8,9 +8,8 @@ def main() -> None:
     with open("2015/19/input.txt", encoding="utf-8") as file:
         file_contents = file.read()
 
-    replacements, formula = file_contents.split("\n\n")
-    replacements = replacements.split("\n")
-    replacements = [tuple(re.split(r" => ", line)) for line in replacements]
+    data, formula = file_contents.split("\n\n")
+    replacements = [tuple(re.split(r" => ", line)) for line in data.split("\n")]
 
     distinct_molecules = set()
 

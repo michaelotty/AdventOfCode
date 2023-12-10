@@ -7,7 +7,7 @@ from itertools import permutations
 def main() -> None:
     """Main function"""
     places: set[str] = set()
-    distances: dict[dict[str], int] = {}
+    distances: dict[str, dict[str, int]] = {}
 
     with open("2015/09/input.txt", encoding="utf-8") as fp:
         data = fp.read()

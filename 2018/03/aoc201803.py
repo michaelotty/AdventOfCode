@@ -14,7 +14,7 @@ def main() -> None:
 
     claim_ids = set(i for i, _ in enumerate(lines, start=1))
 
-    fabric = [[set() for _ in range(1000)] for _ in range(1000)]
+    fabric: list[list[set[int]]] = [[set() for _ in range(1000)] for _ in range(1000)]
     for i, line in enumerate(lines, start=1):
         for x_pos, y_pos in product(
             range(line[0], line[0] + line[2]), range(line[1], line[1] + line[3])

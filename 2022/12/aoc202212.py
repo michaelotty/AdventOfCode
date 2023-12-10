@@ -6,8 +6,7 @@ import queue
 def main() -> None:
     """Main function."""
     with open("2022/12/input.txt", encoding="utf-8") as file:
-        height_map = file.read().splitlines()
-        height_map = [list(map(ord, line)) for line in height_map]
+        height_map = [list(map(ord, line)) for line in file.read().splitlines()]
 
     print("Part 1:", part_1(height_map))
     print("Part 2:", part_2(height_map))

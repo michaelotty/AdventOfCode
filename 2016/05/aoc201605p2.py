@@ -10,23 +10,22 @@ def main() -> None:
         content = file.read()
 
     index = 0
-    matches = [None for _ in range(16)]
+    matches: list[str] = ["!" for _ in range(16)]
 
-    while not all(matches[:8]):
+    while any(x == "!" for x in matches[:8]):
         test_code = content + str(index)
         hashed_code = hashlib.md5(test_code.encode("utf-8")).hexdigest()
         if hashed_code.startswith("00000"):
             position = int(hashed_code[5], base=16)
-            if not matches[position]:
+            if matches[position] == "!":
                 matches[position] = hashed_code[6]
         index += 1
 
         # Added for comedy
-        if (index % 10000) == 0:
+        if (index % 50000) == 0:
             print(
                 "".join(
-                    x if x is not None else f"{random.randint(0, 15):x}"
-                    for x in matches[:8]
+                    x if x != "!" else f"{random.randint(0, 15):x}" for x in matches[:8]
                 )
             )
 

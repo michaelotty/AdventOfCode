@@ -11,7 +11,7 @@ from scipy.spatial.transform import Rotation  # type: ignore
 
 def main() -> None:
     """Program starts here."""
-    scanners = []
+    scanners: list[np.ndarray] = []
     i = -1
 
     with open("2021/data/19/test.txt", encoding="utf-8") as file:

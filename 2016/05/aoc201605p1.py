@@ -8,7 +8,7 @@ def main() -> None:
     with open("2016/05/input.txt", encoding="utf-8") as file:
         content = file.read()
     index = 0
-    matches = []
+    matches: list[str] = []
 
     while len(matches) < 8:
         test_code = content + str(index)

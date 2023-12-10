@@ -13,9 +13,8 @@ def main() -> None:
     for line in data:
         game = []
         for subset in line:
-            subset = subset.split(", ")
             new_subset = {}
-            for cubes in subset:
+            for cubes in subset.split(", "):
                 val, key = cubes.split()
                 new_subset[key] = int(val)
 

@@ -3,7 +3,7 @@
 from turtle import Screen, Turtle, Vec2D
 
 
-def find_position(instructions) -> Vec2D | None:
+def find_position(instructions: list[str]) -> Vec2D | None:
     """Find position."""
     screen = Screen()
     turtle = Turtle()
@@ -40,7 +40,9 @@ def main() -> None:
     with open("2016/01/input.txt", encoding="utf-8") as f:
         instructions = f.read().split(", ")
 
-    x, y = find_position(instructions)
+    vec = find_position(instructions)
+    assert vec
+    x, y = vec
 
     print(round(x + y))
 

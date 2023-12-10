@@ -16,23 +16,18 @@ def main() -> None:
             name,
             _,
             _,
-            speed,
+            speed_str,
             _,
             _,
-            speed_time,
-            _,
-            _,
-            _,
-            _,
-            _,
-            _,
-            rest_time,
+            speed_time_str,
+            *_,
+            rest_time_str,
             _,
         ) = line.split()
 
-        speed = int(speed)
-        speed_time = int(speed_time)
-        rest_time = int(rest_time)
+        speed = int(speed_str)
+        speed_time = int(speed_time_str)
+        rest_time = int(rest_time_str)
 
         reindeers.append(Reindeer(name, speed, speed_time, rest_time))
 

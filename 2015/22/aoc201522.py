@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 # import re
-from operator import itemgetter
+# from operator import itemgetter
 
 # from spells import Effect, Spell
 
@@ -43,8 +43,8 @@ def does_player_win(player: Character, enemy: Character) -> bool:
 
 def main() -> None:
     """Main function"""
-    winning_combos = []
-    losing_combos = []
+    # winning_combos = []
+    # losing_combos = []
 
     # with open("2015/22/input.txt", encoding="utf-8") as file:
     #     enemy_file = {
@@ -60,8 +60,8 @@ def main() -> None:
     #             winning_combos.append((player.money_spent, player.inventory))
     #         else:
     #             losing_combos.append((player.money_spent, player.inventory))
-    print(sorted(winning_combos, key=itemgetter(0))[0][0])
-    print(sorted(losing_combos, key=itemgetter(0))[-1][0])
+    # print(sorted(winning_combos, key=itemgetter(0))[0][0])
+    # print(sorted(losing_combos, key=itemgetter(0))[-1][0])
 
 
 if __name__ == "__main__":

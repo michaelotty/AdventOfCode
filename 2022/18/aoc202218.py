@@ -13,7 +13,7 @@ def main() -> None:
     print("Part 2:", part_2(voxels))
 
 
-def part_1(voxels: set[tuple[int, int, int]]) -> int:
+def part_1(voxels: set[tuple[int, ...]]) -> int:
     """Solve part 1."""
     faces = []
     for x, y, z in voxels:
@@ -31,7 +31,7 @@ def part_1(voxels: set[tuple[int, int, int]]) -> int:
     return len(uncovered_faces)
 
 
-def part_2(lava_drop: set[tuple[int, int, int]]) -> int:
+def part_2(lava_drop: set[tuple[int, ...]]) -> int:
     """Solve part 2."""
     mins = {}
     maxs = {}
@@ -45,7 +45,7 @@ def part_2(lava_drop: set[tuple[int, int, int]]) -> int:
     mins["z"] = min(z for x, y, z in lava_drop) - 1
     maxs["z"] = max(z for x, y, z in lava_drop) + 1
 
-    locations_to_search = set(
+    locations_to_search: set[tuple[int, ...]] = set(
         itertools.product(
             range(mins["x"], maxs["x"] + 1),
             range(mins["y"], maxs["y"] + 1),
@@ -82,7 +82,7 @@ def part_2(lava_drop: set[tuple[int, int, int]]) -> int:
     return part_1(lava_drop)
 
 
-def get_adjacents(voxel: tuple[int, int, int]) -> set[tuple[int, int, int]]:
+def get_adjacents(voxel: tuple[int, ...]) -> set[tuple[int, int, int]]:
     """Get the adjacent voxels."""
     x, y, z = voxel
     return {
@@ -95,7 +95,7 @@ def get_adjacents(voxel: tuple[int, int, int]) -> set[tuple[int, int, int]]:
     }
 
 
-def print_lava_drop(voxels: set[tuple[int, int, int]]) -> None:
+def print_lava_drop(voxels: set[tuple[int, ...]]) -> None:
     """Print out layer by layer representation of 3D lava drop."""
     min_x, max_x = min(x for x, y, z in voxels), max(x for x, y, z in voxels)
     min_y, max_y = min(y for x, y, z in voxels), max(y for x, y, z in voxels)
