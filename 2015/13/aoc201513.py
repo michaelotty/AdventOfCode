@@ -1,6 +1,5 @@
 """Advent of code Day 13"""
 
-import logging
 from itertools import permutations
 from pathlib import Path
 
@@ -26,9 +25,7 @@ def solve(path: Path) -> int:
             happiness += names[arrangement[i - 1]][arr]
         if happiness > best_happiness:
             best_happiness = happiness
-            best_combination = arrangement
 
-    logging.debug("Found best combination: %s", best_combination)
     return best_happiness
 
 
