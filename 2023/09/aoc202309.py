@@ -9,7 +9,7 @@ def main() -> None:
         ]
 
     print("Part 1:", part_1(histories))
-    print("Part 2:", part_2())
+    print("Part 2:", part_2(histories))
 
 
 def part_1(histories: list[list[int]]) -> int:
@@ -28,9 +28,25 @@ def part_1(histories: list[list[int]]) -> int:
     return sum(values)
 
 
-def part_2() -> int:
+def part_2(histories: list[list[int]]) -> int:
     """Solve part 2."""
-    return 0
+    values = []
+
+    for history in histories:
+        analyse = [history]
+        while not all(item == 0 for item in analyse[-1]):
+            new_item = [
+                right - left for left, right in zip(analyse[-1][:-1], analyse[-1][1:])
+            ]
+            analyse.append(new_item)
+
+        analyse.reverse()
+        past = [0]
+        for row in analyse[1:]:
+            past.append(row[0] - past[-1])
+
+        values.append(past[-1])
+    return sum(values)
 
 
 if __name__ == "__main__":
