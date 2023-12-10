@@ -4,7 +4,7 @@ from __future__ import annotations
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/13/input.txt", encoding="utf-8") as file:
         packet_pairs = [
             [eval(line) for line in pair.split()] for pair in file.read().split("\n\n")
@@ -41,7 +41,7 @@ class Packet:
         return self.packet == other.packet
 
     def __repr__(self) -> str:
-        """String representation of packet."""
+        """Representation of a packet as a string."""
         return str(self.packet)
 
 

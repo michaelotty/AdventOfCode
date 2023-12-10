@@ -1,10 +1,10 @@
-"""Advent of code Day 1 part 1"""
+"""Advent of code Day 1 part 1."""
 
 from turtle import Screen, Turtle
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2016/01/input.txt", encoding="utf-8") as f:
         instructions = f.read().split(", ")
 

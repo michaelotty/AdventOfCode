@@ -8,7 +8,7 @@ import tqdm
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     print("Part 1:", part_1())
     print("Part 2:", part_2())
 
@@ -133,7 +133,7 @@ class Grid:
         return {(row + direction[0], col + direction[1]) for row, col in shape}
 
     def _str_of_grid(self, grid) -> str:
-        """String representation of a grid."""
+        """Representation of a grid as a string."""
         rows_to_print = []
 
         for row in range(self.get_height(grid)):
@@ -199,7 +199,7 @@ class Grid:
         self.grid |= active_shape
 
     def __repr__(self) -> str:
-        """String representation of grid."""
+        """Representation of grid as string."""
         return self._str_of_grid(self.grid)
 
 

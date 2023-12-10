@@ -1,10 +1,10 @@
-"""Advent of code Day 7 part 1"""
+"""Advent of code Day 7 part 1."""
 
 import re
 
 
 def get_weight(tree: dict, weights: dict, key: str) -> tuple[int, str]:
-    """Returns the corrected value for the unbalanced child"""
+    """Returns the corrected value for the unbalanced child."""
     child_weight = 0
     for child in tree[key]:
         weight, _ = get_weight(tree, weights, child)
@@ -13,7 +13,7 @@ def get_weight(tree: dict, weights: dict, key: str) -> tuple[int, str]:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2017/07/input.txt", encoding="utf-8") as file:
         lines = file.readlines()
 

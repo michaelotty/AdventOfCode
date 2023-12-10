@@ -1,10 +1,10 @@
-"""Advent of code Day 18 part 1"""
+"""Advent of code Day 18 part 1."""
 
 import copy
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/18/input.txt", encoding="utf-8") as file:
         lines = file.read().split()
 
@@ -17,9 +17,10 @@ def main() -> None:
 
 
 class GameOfLife:
-    """Creates a game of life grid"""
+    """Game of life grid."""
 
     def __init__(self, lines: list) -> None:
+        """Create a game of life grid."""
         self._text_file_contents = lines
         self.height = len(lines)
         self.width = len(lines[0])
@@ -28,7 +29,8 @@ class GameOfLife:
             for j in range(self.width)
         ]
 
-    def __str__(self) -> str:
+    def __repr__(self) -> str:
+        """Return a string representation."""
         return (
             "\n".join(
                 "".join("#" if item else "." for item in line) for line in self.grid
@@ -38,11 +40,11 @@ class GameOfLife:
 
     @property
     def num_of_lights_on(self) -> int:
-        """Gets the total number of lights switched on"""
+        """Get the total number of lights switched on."""
         return sum(sum(line) for line in self.grid)
 
     def __next__(self) -> None:
-        """Update the game of life"""
+        """Update the game of life."""
         new_grid = copy.deepcopy(self.grid)
 
         for i in range(self.height):
@@ -66,14 +68,14 @@ class GameOfLife:
         self.grid = new_grid.copy()
 
     def _extract_cell(self, i: int, j: int) -> bool:
-        """Convert character map into bool map"""
+        """Convert character map into bool map."""
         if self._text_file_contents[j][i] == "#":
             return True
         return False
 
     @staticmethod
     def _process_cell(prev_value: bool, sum_of_neighbors: int) -> bool:
-        """Processes the cells next value"""
+        """Processes the cells next value."""
         if prev_value:
             return sum_of_neighbors in (2, 3)
         return sum_of_neighbors == 3

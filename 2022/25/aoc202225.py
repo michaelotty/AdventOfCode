@@ -2,7 +2,7 @@
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/25/input.txt", encoding="utf-8") as file:
         nums = file.read().splitlines()
     test_snafu()

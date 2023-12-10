@@ -1,4 +1,4 @@
-"""Advent of code 2020 day 2"""
+"""Advent of code 2020 day 2."""
 
 import pandas as pd
 

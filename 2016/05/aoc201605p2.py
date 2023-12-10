@@ -1,11 +1,11 @@
-"""Advent of code Day 5 part 2"""
+"""Advent of code Day 5 part 2."""
 
 import hashlib
 import random
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2016/05/input.txt", encoding="utf-8") as file:
         content = file.read()
 

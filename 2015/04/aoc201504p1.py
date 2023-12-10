@@ -1,10 +1,10 @@
-"""Advent of code Day 4 part 1"""
+"""Advent of code Day 4 part 1."""
 
 import hashlib
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/04/input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 

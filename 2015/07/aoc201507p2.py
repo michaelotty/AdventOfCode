@@ -1,8 +1,8 @@
-"""Advent of code Day 7 part 2"""
+"""Advent of code Day 7 part 2."""
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/07/input_for_part_2.txt", encoding="utf-8") as f:
         file_contents = f.read().split("\n")
 
@@ -11,9 +11,10 @@ def main() -> None:
 
 
 class Parser:
-    """Parses the input of the file"""
+    """Parses the input of the file."""
 
     def __init__(self, file_contents) -> None:
+        """Create a Parser."""
         self.calc = {}
         self.results: dict[str, int] = {}
 
@@ -22,7 +23,7 @@ class Parser:
             self.calc[result.strip()] = option.strip().split(" ")
 
     def parse_instruction(self, var_name: str) -> int:
-        """Recursive function"""
+        """Recursive function."""
         try:
             return int(var_name)
         except ValueError:

@@ -1,8 +1,8 @@
-"""Advent of code Day 3 part 1"""
+"""Advent of code Day 3 part 1."""
 
 
 def move(position: tuple[int, int], direction: str) -> tuple:
-    """Move coordinate in indicated direction"""
+    """Move coordinate in indicated direction."""
     if direction == "right":
         position = (position[0] + 1, position[1])
     elif direction == "up":
@@ -18,7 +18,7 @@ def move(position: tuple[int, int], direction: str) -> tuple:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2017/03/input.txt", encoding="utf-8") as file:
         puzzle_input = int(file.read())
 

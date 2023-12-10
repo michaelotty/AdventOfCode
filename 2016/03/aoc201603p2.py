@@ -1,10 +1,10 @@
-"""Advent of code Day 3 part 2"""
+"""Advent of code Day 3 part 2."""
 
 from itertools import combinations, permutations
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2016/03/input.txt", encoding="utf-8") as file:
         file_content = [
             tuple(int(x) for x in line.split()) for line in file.read().split("\n")

@@ -1,10 +1,10 @@
-"""Advent of code Day 17 part 1"""
+"""Advent of code Day 17 part 1."""
 
 from itertools import combinations
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/17/input.txt", encoding="utf-8") as file:
         data = file.readlines()
 

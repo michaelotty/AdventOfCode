@@ -1,8 +1,8 @@
-"""Advent of code Day 6 part 2"""
+"""Advent of code Day 6 part 2."""
 
 
 def main(part2: bool) -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/06/input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 
@@ -43,7 +43,7 @@ def main(part2: bool) -> None:
 
 
 def turn_on_lights1(start_pos: tuple, end_pos: tuple, lights: list) -> list:
-    """Turns on lights in range"""
+    """Turns on lights in range."""
     for i in range(start_pos[0], end_pos[0] + 1):
         for j in range(start_pos[1], end_pos[1] + 1):
             lights[i][j] = True
@@ -51,7 +51,7 @@ def turn_on_lights1(start_pos: tuple, end_pos: tuple, lights: list) -> list:
 
 
 def turn_off_lights1(start_pos: tuple, end_pos: tuple, lights: list) -> list:
-    """Turns off lights in range"""
+    """Turns off lights in range."""
     for i in range(start_pos[0], end_pos[0] + 1):
         for j in range(start_pos[1], end_pos[1] + 1):
             lights[i][j] = False
@@ -59,7 +59,7 @@ def turn_off_lights1(start_pos: tuple, end_pos: tuple, lights: list) -> list:
 
 
 def toggle_lights1(start_pos: tuple, end_pos: tuple, lights: list) -> list:
-    """Toggles all lights in range"""
+    """Toggles all lights in range."""
     for i in range(start_pos[0], end_pos[0] + 1):
         for j in range(start_pos[1], end_pos[1] + 1):
             lights[i][j] ^= True
@@ -67,7 +67,7 @@ def toggle_lights1(start_pos: tuple, end_pos: tuple, lights: list) -> list:
 
 
 def turn_on_lights2(start_pos: tuple, end_pos: tuple, lights: list) -> list:
-    """Turns on lights in range"""
+    """Turns on lights in range."""
     for i in range(start_pos[0], end_pos[0] + 1):
         for j in range(start_pos[1], end_pos[1] + 1):
             lights[i][j] += 1
@@ -75,7 +75,7 @@ def turn_on_lights2(start_pos: tuple, end_pos: tuple, lights: list) -> list:
 
 
 def turn_off_lights2(start_pos: tuple, end_pos: tuple, lights: list) -> list:
-    """Turns off lights in range"""
+    """Turns off lights in range."""
     for i in range(start_pos[0], end_pos[0] + 1):
         for j in range(start_pos[1], end_pos[1] + 1):
             if lights[i][j] > 0:
@@ -84,7 +84,7 @@ def turn_off_lights2(start_pos: tuple, end_pos: tuple, lights: list) -> list:
 
 
 def toggle_lights2(start_pos: tuple, end_pos: tuple, lights: list) -> list:
-    """Toggles all lights in range"""
+    """Toggles all lights in range."""
     for i in range(start_pos[0], end_pos[0] + 1):
         for j in range(start_pos[1], end_pos[1] + 1):
             lights[i][j] += 2

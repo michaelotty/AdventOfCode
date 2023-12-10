@@ -1,8 +1,8 @@
-"""Advent of code Day 16 part 1"""
+"""Advent of code Day 16 part 1."""
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/16/input.txt", encoding="utf-8") as file:
         data = file.readlines()
 
@@ -27,7 +27,7 @@ def main() -> None:
 
 
 def match_or_missing(match: str, line: str) -> bool:
-    """Returns true if the string matches or if it isn't there at all"""
+    """Returns true if the string matches or if it isn't there at all."""
     if match.split()[0] in line:
         return match in line
     return True

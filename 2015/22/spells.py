@@ -1,11 +1,11 @@
-"""Spell related classes"""
+"""Spell related classes."""
 
 from dataclasses import dataclass
 
 
 @dataclass(kw_only=True)
 class Effect:
-    """Effect class"""
+    """Effect class."""
 
     turns = 1
     armor = 0
@@ -15,7 +15,7 @@ class Effect:
 
 @dataclass(kw_only=True)
 class Spell:
-    """Spell class"""
+    """Spell class."""
 
     mana = 10
     damage = 0

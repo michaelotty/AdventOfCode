@@ -1,10 +1,10 @@
-"""Advent of code Day 2 part 1"""
+"""Advent of code Day 2 part 1."""
 
 from collections import Counter
 
 
 def calculate_checksum(lines: list[str]) -> int:
-    """Calculates the checksum"""
+    """Calculate checksum."""
     count_of_twos = 0
     count_of_threes = 0
     sorted_lines = [Counter(line).most_common() for line in lines]
@@ -20,7 +20,7 @@ def calculate_checksum(lines: list[str]) -> int:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2018/02/input.txt", encoding="utf-8") as file:
         lines = file.read().split()
 

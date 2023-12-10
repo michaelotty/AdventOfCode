@@ -1,11 +1,11 @@
-"""Advent of code Day 3 part 1 and 2"""
+"""Advent of code Day 3 part 1 and 2."""
 
 import re
 from itertools import product
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2018/03/input.txt", encoding="utf-8") as file:
         lines = [
             tuple(map(int, line))

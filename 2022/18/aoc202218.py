@@ -5,7 +5,7 @@ import itertools
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/18/input.txt", encoding="utf-8") as file:
         voxels = {tuple(map(int, line.split(","))) for line in file.read().splitlines()}
     print_lava_drop(voxels)

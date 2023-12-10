@@ -1,10 +1,10 @@
-"""Advent of code Day 14 part 2"""
+"""Advent of code Day 14 part 2."""
 
 from __future__ import annotations
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/14/input.txt", encoding="utf-8") as file:
         data = file.readlines()
 
@@ -44,10 +44,10 @@ def main() -> None:
 
 
 class Reindeer:  # pylint: disable=too-many-instance-attributes
-    """Reindeer class"""
+    """Reindeer class."""
 
     def __init__(self, name: str, speed: int, speed_time: int, rest_time: int) -> None:
-        """Create a Reindeer"""
+        """Create a Reindeer."""
         self.name = name
         self.speed = speed
         self.speed_time = speed_time
@@ -63,9 +63,11 @@ class Reindeer:  # pylint: disable=too-many-instance-attributes
         self.points = 0
 
     def __iter__(self) -> Reindeer:
+        """Return the iterator."""
         return self
 
     def __next__(self) -> None:
+        """Increment iterator."""
         if self.is_flying:
             self.position += self.speed
             self.speed_timer -= 1
@@ -79,11 +81,11 @@ class Reindeer:  # pylint: disable=too-many-instance-attributes
                 self.is_flying = True
 
     def __str__(self) -> str:
-        """Returns string representation"""
+        """Returns string representation."""
         return f"{self.name}: {self.points}"
 
     def add_point(self) -> None:
-        """Adds 1 point to points tally"""
+        """Adds 1 point to points tally."""
         self.points += 1
 
 

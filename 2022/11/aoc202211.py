@@ -6,7 +6,7 @@ import re
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/11/input.txt", encoding="utf-8") as file:
         monkey_text = file.read().split("\n\n")
     print("Part 1:", solve(monkey_text, 20, True))

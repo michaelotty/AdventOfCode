@@ -1,4 +1,4 @@
-"""Advent of code Day 13"""
+"""Advent of code Day 13."""
 
 from itertools import permutations
 from pathlib import Path

@@ -1,4 +1,4 @@
-"""Advent of code Day 4 part 1 and 2"""
+"""Advent of code Day 4 part 1 and 2."""
 
 from __future__ import annotations
 
@@ -8,22 +8,24 @@ from operator import itemgetter
 
 
 class Guard:
-    """A guard who has a record of shifts"""
+    """A guard who has a record of shifts."""
 
     def __init__(self, guard_id: int) -> None:
-        """Creates a Guard"""
+        """Creates a Guard."""
         self.id: int = guard_id
         self.shift_record: list[Shift] = []
 
     def __repr__(self) -> str:
+        """Return the string representation."""
         return "Guard(" + str(self.id) + ")"
 
     def __gt__(self, other):
+        """Greater than operator."""
         return self.calculate_minutes_asleep() > other.calculate_minutes_asleep()
 
     @property
     def awake_time(self) -> list[int]:
-        """A list with count of times awake"""
+        """A list with count of times awake."""
         awake_time = [0 for _ in range(60)]
         for i in range(60):
             for shift in self.shift_record:
@@ -32,29 +34,29 @@ class Guard:
 
     @property
     def asleep_time(self) -> list[int]:
-        """A list with count of times asleep"""
+        """A list with count of times asleep."""
         awake_time = self.awake_time
         return [len(self.shift_record) - awake_time[i] for i in range(60)]
 
     @property
     def most_sleepy_minute(self) -> int:
-        """Returns most sleepy time"""
+        """Returns most sleepy time."""
         return min(enumerate(self.awake_time), key=itemgetter(1))[0]
 
     def add_shift(self, shift: Shift) -> None:
-        """Adds a shift to the shift record"""
+        """Adds a shift to the shift record."""
         self.shift_record.append(shift)
 
     def calculate_minutes_asleep(self) -> int:
-        """Calculate the total minutes asleep"""
+        """Calculate the total minutes asleep."""
         return sum(shift.get_minutes_asleep() for shift in self.shift_record)
 
 
 class Shift:
-    """A work shift"""
+    """Work shift."""
 
     def __init__(self, lines: list[tuple[datetime, str]]) -> None:
-        """Creates the Shift object"""
+        """Creates the Shift object."""
         # If empty list, they were awake the whole time
         if not lines:
             self.time_awake = timedelta(minutes=60)
@@ -84,15 +86,16 @@ class Shift:
             last_time = current_time
 
     def __repr__(self) -> str:
+        """Return string representation."""
         return "Shift(" + str(self.time_awake) + ")"
 
     def get_minutes_asleep(self) -> int:
-        """Gets the total minutes asleep on the shift"""
+        """Get the total minutes asleep on the shift."""
         return self.time_asleep.seconds // 60
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2018/04/input.txt", encoding="utf-8") as file:
         unsorted_lines = [
             (datetime.fromisoformat(date_time), desc)

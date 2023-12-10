@@ -1,35 +1,37 @@
-"""Advent of Code 2020 7 part 1"""
+"""Advent of Code 2020 7 part 1."""
 
 import re
 
 
 class Bag:
-    """Bag"""
+    """Bag."""
 
     def __init__(self, data) -> None:
+        """Create a bag."""
         self.data = data
         self.children: list = []
 
     def add_bags(self, bag, num):
-        """Add multiple nodes"""
+        """Add multiple nodes."""
         for _ in range(num):
             self.children.append(bag)
 
     def __repr__(self):
-        """Printable string"""
+        """Printable string."""
         return ", ".join(child.data for child in self.children)
 
 
 class BagTree(Bag):
-    """BagTree"""
+    """Bag Tree."""
 
     def __init__(self, root) -> None:
+        """Create a Bag tree."""
         self.root = root
         super().__init__(self.root.data)
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("question.txt", encoding="utf-8") as file:
         file_content = file.read()
 

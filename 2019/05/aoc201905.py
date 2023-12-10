@@ -1,4 +1,4 @@
-"""Advent of code day 5 part 1 and 2, derived from day 2"""
+"""Advent of code day 5 part 1 and 2, derived from day 2."""
 
 from enum import IntEnum, unique
 from typing import Callable
@@ -6,7 +6,7 @@ from typing import Callable
 
 @unique
 class Opcode(IntEnum):
-    """Opcodes"""
+    """Opcodes."""
 
     ADD = 1
     MULTIPLY = 2
@@ -21,14 +21,14 @@ class Opcode(IntEnum):
 
 @unique
 class ParameterMode(IntEnum):
-    """Parameter modes"""
+    """Parameter modes."""
 
     POSITION = 0
     IMMEDIATE = 1
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2019/05/input.txt", encoding="utf-8") as file:
         file_input = tuple(int(i) for i in file.read().split(","))
 
@@ -37,7 +37,7 @@ def main() -> None:
 
 
 def solve_puzzle(file_input: tuple[int, ...], input_val: int) -> int | None:
-    """Solve the puzzle with corrected input"""
+    """Solve the puzzle with corrected input."""
     numbers = list(file_input)
     address = 0
     return_val = None
@@ -73,7 +73,7 @@ def solve_puzzle(file_input: tuple[int, ...], input_val: int) -> int | None:
 def add_op(
     address: int, numbers: list[int], parameter_modes: list[int]
 ) -> tuple[int, list[int]]:
-    """Add operator"""
+    """Add operator."""
     value = 0
     for parameter_mode in parameter_modes[:2]:
         if parameter_mode == ParameterMode.POSITION:
@@ -91,7 +91,7 @@ def add_op(
 def multiply_op(
     address: int, numbers: list[int], parameter_modes: list[int]
 ) -> tuple[int, list[int]]:
-    """Multiply operator"""
+    """Multiply operator."""
     values = []
     for parameter_mode in parameter_modes[:2]:
         if parameter_mode == ParameterMode.POSITION:
@@ -108,7 +108,7 @@ def multiply_op(
 def input_op(
     address: int, numbers: list[int], parameter_modes: list[int], input_val: int
 ) -> tuple[int, list[int]]:
-    """Input operator"""
+    """Input operator."""
     if parameter_modes[0] == ParameterMode.POSITION:
         numbers[numbers[address]] = input_val
     elif parameter_modes[0] == ParameterMode.IMMEDIATE:
@@ -120,7 +120,7 @@ def input_op(
 def output_op(
     address: int, numbers: list[int], parameter_modes: list[int]
 ) -> tuple[int, list[int], int]:
-    """Output operator"""
+    """Output operator."""
     if parameter_modes[0] == ParameterMode.POSITION:
         return_val = numbers[numbers[address]]
     elif parameter_modes[0] == ParameterMode.IMMEDIATE:
@@ -132,7 +132,7 @@ def output_op(
 def jmp_if_true_op(
     address: int, numbers: list[int], parameter_modes: list[int]
 ) -> tuple[int, list[int]]:
-    """Jump if true operator"""
+    """Jump if true operator."""
     if parameter_modes[0] == ParameterMode.POSITION:
         value = bool(numbers[numbers[address]])
     elif parameter_modes[0] == ParameterMode.IMMEDIATE:
@@ -152,7 +152,7 @@ def jmp_if_true_op(
 def jmp_if_false_op(
     address: int, numbers: list[int], parameter_modes: list[int]
 ) -> tuple[int, list[int]]:
-    """Jump if false operator"""
+    """Jump if false operator."""
     if parameter_modes[0] == ParameterMode.POSITION:
         value = bool(numbers[numbers[address]])
     elif parameter_modes[0] == ParameterMode.IMMEDIATE:
@@ -172,7 +172,7 @@ def jmp_if_false_op(
 def less_than_op(
     address: int, numbers: list[int], parameter_modes: list[int]
 ) -> tuple[int, list[int]]:
-    """Less than operator"""
+    """Less than operator."""
     values = []
     for parameter_mode in parameter_modes[:2]:
         if parameter_mode == ParameterMode.POSITION:
@@ -189,7 +189,7 @@ def less_than_op(
 def equals_op(
     address: int, numbers: list[int], parameter_modes: list[int]
 ) -> tuple[int, list[int]]:
-    """Equals operator"""
+    """Equals operator."""
     values = []
     for parameter_mode in parameter_modes[:2]:
         if parameter_mode == ParameterMode.POSITION:

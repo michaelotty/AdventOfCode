@@ -1,13 +1,15 @@
-"""Advent of code Day 7 part 1"""
+"""Advent of code Day 7 part 1."""
 
 import re
 
 
 def has_abba(test_string: str) -> bool:
-    """An ABBA is any four-character sequence which consists
-    of a pair of two DIFFERENT characters followed by the
-    reverse of that pair, such as xyyx or abba.
-    Not aaaa or tttt."""
+    """Check for ABBA.
+
+    An ABBA is any four-character sequence which consists of a pair of two DIFFERENT
+    characters followed by the reverse of that pair, such as xyyx or abba. Not aaaa or
+    tttt.
+    """
     num_of_substr = len(test_string) - 3
     for i in range(num_of_substr):
         if (test_string[i] != test_string[i + 1]) and (
@@ -18,16 +20,17 @@ def has_abba(test_string: str) -> bool:
 
 
 def supports_tls(ips: list[str], hypernets: list[str]) -> bool:
-    """An IP supports TLS if it has an Autonomous Bridge
-    Bypass Annotation, or ABBA.
-    However, the IP also must not have an ABBA within any
-    hypernet sequences, which are contained by square
-    brackets."""
+    """Check for TLS support.
+
+    An IP supports TLS if it has an Autonomous Bridge Bypass Annotation, or ABBA.
+    However, the IP also must not have an ABBA within any hypernet sequences, which are
+    contained by square brackets.
+    """
     return any(map(has_abba, ips)) and not any(map(has_abba, hypernets))
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2016/07/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
 

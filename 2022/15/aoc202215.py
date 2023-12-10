@@ -4,7 +4,7 @@ import re
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     regex = r"Sensor at x=(-*\d+), y=(-*\d+): closest beacon is at x=(-*\d+), y=(-*\d+)"
 
     with open("2022/15/input.txt", encoding="utf-8") as file:

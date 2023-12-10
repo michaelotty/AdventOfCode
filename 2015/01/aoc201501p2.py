@@ -1,9 +1,8 @@
-"""Advent of Code 2015 day 1 part 2"""
+"""Advent of Code 2015 day 1 part 2."""
 
 
 def main() -> None:
-    """Start of program"""
-
+    """Program starts here."""
     with open("2015/01/input.txt", encoding="utf-8") as f:
         text = f.read()
 

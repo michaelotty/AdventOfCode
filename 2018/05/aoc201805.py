@@ -1,11 +1,11 @@
-"""Advent of code Day 5"""
+"""Advent of code Day 5."""
 
 import re
 import string
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2018/05/input.txt", encoding="utf-8") as file:
         text = file.read()
     print(f"Part 1: {part_1(text)}")
@@ -13,12 +13,12 @@ def main() -> None:
 
 
 def part_1(text: str) -> int:
-    """Solve part 1 of the puzzle"""
+    """Solve part 1 of the puzzle."""
     return reduce(text)
 
 
 def part_2(text: str) -> int:
-    """Solve part 2 of the puzzle"""
+    """Solve part 2 of the puzzle."""
     return min(
         reduce("".join(re.split(f"[{letter}{letter.upper()}]", text)))
         for letter in string.ascii_lowercase
@@ -26,7 +26,7 @@ def part_2(text: str) -> int:
 
 
 def reduce(polymer: str) -> int:
-    """Reduce the polymer"""
+    """Reduce the polymer."""
     reduced_polymer = [""]
     for unit in polymer:
         end_of_polymer = reduced_polymer[-1]

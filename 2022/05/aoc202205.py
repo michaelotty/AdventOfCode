@@ -5,7 +5,7 @@ import re
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/05/input.txt", encoding="utf-8") as file:
         data1, data2 = file.read().split("\n\n")
         stacks_data = data1.split("\n")[:-1]

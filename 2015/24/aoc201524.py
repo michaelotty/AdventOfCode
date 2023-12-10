@@ -1,10 +1,10 @@
-"""Advent of code Day 24 part 1"""
+"""Advent of code Day 24 part 1."""
 
 from itertools import permutations
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/24/input.txt", encoding="utf-8") as file:
         present_weights = tuple(int(i) for i in file.read().split())
 
@@ -30,7 +30,7 @@ def main() -> None:
 
 
 def multiply(*iterable) -> int:
-    """Multiply all elements and sub-elements"""
+    """Multiply all elements and sub-elements."""
     multiple = 1
     for i in iterable:
         if isinstance(i, int):

@@ -4,7 +4,7 @@ import queue
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/12/input.txt", encoding="utf-8") as file:
         height_map = [list(map(ord, line)) for line in file.read().splitlines()]
 

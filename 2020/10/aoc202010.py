@@ -1,11 +1,11 @@
-"""Advent of code 2020 day 10"""
+"""Advent of code 2020 day 10."""
 
 from collections import Counter
 from typing import Generator
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2020/10/input.txt", encoding="utf-8") as file:
         file_input = tuple(sorted(int(i) for i in file.read().split()))
 
@@ -14,14 +14,14 @@ def main() -> None:
 
 
 def solve_part_1(file_input: tuple[int, ...]) -> int:
-    """Solve part 1 of the puzzle"""
+    """Solve part 1 of the puzzle."""
     adapters = (0, *file_input, file_input[-1] + 3)
     diffs = Counter(diff(adapters))
     return diffs[1] * diffs[3]
 
 
 def solve_part_2(file_input: tuple[int, ...]) -> int:
-    """Solve part 2 of the puzzle"""
+    """Solve part 2 of the puzzle."""
     adapters = (*file_input, file_input[-1] + 3)
     counter = {0: 1}
 
@@ -31,7 +31,7 @@ def solve_part_2(file_input: tuple[int, ...]) -> int:
 
 
 def diff(list_of_numbers: tuple[int, ...]) -> Generator:
-    """Creates a diff generator"""
+    """Create a diff generator."""
     return (j - i for i, j in zip(list_of_numbers[:-1], list_of_numbers[1:]))
 
 

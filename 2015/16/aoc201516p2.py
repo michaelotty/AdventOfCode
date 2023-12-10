@@ -1,10 +1,10 @@
-"""Advent of code Day 16 part 2"""
+"""Advent of code Day 16 part 2."""
 
 import re
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/16/input.txt", encoding="utf-8") as file:
         data = file.readlines()
 
@@ -38,14 +38,14 @@ def main() -> None:
 
 
 def match_or_missing(match: str, line: str) -> bool:
-    """Returns true if the string matches or if it isn't there at all"""
+    """Returns true if the string matches or if it isn't there at all."""
     if match.split()[0] in line:
         return match in line
     return True
 
 
 def greater_or_missing(match: str, line: str) -> bool:
-    """Returns true if the value is greater than or if it isn't there at all"""
+    """Returns true if the value is greater than or if it isn't there at all."""
     regex_match = re.search(match.split()[0] + r" (\d+)", line)
     if regex_match is not None:
         return int(regex_match.group(1)) > int(match.split()[1])
@@ -53,7 +53,7 @@ def greater_or_missing(match: str, line: str) -> bool:
 
 
 def fewer_or_missing(match: str, line: str) -> bool:
-    """Returns true if the value is less than or if it isn't there at all"""
+    """Returns true if the value is less than or if it isn't there at all."""
     regex_match = re.search(match.split()[0] + r" (\d+)", line)
     if regex_match is not None:
         return int(regex_match.group(1)) < int(match.split()[1])

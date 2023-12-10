@@ -1,17 +1,17 @@
-"""Advent of code Day 12 part 2"""
+"""Advent of code Day 12 part 2."""
 
 import json
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/12/input.txt", encoding="utf-8") as f:
         data = json.load(f)
     print(sum_of_elements(data))
 
 
 def sum_of_elements(data) -> int:
-    """Sums all the numbers in the data"""
+    """Sums all the numbers in the data."""
     try:
         return int(data)
     except TypeError:

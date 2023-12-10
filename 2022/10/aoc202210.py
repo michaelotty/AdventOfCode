@@ -2,7 +2,7 @@
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/10/input.txt", encoding="utf-8") as file:
         instructions = file.read().splitlines()
     part_1_solution, x_register = part_1(instructions)

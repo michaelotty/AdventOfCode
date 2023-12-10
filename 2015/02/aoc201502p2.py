@@ -1,13 +1,13 @@
-"""Advent of code Day 2 part 2"""
+"""Advent of code Day 2 part 2."""
 
 
 def volume_of_cuboid(length: int, width: int, height: int) -> int:
-    """Finds the volume of a cuboid"""
+    """Finds the volume of a cuboid."""
     return length * width * height
 
 
 def find_shortest_perimeter(length: int, width: int, height: int) -> int:
-    """Finds the shortest perimeter for a bow for a cuboid"""
+    """Finds the shortest perimeter for a bow for a cuboid."""
     dimensions = [length, width, height]
     dimensions.sort()
     dimensions.pop()
@@ -15,7 +15,7 @@ def find_shortest_perimeter(length: int, width: int, height: int) -> int:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/02/input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 

@@ -1,11 +1,11 @@
-"""Advent of code Day 9 part 1 and 2"""
+"""Advent of code Day 9 part 1 and 2."""
 
 import sys
 from itertools import permutations
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     places: set[str] = set()
     distances: dict[str, dict[str, int]] = {}
 

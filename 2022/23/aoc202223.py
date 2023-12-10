@@ -4,7 +4,7 @@ import io
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/23/test1.txt", encoding="utf-8") as file:
         grid = Grid(file)
     print(grid, "\n")
@@ -30,9 +30,11 @@ class Grid:
         return "\n".join(lines)
 
     def __iter__(self):
+        """Return iterator."""
         return self
 
     def __next__(self):
+        """Return the next iteration."""
         return self
 
 

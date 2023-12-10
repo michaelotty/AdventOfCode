@@ -1,8 +1,8 @@
-"""Advent of code Day 6 part 1"""
+"""Advent of code Day 6 part 1."""
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2017/06/input.txt", encoding="utf-8") as file:
         puzzle = [int(x) for x in file.read().split()]
 

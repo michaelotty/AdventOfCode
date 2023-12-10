@@ -2,7 +2,7 @@
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/07/input.txt", encoding="utf-8") as file:
         text = file.read().splitlines()[1:]
     tree: dict = {}
@@ -55,7 +55,7 @@ def part_2(tree: dict) -> int:
 
 
 def find_best_directory_to_delete(tree: dict, space_needed: int, size: int) -> int:
-    """Finds the smallest directory, which is at least space_needed size."""
+    """Find the smallest directory, which is at least space_needed size."""
     for val in tree.values():
         if isinstance(val, dict):
             dir_size = get_directory_size(val)

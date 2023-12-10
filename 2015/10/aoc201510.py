@@ -1,8 +1,8 @@
-"""Advent of code Day 10 part 1 and 2"""
+"""Advent of code Day 10 part 1 and 2."""
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/10/input.txt", encoding="utf-8") as f:
         file_input = f.read()
 
@@ -17,7 +17,7 @@ def main() -> None:
 
 
 def find_look_and_say_string(in_str: str) -> str:
-    """Finds the look-and-say sequence string"""
+    """Finds the look-and-say sequence string."""
     output = str()
     count = 0
     last_ch = None

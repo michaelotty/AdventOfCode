@@ -2,7 +2,7 @@
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/09/input.txt", encoding="utf-8") as file:
         instructions = [
             (direction, int(amount))
@@ -76,7 +76,7 @@ def move_coord(coord: tuple[int, int], direction: tuple[int, int]) -> tuple[int,
 
 
 def distance(a: tuple[int, int], b: tuple[int, int]) -> int:
-    """The distance on with the puzzle distance definition."""
+    """Distance on with the puzzle distance definition."""
     return max(abs(b[0] - a[0]), abs(b[1] - a[1]))
 
 

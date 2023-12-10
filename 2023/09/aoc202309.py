@@ -2,7 +2,7 @@
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2023/09/input.txt", encoding="utf-8") as file:
         histories = [
             [int(num) for num in line.split()] for line in file.read().splitlines()

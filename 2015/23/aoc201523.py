@@ -1,11 +1,11 @@
-"""Advent of code Day 23"""
+"""Advent of code Day 23."""
 
 import re
 from typing import Callable
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/23/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
 
@@ -14,7 +14,7 @@ def main() -> None:
 
 
 def run_computer(input_val: int, instructions: list[str]) -> int:
-    """Runs the computer"""
+    """Run the computer."""
     instruction_fn: dict[str, Callable] = {
         "hlf": hlf,
         "tpl": tpl,
@@ -36,34 +36,34 @@ def run_computer(input_val: int, instructions: list[str]) -> int:
 
 
 def hlf(registers: dict, register: str) -> tuple[int, dict]:
-    """Half"""
+    """Half operator."""
     address_offset = 1
     registers[register] //= 2
     return address_offset, registers
 
 
 def tpl(registers: dict, register: str) -> tuple[int, dict]:
-    """Triple"""
+    """Triple operator."""
     address_offset = 1
     registers[register] *= 3
     return address_offset, registers
 
 
 def inc(registers: dict, register: str) -> tuple[int, dict]:
-    """Increment"""
+    """Increment operator."""
     address_offset = 1
     registers[register] += 1
     return address_offset, registers
 
 
 def jmp(registers: dict, offset: str) -> tuple[int, dict]:
-    """Jump"""
+    """Jump operator."""
     address_offset = int(offset)
     return address_offset, registers
 
 
 def jie(registers: dict, register: str, offset: str) -> tuple[int, dict]:
-    """Jump if even"""
+    """Jump if even operator."""
     if registers[register] % 2 == 0:
         address_offset = int(offset)
     else:
@@ -72,7 +72,7 @@ def jie(registers: dict, register: str, offset: str) -> tuple[int, dict]:
 
 
 def jio(registers: dict, register: str, offset: str) -> tuple[int, dict]:
-    """Jump if one"""
+    """Jump if one operator."""
     if registers[register] == 1:
         address_offset = int(offset)
     else:

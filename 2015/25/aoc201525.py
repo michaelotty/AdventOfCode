@@ -1,10 +1,10 @@
-"""Advent of code Day 25"""
+"""Advent of code Day 25."""
 
 from typing import Generator
 
 
 def part_1() -> int:
-    """Solve part 1 of the puzzle"""
+    """Solve part 1 of the puzzle."""
     for val, row, col in diagonal_sequence(20151125):
         if (row, col) == (2947, 3029):
             return val
@@ -12,12 +12,12 @@ def part_1() -> int:
 
 
 def part_2() -> int:
-    """Solve part 2 of the puzzle"""
+    """Solve part 2 of the puzzle."""
     return 0
 
 
 def diagonal_sequence(starting_val) -> Generator[tuple[int, int, int], None, None]:
-    """Diagonal sequence"""
+    """Diagonal sequence."""
     row = 1
     col = 1
     while True:

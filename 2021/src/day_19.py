@@ -1,6 +1,6 @@
 #!/bin/python3
 
-"""Advent of Code Day 19 2021"""
+"""Advent of Code Day 19 2021."""
 
 import re
 from itertools import permutations
@@ -32,7 +32,7 @@ def main() -> None:
 
 
 def day_19(scanners):
-    """Solve day 19"""
+    """Solve day 19."""
     best_angles = None
     best_distance = None
     # best_sensitivity = 1.0

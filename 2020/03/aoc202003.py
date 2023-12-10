@@ -1,10 +1,10 @@
 #!/bin/python3
 
-"""Advent of Code 2020 Day 3"""
+"""Advent of Code 2020 Day 3."""
 
 
 def part_1(lines, horizontal_step=3):
-    """Solve part 1"""
+    """Solve part 1."""
     width = len(lines[0])
     x_pos = 0
     trees = 0
@@ -19,7 +19,7 @@ def part_1(lines, horizontal_step=3):
 
 
 def part_2(lines):
-    """Solve part 2"""
+    """Solve part 2."""
     nums = [part_1(lines, i) for i in range(1, 8, 2)]
     nums.append(part_1(lines[::2], 1))
     val = 1
@@ -29,7 +29,7 @@ def part_2(lines):
 
 
 def main() -> None:
-    """Start of program execution"""
+    """Program starts here."""
     with open("question.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
 

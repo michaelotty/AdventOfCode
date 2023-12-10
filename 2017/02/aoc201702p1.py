@@ -1,8 +1,8 @@
-"""Advent of code Day 2 part 1"""
+"""Advent of code Day 2 part 1."""
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2017/02/input.txt", encoding="utf-8") as file:
         rows = tuple(
             tuple(int(element) for element in row.split()) for row in file.readlines()

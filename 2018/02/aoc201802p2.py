@@ -1,8 +1,8 @@
-"""Advent of code Day 2 part 2"""
+"""Advent of code Day 2 part 2."""
 
 
 def calculate_solution(lines: list[str]) -> str:
-    """Calculates the solution"""
+    """Calculate the solution."""
     for i, _ in enumerate(lines[0]):
         if len(set(line[:i] + line[i + 1 :] for line in lines)) < len(lines):
             checked = set()
@@ -16,7 +16,7 @@ def calculate_solution(lines: list[str]) -> str:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2018/02/input.txt", encoding="utf-8") as file:
         print(calculate_solution(file.read().split()))
 

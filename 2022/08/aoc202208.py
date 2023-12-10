@@ -2,7 +2,7 @@
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/08/input.txt", encoding="utf-8") as file:
         number_grid = [[int(num) for num in line] for line in file.read().splitlines()]
     print("Part 1:", part_1(number_grid))

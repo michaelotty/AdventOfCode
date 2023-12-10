@@ -1,8 +1,8 @@
-"""Advent of code Day 5 part 1"""
+"""Advent of code Day 5 part 1."""
 
 
 def has_double_letter(string: str) -> bool:
-    """Finds if the string has a repeated letter"""
+    """Finds if the string has a repeated letter."""
     for i in range(len(string) - 1):
         if string[i] == string[i + 1]:
             return True
@@ -10,7 +10,7 @@ def has_double_letter(string: str) -> bool:
 
 
 def count_vowels(string: str) -> int:
-    """Counts the amount of vowels in a string"""
+    """Counts the amount of vowels in a string."""
     vowels = ("a", "e", "i", "o", "u")
     num_of_vowels = 0
     for vowel in vowels:
@@ -20,7 +20,7 @@ def count_vowels(string: str) -> int:
 
 
 def is_banned_string(string: str) -> bool:
-    """Finds if the string contains at least one banned string"""
+    """Finds if the string contains at least one banned string."""
     banned_strings = ("ab", "cd", "pq", "xy")
     for banned_string in banned_strings:
         if banned_string in string:
@@ -29,7 +29,7 @@ def is_banned_string(string: str) -> bool:
 
 
 def is_nice_string(string: str) -> bool:
-    """Finds if a string is nice"""
+    """Finds if a string is nice."""
     condition_1 = count_vowels(string) >= 3
     condition_2 = has_double_letter(string)
     condition_3 = not is_banned_string(string)
@@ -38,7 +38,7 @@ def is_nice_string(string: str) -> bool:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/05/input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 

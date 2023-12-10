@@ -1,4 +1,4 @@
-"""Advent of Code 2020 day 5"""
+"""Advent of Code 2020 day 5."""
 
 with open("question.txt", encoding="utf-8") as f:
     text = f.read()

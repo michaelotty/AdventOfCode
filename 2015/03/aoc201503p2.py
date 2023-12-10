@@ -1,4 +1,4 @@
-"""Advent of code Day 3 part 2"""
+"""Advent of code Day 3 part 2."""
 
 from typing import Literal
 
@@ -19,7 +19,7 @@ def move_location(
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2015/03/input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 

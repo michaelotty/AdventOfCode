@@ -7,7 +7,7 @@ from sympy.parsing import sympy_parser
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/21/input.txt", encoding="utf-8") as file:
         monkeys = dict(line.split(": ") for line in file.read().splitlines())
     print("Part 1:", part_1(monkeys))

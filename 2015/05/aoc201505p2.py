@@ -1,8 +1,8 @@
-"""Advent of code Day 5 part 2"""
+"""Advent of code Day 5 part 2."""
 
 
 def contains_repeated_pair(string: str) -> bool:
-    """Finds if string contains a pair of letters which occurs twice"""
+    """Finds if string contains a pair of letters which occurs twice."""
     for i in range(len(string) - 1):
         search_string = string[i : i + 2]
         string1_to_search = string[0:i]
@@ -15,7 +15,7 @@ def contains_repeated_pair(string: str) -> bool:
 
 
 def contains_spaced_repeated_letter(string: str) -> bool:
-    """Finds if a letter repeats after with a 1 letter jump"""
+    """Finds if a letter repeats after with a 1 letter jump."""
     for i in range(len(string) - 2):
         if string[i] == string[i + 2]:
             return True
@@ -23,7 +23,7 @@ def contains_spaced_repeated_letter(string: str) -> bool:
 
 
 def is_nice_string(string: str) -> bool:
-    """Finds if a string is nice"""
+    """Finds if a string is nice."""
     condition_1 = contains_repeated_pair(string)
     condition_2 = contains_spaced_repeated_letter(string)
 
@@ -31,7 +31,7 @@ def is_nice_string(string: str) -> bool:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/05/input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 

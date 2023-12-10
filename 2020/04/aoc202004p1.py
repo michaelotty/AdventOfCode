@@ -1,10 +1,10 @@
-"""Advent of code 2020 day 4"""
+"""Advent of code 2020 day 4."""
 
 import re
 
 
 def part_1(lines):
-    """Part 1 of puzzle"""
+    """Part 1 of puzzle."""
     valid_records = 0
 
     for line in lines:
@@ -35,12 +35,12 @@ def part_1(lines):
 
 
 def part_2(lines):
-    """Part 2 of puzzle"""
+    """Part 2 of puzzle."""
     return lines
 
 
 def main() -> None:
-    """Start of program execution"""
+    """Program starts here."""
     with open("test.txt", encoding="utf-8") as file:
         lines = file.read().split("\n\n")
 

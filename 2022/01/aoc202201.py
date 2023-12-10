@@ -2,7 +2,7 @@
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/01/input.txt", encoding="utf-8") as file:
         numbers = [
             [int(num) for num in item.split()] for item in file.read().split("\n\n")

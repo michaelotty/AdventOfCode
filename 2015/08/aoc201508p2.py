@@ -1,8 +1,8 @@
-"""Advent of code Day 8 part 2"""
+"""Advent of code Day 8 part 2."""
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/08/input.txt", encoding="utf-8") as f:
         file_lines = f.read().split("\n")
 

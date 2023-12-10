@@ -1,11 +1,11 @@
-"""Advent of code Day 4 part 2"""
+"""Advent of code Day 4 part 2."""
 
 from collections import Counter
 from string import ascii_lowercase as letters
 
 
 def shift_cipher(encoded_text: str, room_number: int) -> str:
-    """Decodes encoded text"""
+    """Decode encoded text."""
     room_number %= len(letters)
     cipher = str.maketrans(letters, letters[room_number:] + letters[:room_number])
     decoded_text = encoded_text.translate(cipher)
@@ -13,7 +13,7 @@ def shift_cipher(encoded_text: str, room_number: int) -> str:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2016/04/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
 

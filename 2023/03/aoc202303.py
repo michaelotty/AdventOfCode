@@ -5,7 +5,7 @@ from itertools import product
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2023/03/test.txt", encoding="utf-8") as file:
         rows = file.read().splitlines()
 

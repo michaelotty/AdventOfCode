@@ -1,10 +1,10 @@
-"""Advent of Code 2020 7 part 1"""
+"""Advent of Code 2020 7 part 1."""
 
 import re
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("question.txt", encoding="utf-8") as file:
         file_content = file.read()
 

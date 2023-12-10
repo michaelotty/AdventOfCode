@@ -2,7 +2,7 @@
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/14/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
     print("Part 1:", part_1(form_grid(lines)))

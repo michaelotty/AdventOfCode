@@ -1,11 +1,11 @@
-"""Advent of code Day 2 part 1 and 2"""
+"""Advent of code Day 2 part 1 and 2."""
 
 from enum import IntEnum, unique
 
 
 @unique
 class Opcode(IntEnum):
-    """Opcodes"""
+    """Opcodes."""
 
     ADD = 1
     MULTIPLY = 2
@@ -13,7 +13,7 @@ class Opcode(IntEnum):
 
 
 def init_puzzle_input(file_input: tuple[int, ...], noun: int, verb: int) -> list[int]:
-    """Inits the puzzle input"""
+    """Inits the puzzle input."""
     numbers = list(file_input)
     numbers[1] = noun
     numbers[2] = verb
@@ -21,7 +21,7 @@ def init_puzzle_input(file_input: tuple[int, ...], noun: int, verb: int) -> list
 
 
 def solve_puzzle(file_input: tuple[int, ...], noun: int, verb: int) -> int:
-    """Solve the puzzle with corrected input"""
+    """Solve the puzzle with corrected input."""
     numbers = init_puzzle_input(file_input=file_input, noun=noun, verb=verb)
     i = 0
     while True:
@@ -38,7 +38,7 @@ def solve_puzzle(file_input: tuple[int, ...], noun: int, verb: int) -> int:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2019/02/input.txt", encoding="utf-8") as file:
         file_input = tuple(int(i) for i in file.read().split(","))
 

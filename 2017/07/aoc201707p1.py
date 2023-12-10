@@ -1,10 +1,10 @@
-"""Advent of code Day 7 part 1"""
+"""Advent of code Day 7 part 1."""
 
 import re
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2017/07/input.txt", encoding="utf-8") as file:
         lines = file.readlines()
 

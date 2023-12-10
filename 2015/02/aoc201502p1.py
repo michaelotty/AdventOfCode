@@ -1,10 +1,11 @@
-"""Advent of code Day 2 part 1"""
+"""Advent of code Day 2 part 1."""
 
 
 def area_of_cuboid(length: int, width: int, height: int) -> tuple[int, int]:
-    """Finds the surface area of a cuboid
+    """Find the surface area of a cuboid.
 
-    Also finds the size of the smallest side"""
+    Also finds the size of the smallest side.
+    """
     side_1 = length * width
     side_2 = length * height
     side_3 = height * width
@@ -14,7 +15,7 @@ def area_of_cuboid(length: int, width: int, height: int) -> tuple[int, int]:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/02/input.txt", encoding="utf-8") as f:
         file_contents = f.read()
 

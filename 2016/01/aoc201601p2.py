@@ -1,4 +1,4 @@
-"""Advent of code Day 1 part 2"""
+"""Advent of code Day 1 part 2."""
 
 from turtle import Screen, Turtle, Vec2D
 
@@ -36,7 +36,7 @@ def find_position(instructions: list[str]) -> Vec2D | None:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2016/01/input.txt", encoding="utf-8") as f:
         instructions = f.read().split(", ")
 

@@ -1,4 +1,4 @@
-"""Advent of code Day 21 part 1 and 2"""
+"""Advent of code Day 21 part 1 and 2."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from operator import itemgetter
 
 @dataclass(kw_only=True, frozen=True)
 class Item:
-    """Item from the shop"""
+    """Item from the shop."""
 
     name: str
     cost: int
@@ -19,30 +19,31 @@ class Item:
 
 
 class Character:
-    """Character attributes"""
+    """Character attributes."""
 
     def __init__(self, damage: int = 0, armor: int = 0, hit_points: int = 100) -> None:
-        """Defines variables"""
+        """Defines variables."""
         self.hit_points: int = hit_points
         self.damage: int = damage
         self.armor: int = armor
         self.money_spent: int = 0
         self.inventory: list[Item] = []
 
-    def __str__(self) -> str:
+    def __repr__(self) -> str:
+        """Return a string representation."""
         return f"HP: {self.hit_points}\nDA: {self.damage}\nAR: {self.armor}"
 
     @property
     def alive(self) -> bool:
-        """If the character is alive or not, i.e dead if hp <= 0"""
+        """If the character is alive or not, i.e dead if hp <= 0."""
         return self.hit_points > 0
 
     def attack(self, opponent: Character) -> None:
-        """The opponent attacks the self"""
+        """The opponent attacks the self."""
         opponent.hit_points -= max(self.damage - opponent.armor, 1)
 
     def add_item(self, item: Item) -> None:
-        """Adds an item to the inventory and applies the buff"""
+        """Add an item to the inventory and applies the buff."""
         self.money_spent += item.cost
         self.damage += item.damage
         self.armor += item.armor
@@ -50,7 +51,7 @@ class Character:
 
 
 def extract_shop_data(file_name: str) -> dict:
-    """Opens the shop file and extracts data into dict format"""
+    """Open the shop file and extracts data into dict format."""
     with open(file_name, encoding="utf-8") as file:
         shops_file = file.read().split("\n\n")
 
@@ -69,7 +70,7 @@ def extract_shop_data(file_name: str) -> dict:
 
 
 def does_player_win(player: Character, enemy: Character) -> bool:
-    """Plays out the game and finds if the player wins"""
+    """Play out the game and finds if the player wins."""
     while player.alive:
         player.attack(enemy)
         if not enemy.alive:
@@ -79,7 +80,7 @@ def does_player_win(player: Character, enemy: Character) -> bool:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     shop = extract_shop_data("shop.txt")
     shop["armor"].append(Item(name="no_armor", cost=0, damage=0, armor=0))
 

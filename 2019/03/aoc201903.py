@@ -1,10 +1,10 @@
-"""Advent of code Day 3 part 1 and 2"""
+"""Advent of code Day 3 part 1 and 2."""
 
 from typing import Callable
 
 
 def find_visited_locations(wire: tuple[str, ...]) -> tuple[set[tuple[int, int]], dict]:
-    """Create set of visited locations"""
+    """Create set of visited locations."""
     position = (0, 0)
     visited_locations = set()
     step_record = {}
@@ -25,7 +25,7 @@ def find_visited_locations(wire: tuple[str, ...]) -> tuple[set[tuple[int, int]],
 def find_intersections(
     wires: tuple[tuple[str, ...], ...],
 ) -> tuple[set[tuple[int, int]], tuple[dict, dict]]:
-    """Find all coords of all intersections of the wires"""
+    """Find all coords of all intersections of the wires."""
     wire_visits = [find_visited_locations(wire) for wire in wires]
     return (
         wire_visits[0][0] & wire_visits[1][0],
@@ -34,7 +34,7 @@ def find_intersections(
 
 
 def move_position(position: tuple[int, int], direction: str) -> tuple[int, int]:
-    """Return a new position, one step in the direction"""
+    """Return a new position, one step in the direction."""
     if direction == "U":
         return position[0], position[1] + 1
     if direction == "R":
@@ -52,7 +52,7 @@ def distance_to_closest_intersection(
     method: str,
     step_records: tuple[dict, dict] | None = None,
 ) -> int:
-    """Find the closest intersection"""
+    """Find the closest intersection."""
     distance_funcs: dict[str, Callable] = {
         "manhattan": manhattan_distance,
         "path": path_distance,
@@ -75,12 +75,12 @@ def distance_to_closest_intersection(
 
 
 def manhattan_distance(coordinate: tuple[int, int], *_) -> int:
-    """Calculates the manhattan distance to a coordinate"""
+    """Calculates the manhattan distance to a coordinate."""
     return sum(abs(dimension) for dimension in coordinate)
 
 
 def path_distance(coordinate: tuple[int, int], step_records: tuple[dict, dict]) -> int:
-    """Calculates the path distance to a coordinate"""
+    """Calculates the path distance to a coordinate."""
     return sum(
         step_count
         for step_record in step_records
@@ -90,7 +90,7 @@ def path_distance(coordinate: tuple[int, int], step_records: tuple[dict, dict]) 
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2019/03/input.txt", encoding="utf-8") as file:
         wires = tuple(tuple(i.split(",")) for i in file.read().split())
 

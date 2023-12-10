@@ -1,9 +1,12 @@
-"""Advent of code Day 20 part 1 and 2"""
+"""Advent of code Day 20 part 1 and 2."""
 
 
 def find_lowest_house(houses: list[int], value: int) -> tuple[int, int]:
-    """Finds the house id and amount of presents for the first house that contains
-    the presents that exceeds the value"""
+    """Finds the smallest house ID.
+
+    By amount of presents for the first house that contains the presents that exceeds
+    the value.
+    """
     for house_num, presents in enumerate(houses):
         if presents >= value:
             return house_num, presents
@@ -11,7 +14,7 @@ def find_lowest_house(houses: list[int], value: int) -> tuple[int, int]:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/20/input.txt", encoding="utf-8") as file:
         puzzle_input = int(file.read())
 

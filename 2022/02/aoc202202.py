@@ -2,7 +2,7 @@
 
 
 def main() -> None:
-    """Main function."""
+    """Program starts here."""
     with open("2022/02/input.txt", encoding="utf-8") as file:
         puzzle = [tuple(line.split()) for line in file.read().split("\n")]
     print("Part 1:", part_1(puzzle))

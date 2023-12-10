@@ -1,4 +1,4 @@
-"""Advent of code Day 19 part 2"""
+"""Advent of code Day 19 part 2."""
 
 import re
 from random import shuffle
@@ -6,7 +6,7 @@ from typing import Generator
 
 
 def gen_sequence(x, replacements: list) -> Generator[str, None, None]:
-    """Ngl, stole this from reddit"""
+    """Ngl, stole this from reddit."""
     for j, i in replacements:
         for k in range(len(x)):
             if x[k : k + len(i)] == i:
@@ -15,7 +15,7 @@ def gen_sequence(x, replacements: list) -> Generator[str, None, None]:
 
 
 def main() -> None:
-    """Main function"""
+    """Program starts here."""
     with open("2015/19/input.txt", encoding="utf-8") as file:
         lines = file.read().splitlines()
 
