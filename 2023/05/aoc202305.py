@@ -21,10 +21,9 @@ class Part1Solver:
                 dest_range, source_range, range_len = number_line.split()
                 self.mapping[(from_location, to_location)].append(
                     {
-                        "dst": int(dest_range),
                         "src": int(source_range),
+                        "src_end": int(source_range) + int(range_len) - 1,
                         "diff": int(dest_range) - int(source_range),
-                        "len": int(range_len),
                     }
                 )
 
@@ -45,11 +44,7 @@ class Part1Solver:
         for seed in self.seeds:
             for ranges in self.mapping.values():
                 for number_range in ranges:
-                    if (
-                        number_range["src"]
-                        <= seed
-                        < number_range["src"] + number_range["len"]
-                    ):
+                    if number_range["src"] <= seed < number_range["src_end"]:
                         seed += number_range["diff"]
                         break
             locations.append(seed)
