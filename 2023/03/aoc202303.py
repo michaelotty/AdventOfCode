@@ -74,13 +74,25 @@ def part_2(rows: list[str]) -> int:
 
                 number_coords: list[tuple[int, int]] = []
                 for digit_coord in digit_coords:
+                    if (digit_coord[0], digit_coord[1] + 1) in digit_coords and (
+                        digit_coord[0],
+                        digit_coord[1] + 2,
+                    ) in digit_coords:
+                        number_coords.append((digit_coord[0], digit_coord[1] + 1))
+                        continue
                     if (
-                        digit_coord[0],
-                        digit_coord[1] - 1,
-                    ) not in number_coords and (
-                        digit_coord[0],
-                        digit_coord[1] + 1,
-                    ) not in number_coords:
+                        (
+                            digit_coord[0],
+                            digit_coord[1] - 1,
+                        )
+                        not in number_coords
+                        and (
+                            digit_coord[0],
+                            digit_coord[1] + 1,
+                        )
+                        not in number_coords
+                        and digit_coord not in number_coords
+                    ):
                         number_coords.append(digit_coord)
                         continue
 
@@ -90,7 +102,7 @@ def part_2(rows: list[str]) -> int:
                         * find_number_at_coord(rows, number_coords[1])
                     )
 
-    return sum(gear_ratios)  # 53923625 too low
+    return sum(gear_ratios)
 
 
 def find_number_at_coord(grid: list[str], coord: tuple[int, int]) -> int:
