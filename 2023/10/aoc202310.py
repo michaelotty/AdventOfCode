@@ -1,20 +1,35 @@
 """Advent of code day 10."""
 
 
+class PipeMaze:
+    """Pipe maze."""
+
+    def __init__(self, input_text: str) -> None:
+        """Create a pipe maze."""
+        self.text = input_text
+
+    def __repr__(self) -> str:
+        """Return a string representation."""
+        translation_table = str.maketrans(
+            {
+                "|": "│",
+                "-": "─",
+                "L": "╰",
+                "J": "╯",
+                "7": "╮",
+                "F": "╭",
+                ".": " ",
+            }
+        )
+        return self.text.translate(translation_table)
+
+
 def main() -> None:
     """Program starts here."""
     with open("2023/10/input.txt", encoding="utf-8") as file:
-        data = file.read()
+        maze = PipeMaze(file.read())
 
-    data = data.replace("|", "\u2502")
-    data = data.replace("-", "\u2500")
-    data = data.replace("L", "\u2514")
-    data = data.replace("J", "\u2518")
-    data = data.replace("7", "\u2510")
-    data = data.replace("F", "\u250C")
-    data = data.replace(".", " ")
-
-    print(data)
+    print(maze)
 
     print("Part 1:", part_1())
     print("Part 2:", part_2())
