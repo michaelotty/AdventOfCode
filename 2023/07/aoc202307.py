@@ -19,6 +19,10 @@ class CamelCards:
 
         self.hands.sort()
 
+    def __repr__(self) -> str:
+        """Return a string representation."""
+        return "\t".join(hand.hand for hand in self.hands)
+
     @property
     def total_winnings(self) -> int:
         """Calculate the total winnings."""
@@ -103,7 +107,7 @@ class Hand:
 
     def __repr__(self) -> str:
         """Return a string representation."""
-        return f"{self.hand}:{self.bid}"
+        return f'Hand("{self.hand}",{self.bid})'
 
 
 def main() -> None:
@@ -117,6 +121,7 @@ def main() -> None:
 
 def part_1(camel_cards: CamelCards) -> int:
     """Solve part 1."""
+    print(camel_cards)
     return camel_cards.total_winnings  # 250581817 too low
 
 
