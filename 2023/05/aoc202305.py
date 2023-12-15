@@ -22,7 +22,7 @@ class Part1Solver:
                 self.mapping[(from_location, to_location)].append(
                     {
                         "src": int(source_range),
-                        "src_end": int(source_range) + int(range_len) - 1,
+                        "src_end": int(source_range) + int(range_len),
                         "diff": int(dest_range) - int(source_range),
                     }
                 )
