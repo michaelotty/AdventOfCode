@@ -1,5 +1,7 @@
 """Advent of code day 6."""
 
+import math
+
 
 def main() -> None:
     """Program starts here."""
@@ -11,18 +13,29 @@ def main() -> None:
     _, *time_strs = first_line.split()
     _, *distance_strs = second_line.split()
 
-    times = [int(x) for x in time_strs]
-    distances = [int(x) for x in distance_strs]
+    data = [
+        {"time": int(time), "distance": int(distance)}
+        for time, distance in zip(time_strs, distance_strs)
+    ]
 
-    print("Part 1:", part_1(times, distances))
+    print("Part 1:", part_1(data))
     print("Part 2:", part_2())
 
 
-def part_1(times: list[int], distances: list[int]) -> int:
+def part_1(races: list[dict[str, int]]) -> int:
     """Solve part 1."""
-    print(times)
-    print(distances)
-    return 0
+    race_wins = []
+    for race in races:
+        winners = []
+        for speed in range(1, race["time"]):
+            time_left = race["time"] - speed
+            distance = speed * time_left
+            if distance > race["distance"]:
+                winners.append(speed)
+
+        race_wins.append(len(winners))
+
+    return math.prod(race_wins)
 
 
 def part_2() -> int:
