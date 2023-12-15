@@ -19,6 +19,7 @@ class PipeMaze:
                 "7": "╮",
                 "F": "╭",
                 ".": " ",
+                "S": "▒",
             }
         )
         return self.text.translate(translation_table)
