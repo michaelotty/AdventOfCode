@@ -3,8 +3,16 @@
 
 def main() -> None:
     """Program starts here."""
-    with open("2023/10/test.txt", encoding="utf-8") as file:
+    with open("2023/10/input.txt", encoding="utf-8") as file:
         data = file.read()
+
+    data = data.replace("|", "\u2502")
+    data = data.replace("-", "\u2500")
+    data = data.replace("L", "\u2514")
+    data = data.replace("J", "\u2518")
+    data = data.replace("7", "\u2510")
+    data = data.replace("F", "\u250C")
+    data = data.replace(".", " ")
 
     print(data)
 
