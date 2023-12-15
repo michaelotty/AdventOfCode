@@ -3,7 +3,7 @@
 
 def main() -> None:
     """Program starts here."""
-    with open("2023/10/input.txt", encoding="utf-8") as file:
+    with open("2023/10/test.txt", encoding="utf-8") as file:
         data = file.read()
 
     print(data)
