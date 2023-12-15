@@ -21,9 +21,10 @@ class Day5Solver:
                 dest_range, source_range, range_len = number_line.split()
                 self.mapping[(from_location, to_location)].append(
                     {
-                        "dest_range": int(dest_range),
-                        "source_range": int(source_range),
-                        "range_len": int(range_len),
+                        "dst": int(dest_range),
+                        "src": int(source_range),
+                        "diff": int(dest_range) - int(source_range),
+                        "len": int(range_len),
                     }
                 )
 
@@ -39,25 +40,17 @@ class Day5Solver:
         mapping_str = ""
         for key, val in self.mapping.items():
             mapping_str += f"\n\n{key[0]}-to-{key[1]} map:\n"
-            mapping_str += "\n".join(
-                f'{line["dest_range"]} {line["source_range"]} {line["range_len"]}'
-                for line in val
-            )
+            mapping_str += "\n".join(str(line) for line in val)
 
         return f"seeds: {seeds_str}{mapping_str}"
-
-    def solve(self) -> int:
-        """Solve the solution."""
-        return 0
 
 
 def main() -> None:
     """Program starts here."""
-    with open("2023/05/test.txt", encoding="utf-8") as file:
+    with open("2023/05/input.txt", encoding="utf-8") as file:
         file_text = file.read()
 
     solver = Day5Solver(file_text)
-    print(solver)
 
     print("Part 1:", part_1(solver))
     print("Part 2:", part_2())
@@ -65,7 +58,20 @@ def main() -> None:
 
 def part_1(solver: Day5Solver) -> int:
     """Solve part 1."""
-    return solver.solve()
+    locations = []
+    for seed in solver.seeds:
+        for ranges in solver.mapping.values():
+            for number_range in ranges:
+                if (
+                    number_range["src"]
+                    <= seed
+                    < number_range["src"] + number_range["len"]
+                ):
+                    seed += number_range["diff"]
+                    break
+        locations.append(seed)
+
+    return min(locations)
 
 
 def part_2() -> int:
