@@ -106,7 +106,7 @@ def part_2(rows: list[str]) -> int:
 
 
 def find_number_at_coord(grid: list[str], coord: tuple[int, int]) -> int:
-    """Find the number located at coordinate"""
+    """Find the number located at coordinate."""
     width = len(grid[0])
 
     leftmost_col = coord[1]
