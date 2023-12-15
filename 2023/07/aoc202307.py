@@ -84,24 +84,10 @@ class Hand:
 
         card_ranking = {char: i for i, char in enumerate(STRENGTH_ORDER)}
 
-        # A Full house or Two pair
-        if len(self.hand_ranks) == 2:
-            if self.type == "full_house":
-                return (
-                    card_ranking[self.hand_ranks[0]] < card_ranking[other.hand_ranks[0]]
-                )
-
-            self_best_card_strength = max(
-                card_ranking[self.hand_ranks[0]], card_ranking[self.hand_ranks[1]]
-            )
-            other_best_card_strength = max(
-                card_ranking[other.hand_ranks[0]], card_ranking[other.hand_ranks[1]]
-            )
-            return self_best_card_strength < other_best_card_strength
-
-        # A Five_of_a_kind, Four_of_a_kind, Three_of_a_kind, One pair, High card
-        if len(self.hand_ranks) == 1:
-            return card_ranking[self.hand_ranks[0]] < card_ranking[other.hand_ranks[0]]
+        for left, right in zip(self.hand, other.hand):
+            if left == right:
+                continue
+            return card_ranking[left] < card_ranking[right]
 
         raise RuntimeError("Not a valid hand")
 
