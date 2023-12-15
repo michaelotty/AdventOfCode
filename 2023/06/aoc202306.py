@@ -19,7 +19,7 @@ def main() -> None:
     ]
 
     print("Part 1:", part_1(data))
-    print("Part 2:", part_2())
+    print("Part 2:", part_2(time_strs, distance_strs))
 
 
 def part_1(races: list[dict[str, int]]) -> int:
@@ -38,9 +38,19 @@ def part_1(races: list[dict[str, int]]) -> int:
     return math.prod(race_wins)
 
 
-def part_2() -> int:
+def part_2(time_strs: list[str], distance_strs: list[str]) -> int:
     """Solve part 2."""
-    return 0
+    time = int("".join(time_strs))
+    distance = int("".join(distance_strs))
+
+    winners = 0
+    for speed in range(1, time):
+        time_left = time - speed
+        distance_travelled = speed * time_left
+        if distance_travelled > distance:
+            winners += 1
+
+    return winners
 
 
 if __name__ == "__main__":
