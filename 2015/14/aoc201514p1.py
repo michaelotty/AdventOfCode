@@ -18,12 +18,7 @@ def main() -> None:  # pylint: disable=too-many-locals
             _,
             _,
             speed_time_str,
-            _,
-            _,
-            _,
-            _,
-            _,
-            _,
+            *_,
             rest_time_str,
             _,
         ) = line.split()
