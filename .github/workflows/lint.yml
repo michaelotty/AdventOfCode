@@ -33,7 +33,7 @@ jobs:
         flake8 $(git ls-files '*.py')
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        pylint -j 0 $(git ls-files '*.py')
     - name: Analysing the code with mypy
       run: |
         mypy $(git ls-files '*.py')
