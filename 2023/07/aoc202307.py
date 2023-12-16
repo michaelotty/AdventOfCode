@@ -120,7 +120,7 @@ class Hand2:
 
         self.type, self.hand_ranks = self._find_type(hand_str)
 
-    def _find_type(  # pylint: disable=too-many-return-statements
+    def _find_type(  # pylint: disable=too-many-return-statements,too-many-branches
         self, hand_str: str
     ) -> tuple[str, list[str]]:
         """Find hand type."""
