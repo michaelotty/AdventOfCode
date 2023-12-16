@@ -7,6 +7,8 @@ from enum import Enum, auto
 
 
 class HandType(Enum):
+    """Hand type enum."""
+
     PART_1 = auto()
     PART_2 = auto()
 
