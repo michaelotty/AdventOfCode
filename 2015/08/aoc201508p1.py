@@ -7,7 +7,7 @@ def main() -> None:
         file_lines = f.read().split("\n")
 
     code_len = sum(len(i) for i in file_lines)
-    memory_len = sum(len(eval(i)) for i in file_lines)
+    memory_len = sum(len(eval(i)) for i in file_lines)  # pylint: disable=eval-used
 
     print(f"Code: {code_len}")
     print(f"Memory: {memory_len}")

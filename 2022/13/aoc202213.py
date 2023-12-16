@@ -7,7 +7,8 @@ def main() -> None:
     """Program starts here."""
     with open("2022/13/input.txt", encoding="utf-8") as file:
         packet_pairs = [
-            [eval(line) for line in pair.split()] for pair in file.read().split("\n\n")
+            [eval(line) for line in pair.split()]  # pylint: disable=eval-used
+            for pair in file.read().split("\n\n")
         ]
 
     # a = Packet([[1], [2, 3, 4]])
