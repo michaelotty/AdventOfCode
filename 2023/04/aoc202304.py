@@ -36,11 +36,10 @@ def part_1(data: list[tuple[set[int], set[int]]]) -> int:
 
 def part_2(data: list[tuple[set[int], set[int]]]) -> int:
     """Solve part 2."""
-    # wins: list[set] = []
     scratch_card_copies = [1 for _ in data]
     for i, (nums_to_win, scratch_card) in enumerate(data):
-        wins = len(nums_to_win & scratch_card)
-        for j in range(i + 1, i + 1 + wins):
+        next_index = i + 1
+        for j in range(next_index, next_index + len(nums_to_win & scratch_card)):
             scratch_card_copies[j] += scratch_card_copies[i]
 
     return sum(scratch_card_copies)
