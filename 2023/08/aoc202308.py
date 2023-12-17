@@ -1,7 +1,7 @@
 """Advent of code day 8."""
 
 import itertools
-import re
+import math
 
 
 def main() -> None:
@@ -12,7 +12,7 @@ def main() -> None:
     mapping = create_mapping(mapping_text)
 
     print("Part 1:", part_1(steps, mapping))
-    print("Part 2:", part_2())
+    print("Part 2:", part_2(steps, mapping))
 
 
 def create_mapping(mapping_text: str) -> dict[str, tuple[str, str]]:
@@ -20,15 +20,16 @@ def create_mapping(mapping_text: str) -> dict[str, tuple[str, str]]:
     mapping = {}
 
     for line in mapping_text.splitlines():
-        key, left, right = re.findall(r"\w+", line)
+        key, left, right = line[:3], line[7:10], line[12:15]
         mapping[key] = (left, right)
 
     return mapping
 
 
-def part_1(steps, mapping) -> int:
+def part_1(steps: str, mapping: dict[str, tuple[str, str]]) -> int:
     """Solve part 1."""
     position = "AAA"
+
     distance_travelled = 0
     for direction in itertools.cycle(steps):
         distance_travelled += 1
@@ -40,12 +41,29 @@ def part_1(steps, mapping) -> int:
         if position == "ZZZ":
             return distance_travelled
 
-    return 0
+    raise RuntimeError("Not sure how we got here")
 
 
-def part_2() -> int:
+def part_2(steps: str, mapping: dict[str, tuple[str, str]]) -> int:
     """Solve part 2."""
-    return 0
+    positions = [key for key in mapping if key[-1] == "A"]
+
+    loops = []
+
+    for position in positions:
+        distance_travelled = 0
+        for direction in itertools.cycle(steps):
+            distance_travelled += 1
+            if direction == "L":
+                position = mapping[position][0]
+            else:
+                position = mapping[position][1]
+
+            if position[-1] == "Z":
+                loops.append(distance_travelled)
+                break
+
+    return math.lcm(*loops)
 
 
 if __name__ == "__main__":
