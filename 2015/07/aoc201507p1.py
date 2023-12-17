@@ -10,7 +10,7 @@ def main() -> None:
     print(parser.parse_instruction("a"))
 
 
-class Parser:
+class Parser:  # pylint: disable=too-few-public-methods
     """Parses the input of the file."""
 
     def __init__(self, file_contents) -> None:

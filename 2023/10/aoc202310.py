@@ -1,7 +1,7 @@
 """Advent of code day 10."""
 
 
-class PipeMaze:
+class PipeMaze:  # pylint: disable=too-few-public-methods
     """Pipe maze."""
 
     def __init__(self, input_text: str) -> None:

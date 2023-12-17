@@ -21,7 +21,7 @@ class Bag:
         return ", ".join(child.data for child in self.children)
 
 
-class BagTree(Bag):
+class BagTree(Bag):  # pylint: disable=too-few-public-methods
     """Bag Tree."""
 
     def __init__(self, root) -> None:
