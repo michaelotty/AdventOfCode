@@ -18,16 +18,21 @@ def main() -> None:
         for left_str, right_str in raw_data
     ]
 
-    for line in data:
-        print(line)
-
-    print("Part 1:", part_1())
+    print("Part 1:", part_1(data))
     print("Part 2:", part_2())
 
 
-def part_1() -> int:
+def part_1(data: list[tuple[list[int], list[int]]]) -> int:
     """Solve part 1."""
-    return 0
+    points = 0
+    for left, right in data:
+        nums_to_win, scratch_card = set(left), set(right)
+        won_nums = len(nums_to_win & scratch_card)
+        if not won_nums:
+            continue
+        points += 2 ** (won_nums - 1)
+
+    return points
 
 
 def part_2() -> int:
