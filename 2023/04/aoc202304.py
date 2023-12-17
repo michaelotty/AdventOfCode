@@ -12,21 +12,20 @@ def main() -> None:
 
     data = [
         (
-            [int(num) for num in re.findall(r"\d+", left_str)],
-            [int(num) for num in re.findall(r"\d+", right_str)],
+            {int(num) for num in re.findall(r"\d+", left_str)},
+            {int(num) for num in re.findall(r"\d+", right_str)},
         )
         for left_str, right_str in raw_data
     ]
 
     print("Part 1:", part_1(data))
-    print("Part 2:", part_2())
+    print("Part 2:", part_2(data))
 
 
-def part_1(data: list[tuple[list[int], list[int]]]) -> int:
+def part_1(data: list[tuple[set[int], set[int]]]) -> int:
     """Solve part 1."""
     points = 0
-    for left, right in data:
-        nums_to_win, scratch_card = set(left), set(right)
+    for nums_to_win, scratch_card in data:
         won_nums = len(nums_to_win & scratch_card)
         if not won_nums:
             continue
@@ -35,9 +34,16 @@ def part_1(data: list[tuple[list[int], list[int]]]) -> int:
     return points
 
 
-def part_2() -> int:
+def part_2(data: list[tuple[set[int], set[int]]]) -> int:
     """Solve part 2."""
-    return 0
+    # wins: list[set] = []
+    scratch_card_copies = [1 for _ in data]
+    for i, (nums_to_win, scratch_card) in enumerate(data):
+        wins = len(nums_to_win & scratch_card)
+        for j in range(i + 1, i + 1 + wins):
+            scratch_card_copies[j] += scratch_card_copies[i]
+
+    return sum(scratch_card_copies)
 
 
 if __name__ == "__main__":
