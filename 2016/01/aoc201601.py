@@ -65,12 +65,17 @@ def part_2(instructions: list[str]) -> int:
     return round(x + y)
 
 
-if __name__ == "__main__":
+def main() -> None:
+    """Program starts here."""
     with open("2016/01/input.txt", encoding="utf-8") as f:
-        instructions_text = f.read().split(", ")
+        instructions = f.read().split(", ")
 
     screen = Screen()
     screen.mode("logo")
-    print(f"Part 1: {part_1(instructions_text)}")
-    print(f"Part 2: {part_2(instructions_text)}")
+    print(f"Part 1: {part_1(instructions)}")
+    print(f"Part 2: {part_2(instructions)}")
     screen.mainloop()
+
+
+if __name__ == "__main__":
+    main()
