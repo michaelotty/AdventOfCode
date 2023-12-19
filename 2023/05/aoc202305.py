@@ -96,7 +96,7 @@ class Part2Solver:
         return f"seeds: {seeds_str}{mapping_str}"
 
     def solve(self) -> int:
-        """Solve part 1."""
+        """Solve part 2."""
         locations = []
         for seed in self.seeds:
             for ranges in self.mapping.values():
