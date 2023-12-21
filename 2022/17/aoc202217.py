@@ -5,8 +5,6 @@ import pathlib
 from abc import ABC, abstractmethod
 from typing import Generator
 
-import tqdm
-
 
 def main() -> None:
     """Program starts here."""
