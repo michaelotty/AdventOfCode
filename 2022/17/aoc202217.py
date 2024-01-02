@@ -1,7 +1,6 @@
 """Advent of code Day 17."""
 
 import itertools
-import pathlib
 from abc import ABC, abstractmethod
 from typing import Generator
 
@@ -202,13 +201,7 @@ class Grid:
         return self._str_of_grid(self.grid)
 
 
-def main(file_name: pathlib.Path):
-    """Main function."""
-    print("Part 1:", part_1(file_name))
-    print("Part 2:", part_2(file_name.with_stem("test1")))
-
-
-def part_1(file_name):
+def part_1() -> int:
     """Solve part 1."""
     grid = Grid("2022/17/input.txt")
     for _ in range(2022):
@@ -217,16 +210,15 @@ def part_1(file_name):
     return grid.height
 
 
-def part_2(file_name):
+def part_2() -> int:
     """Solve part 2."""
     grid = Grid("2022/17/test1.txt")
 
-    if not debug:
-        for _ in range(1000000000000):
-            next(grid)
+    for _ in range(1000000000000):
+        next(grid)
 
     return grid.height
 
 
 if __name__ == "__main__":
-    main(pathlib.Path("aoc2022/17/input.txt"))
+    main()
