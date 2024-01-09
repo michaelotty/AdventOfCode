@@ -81,6 +81,7 @@ class Part2Solver:
                         "src": int(source_range),
                         "diff": int(dest_range) - int(source_range),
                         "len": int(range_len),
+                        "src_end": int(source_range) + int(range_len),
                     }
                 )
 
@@ -97,18 +98,14 @@ class Part2Solver:
 
     def solve(self) -> int:
         """Solve part 2."""
-        locations = []
+        locations = set()
         for seed in self.seeds:
             for ranges in self.mapping.values():
                 for number_range in ranges:
-                    if (
-                        number_range["src"]
-                        <= seed
-                        < number_range["src"] + number_range["len"]
-                    ):
+                    if number_range["src"] <= seed < number_range["src_end"]:
                         seed += number_range["diff"]
                         break
-            locations.append(seed)
+            locations.add(seed)
 
         return min(locations)
 
