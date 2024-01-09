@@ -40,16 +40,16 @@ class Part1Solver:
 
     def solve(self) -> int:
         """Solve part 1."""
-        locations = set()
+        min_seed = 2**31
         for seed in self.seeds:
             for ranges in self.mapping.values():
                 for number_range in ranges:
                     if number_range["src"] <= seed < number_range["src_end"]:
                         seed += number_range["diff"]
                         break
-            locations.add(seed)
+            min_seed = min(min_seed, seed)
 
-        return min(locations)
+        return min_seed
 
 
 class Part2Solver:
@@ -98,16 +98,16 @@ class Part2Solver:
 
     def solve(self) -> int:
         """Solve part 2."""
-        locations = set()
+        min_seed = 2**31
         for seed in self.seeds:
             for ranges in self.mapping.values():
                 for number_range in ranges:
                     if number_range["src"] <= seed < number_range["src_end"]:
                         seed += number_range["diff"]
                         break
-            locations.add(seed)
+            min_seed = min(min_seed, seed)
 
-        return min(locations)
+        return min_seed
 
 
 def main() -> None:
