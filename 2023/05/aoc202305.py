@@ -40,14 +40,14 @@ class Part1Solver:
 
     def solve(self) -> int:
         """Solve part 1."""
-        locations = []
+        locations = set()
         for seed in self.seeds:
             for ranges in self.mapping.values():
                 for number_range in ranges:
                     if number_range["src"] <= seed < number_range["src_end"]:
                         seed += number_range["diff"]
                         break
-            locations.append(seed)
+            locations.add(seed)
 
         return min(locations)
 
