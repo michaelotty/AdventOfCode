@@ -256,9 +256,7 @@ public:
     RealGame(std::pair<int64_t, int64_t> startingPositions)
         : m_player1Position(startingPositions.first),
           m_player2Position(startingPositions.second),
-          m_scores(),
-          m_answer{0, 0},
-          m_foundAnswer(false)
+          m_scores(), m_answer{0, 0}, m_foundAnswer(false)
     {
     }
 
