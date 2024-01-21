@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install clang-format
         run: |
-          sudo apt-get install -y clang-format
+          sudo apt-get -yV install clang-format
       - name: Analysing the code with clang-format
         run: |
           clang-format --Werror --dry-run $(git ls-files '*.cpp' '*.h')
