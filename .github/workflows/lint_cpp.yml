@@ -1,0 +1,15 @@
+name: Lint C++
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Clang
+        run: |
+          sudo apt install clang-format
+      - name: Analysing the code with clang-format
+        run: |
+          clang-format --dry-run $(git ls-files '*.cpp' '*.h')
