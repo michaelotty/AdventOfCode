@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install clang-format
-        run: |
-          sudo apt-get update
-          sudo apt-cache search clang-format
-          sudo apt-get -y install clang-format
+      # - name: Install clang-format
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-cache search clang-format
+      #     sudo apt-get -y install clang-format
       - name: Analysing the code with clang-format
         run: |
           clang-format --Werror --dry-run $(git ls-files '*.cpp' '*.h')
