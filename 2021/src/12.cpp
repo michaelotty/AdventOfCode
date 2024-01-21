@@ -39,7 +39,8 @@ private:
     std::map<std::string, std::list<std::string>> m_nodes;
 
     /**
-     * @brief Add a node to the node graph, if it's not unique then is overridden
+     * @brief Add a node to the node graph, if it's not unique then is
+     * overridden
      *
      * @param name or ID of the node
      */

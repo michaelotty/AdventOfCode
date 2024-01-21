@@ -104,8 +104,8 @@ void PrintVector(const T& vec, const char* sep = " ")
  * "
  */
 template <typename T>
-void PrintMap(const T& map,
-              const char* keyValSep = ": ", const char* elemSep = ", ")
+void PrintMap(const T& map, const char* keyValSep = ": ",
+              const char* elemSep = ", ")
 {
     std::cout << "{";
     bool isFirst = true;

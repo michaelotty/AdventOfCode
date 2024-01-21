@@ -27,7 +27,7 @@
 class TrenchMap
 {
 private:
-    std::string m_algorithm;           ///< Algorithm input from file
+    std::string m_algorithm;          ///< Algorithm input from file
     std::vector<std::string> m_image; ///< Image with each line as element
 
     /**

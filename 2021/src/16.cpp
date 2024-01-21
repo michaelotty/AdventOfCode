@@ -181,7 +181,9 @@ void Solve(const std::string& bin, int& index, int64_t& versionNumSum,
             int total = 0;
 
             for (int j = len - 1; j >= 0; j--)
-                total += (static_cast<int64_t>(bin[index++]) - static_cast<int64_t>('0')) << j;
+                total += (static_cast<int64_t>(bin[index++])
+                          - static_cast<int64_t>('0'))
+                         << j;
 
             packetType = static_cast<PacketType>(total);
 
