@@ -1,4 +1,4 @@
-name: Lint Python
+name: Lint all source files
 
 on: [push]
 
@@ -37,3 +37,6 @@ jobs:
       - name: Analysing the code with mypy
         run: |
           mypy $(git ls-files '*.py')
+      - name: Analysing the code with clang-format
+        run: |
+          clang-format --Werror --dry-run $(git ls-files '*.cpp' '*.h')
