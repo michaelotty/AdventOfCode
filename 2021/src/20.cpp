@@ -22,12 +22,12 @@
 ================================================================================
 */
 /**
- * @brief Trench map image and enchancement algoritm
+ * @brief Trench map image and enchancement algorithm
  */
 class TrenchMap
 {
 private:
-    std::string m_algoritm;           ///< Algoritm input from file
+    std::string m_algorithm;           ///< Algorithm input from file
     std::vector<std::string> m_image; ///< Image with each line as element
 
     /**
@@ -72,8 +72,8 @@ private:
     {
         const std::size_t sizeChange = 2;
         char gutterChar = (m_image[0][0] == '#')
-                              ? m_algoritm[m_algoritm.length() - 1]
-                              : m_algoritm[0];
+                              ? m_algorithm[m_algorithm.length() - 1]
+                              : m_algorithm[0];
         std::vector<std::string> newImage(
             m_image.size() + sizeChange,
             std::string(m_image[0].length() + sizeChange, gutterChar));
@@ -83,7 +83,7 @@ private:
             for (std::size_t j = 0; j < (m_image[0].length() - sizeChange); j++)
             {
                 std::size_t idx = GetIndex(i, j);
-                newImage[i + 2].replace(j + 2, 1, 1, m_algoritm[idx]);
+                newImage[i + 2].replace(j + 2, 1, 1, m_algorithm[idx]);
             }
         }
 
@@ -102,7 +102,7 @@ public:
         std::size_t splitPoint = text.find("\n\n");
         std::size_t end;
 
-        m_algoritm = text.substr(0, splitPoint);
+        m_algorithm = text.substr(0, splitPoint);
         splitPoint += 1;
 
         std::size_t lineLen = text.find('\n', splitPoint + 1) - splitPoint
@@ -125,7 +125,7 @@ public:
     }
 
     /**
-     * @brief Run enhancement algoritm for the number of steps provided
+     * @brief Run enhancement algorithm for the number of steps provided
      *
      * @param n Number of steps to enhance
      */
@@ -161,7 +161,7 @@ public:
  */
 std::ostream& operator<<(std::ostream& os, const TrenchMap& map)
 {
-    os << map.m_algoritm << "\n\n";
+    os << map.m_algorithm << "\n\n";
     for (const auto& row : map.m_image)
         os << row << "\n";
     return os;

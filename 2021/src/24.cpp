@@ -342,7 +342,7 @@ bool CheckModelNumberInvalid(int64_t input)
 /**
  * @brief Solves part 1 of the puzzle
  *
- * @return int64_t Solution as in interger
+ * @return int64_t Solution as in integer
  */
 static int64_t Part1()
 {
@@ -357,7 +357,7 @@ static int64_t Part1()
 /**
  * @brief Solves part 2 of the puzzle
  *
- * @return int64_t Solution as in interger
+ * @return int64_t Solution as in integer
  */
 static int64_t Part2()
 {

@@ -54,22 +54,22 @@ ParseSevenSegmentData(const std::string& text)
         std::stringstream left(line.substr(0, pipeLocation - 1));
         std::stringstream right(line.substr(pipeLocation + 2));
 
-        std::array<std::set<char>, 10> leftvector;
-        std::array<std::string, 4> rightvector;
+        std::array<std::set<char>, 10> leftVector;
+        std::array<std::string, 4> rightVector;
 
         std::string word;
 
         size_t i = 0;
         while (left >> word)
-            leftvector[i++] = std::set<char>(word.begin(), word.end());
+            leftVector[i++] = std::set<char>(word.begin(), word.end());
 
         i = 0;
         while (right >> word)
         {
             std::sort(word.begin(), word.end());
-            rightvector[i++] = word;
+            rightVector[i++] = word;
         }
-        data.push_back(std::make_pair(leftvector, rightvector));
+        data.push_back(std::make_pair(leftVector, rightVector));
     }
     return data;
 }

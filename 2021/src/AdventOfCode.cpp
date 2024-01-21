@@ -1,7 +1,7 @@
 /**
  * @file AdventOfCode.cpp
  * @author Michael Otty (michael.otty@gmail.com)
- * @brief Program starts from here and calls the relavant function for each day
+ * @brief Program starts from here and calls the relevant function for each day
  * @version 1.0.0
  * @date 2021-12-06
  *

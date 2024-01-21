@@ -34,7 +34,7 @@ int64_t SimulateLanternfish(const std::vector<int>& lanternfish, int steps);
 ================================================================================
 */
 /**
- * @brief Simulate a single day of fish spawing
+ * @brief Simulate a single day of fish spawning
  *
  * @param lanternfish Previous day of fish, is modified by function
  */

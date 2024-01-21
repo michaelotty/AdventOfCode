@@ -87,7 +87,7 @@ static int Part2(const std::vector<std::string>& lines)
 }
 
 /**
- * @brief Convert text file to vector of strings seperated with whitespace
+ * @brief Convert text file to vector of strings separated with whitespace
  *
  * @param text Text from file
  * @return std::vector<std::string> Split string into vector of strings on

@@ -35,7 +35,7 @@ private:
     std::vector<std::pair<int, int>> m_valueDepthPair;
 
     /**
-     * @brief Peform explode operation on Row
+     * @brief Perform explode operation on Row
      *
      * @param idx of item to explode
      * @param depth to explode

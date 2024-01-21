@@ -290,7 +290,7 @@ private:
      * @brief Get the amount of wins for both players
      *
      * @param key From starting positions and scores given by key
-     * @return Amound of wins for player 1 then 2
+     * @return A round of wins for player 1 then 2
      */
     std::pair<int64_t, int64_t> GetWins(const ScoreKey& key)
     {

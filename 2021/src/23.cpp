@@ -83,7 +83,7 @@ struct hash<PuzzleGrid>
 };
 
 /**
- * @brief Hash function for enroute ((from, to) pair)
+ * @brief Hash function for en route ((from, to) pair)
  */
 template <>
 struct hash<std::pair<int, int>>
@@ -313,7 +313,7 @@ static int Part2(bool doPrint)
     //   #.#.#.#.#
     //   #########
 
-    std::unordered_map<std::pair<int, int>, std::vector<int>> enroute{
+    std::unordered_map<std::pair<int, int>, std::vector<int>> enRoute{
         {{0, 2}, {1}},
         {{0, 4}, {1, 3}},
         {{0, 6}, {1, 3, 5}},
@@ -467,7 +467,7 @@ static int Part2(bool doPrint)
                 // If blocked path
                 bool blockedPath = false;
                 for (const auto& pointOnRoute :
-                     enroute[std::make_pair(std::min(fromIndex, toIndex),
+                     enRoute[std::make_pair(std::min(fromIndex, toIndex),
                                             std::max(fromIndex, toIndex))])
                     if (current[pointOnRoute].length())
                     {

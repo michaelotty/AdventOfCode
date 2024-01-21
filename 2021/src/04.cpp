@@ -112,7 +112,7 @@ public:
     /**
      * @brief Get the current score of the BingoCard
      *
-     * Score is calculated by summing the unblotted numbers.
+     * Score is calculated by summing the un-blotted numbers.
      *
      * @return int the calculated score
      */
@@ -200,7 +200,7 @@ public:
     int GetCurrentBall() const { return *m_ballsIter; }
 
     /**
-     * @brief Get the score if someone won a line, or 0 if noone won
+     * @brief Get the score if someone won a line, or 0 if no one won
      *
      * @return int a score of the first winner found or 0
      */
