@@ -12,4 +12,4 @@ jobs:
           sudo apt-get install -y clang-format
       - name: Analysing the code with clang-format
         run: |
-          clang-format --dry-run $(git ls-files '*.cpp' '*.h')
+          clang-format --Werror --dry-run $(git ls-files '*.cpp' '*.h')
