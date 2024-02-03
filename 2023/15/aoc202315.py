@@ -4,17 +4,26 @@
 def main() -> None:
     """Program starts here."""
     with open("2023/15/input.txt", encoding="utf-8") as file:
-        data = file.read()
+        data = file.read().replace("\n", "").split(",")
 
-    print(data)
-
-    print("Part 1:", part_1())
+    print("Part 1:", part_1(data))
     print("Part 2:", part_2())
 
 
-def part_1() -> int:
+def part_1(data: list[str]) -> int:
     """Solve part 1."""
-    return 0
+    return sum(hash_algorithm(item) for item in data)
+
+
+def hash_algorithm(string: str) -> int:
+    """Return the HASH of a string."""
+    output = 0
+    for char in string:
+        output += ord(char)
+        output *= 17
+        output %= 256
+
+    return output
 
 
 def part_2() -> int:
