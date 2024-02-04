@@ -30,9 +30,9 @@ def part_2(grid: list[list[str]]) -> int:
         starting_points.append(((height, i), "u"))
 
     # Add left and right
-    for i in range(width):
+    for i in range(height):
         starting_points.append(((i, -1), "r"))
-        starting_points.append(((i, height), "l"))
+        starting_points.append(((i, width), "l"))
 
     return max(
         run_energisation_sequence(grid, position, direction_char)
