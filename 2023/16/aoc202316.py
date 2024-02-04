@@ -84,9 +84,7 @@ def part_1(data: list[list[str]]) -> int:
         if in_bounds(next_position):
             frontier.add((next_position, direction_char))
 
-    visited_tiles = {position for position, _ in visited}
-
-    return len(visited_tiles)
+    return len({position for position, _ in visited})
 
 
 def part_2() -> int:
