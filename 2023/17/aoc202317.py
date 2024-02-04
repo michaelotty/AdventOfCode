@@ -12,6 +12,42 @@ def main() -> None:
 
 def part_1(grid: list[list[int]]) -> int:
     """Solve part 1."""
+    start: tuple[int, int] = (0, 0)
+    # end: tuple[int, int] = (len(grid), len(grid[0]))
+    directions: dict[str, tuple[int, int]] = {
+        "u": (-1, 0),
+        "d": (1, 0),
+        "l": (0, -1),
+        "r": (0, 1),
+    }
+
+    frontier: list[tuple[int, int]] = [start]
+    reached: set[tuple[int, int]] = {start}
+
+    def in_bounds(pos: tuple[int, int]) -> bool:
+        width = len(grid[0])
+        height = len(grid)
+        return 0 <= pos[0] < height and 0 <= pos[1] < width
+
+    def get_neighbors(pos: tuple[int, int]) -> list[tuple[int, int]]:
+        new_neighbors = []
+        for i in range(3):
+            for direction in directions.values():
+                new_neighbor = (
+                    pos[0] + direction[0] * (i + 1),
+                    pos[1] + direction[1] * (i + 1),
+                )
+                if in_bounds(new_neighbor):
+                    new_neighbors.append(new_neighbor)
+        return new_neighbors
+
+    while frontier:
+        position = frontier.pop()
+        for neighbour in get_neighbors(position):
+            if neighbour not in reached:
+                frontier.insert(0, neighbour)
+                reached.add(neighbour)
+
     return grid[0][0]
 
 
