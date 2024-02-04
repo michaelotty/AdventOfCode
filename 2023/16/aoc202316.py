@@ -1,30 +1,63 @@
 """Advent of code day 16."""
 
+from typing import Literal
+
 
 def main() -> None:
     """Program starts here."""
     with open("2023/16/input.txt", encoding="utf-8") as file:
-        data = [list(line) for line in file.read().splitlines()]
+        grid = [list(line) for line in file.read().splitlines()]
 
-    print("Part 1:", part_1(data))
-    print("Part 2:", part_2())
+    print("Part 1:", part_1(grid))
+    print("Part 2:", part_2(grid))
 
 
-def part_1(data: list[list[str]]) -> int:
+def part_1(grid: list[list[str]]) -> int:
     """Solve part 1."""
+    return run_energisation_sequence(grid, position=(0, -1), direction_char="r")
+
+
+def part_2(grid: list[list[str]]) -> int:
+    """Solve part 2."""
+    width = len(grid[0])
+    height = len(grid)
+
+    starting_points = []
+
+    # Add top and bottom
+    for i in range(width):
+        starting_points.append(((-1, i), "d"))
+        starting_points.append(((height, i), "u"))
+
+    # Add left and right
+    for i in range(width):
+        starting_points.append(((i, -1), "r"))
+        starting_points.append(((i, height), "l"))
+
+    return max(
+        run_energisation_sequence(grid, position, direction_char)
+        for position, direction_char in starting_points
+    )
+
+
+def run_energisation_sequence(
+    grid: list[list[str]],
+    position: tuple[int, int],
+    direction_char: Literal["u", "d", "l", "r"] | str,
+) -> int:
+    """Energise the grid from a starting position and direction."""
     directions: dict[str, tuple[int, int]] = {
         "u": (-1, 0),
         "d": (1, 0),
         "l": (0, -1),
         "r": (0, 1),
     }
-    position = (0, -1)
-    direction_char = "r"
+
     direction = directions[direction_char]
 
     def in_bounds(pos: tuple[int, int]) -> bool:
-        width = len(data[0])
-        height = len(data)
+        width = len(grid[0])
+        height = len(grid)
         return 0 <= pos[0] < height and 0 <= pos[1] < width
 
     visited: set[tuple[tuple[int, int], str]] = set()
@@ -44,7 +77,7 @@ def part_1(data: list[list[str]]) -> int:
             continue
         visited.add((position, direction_char))
 
-        position_ch = data[position[0]][position[1]]
+        position_ch = grid[position[0]][position[1]]
 
         if (
             position_ch == "."
@@ -85,11 +118,6 @@ def part_1(data: list[list[str]]) -> int:
             frontier.add((next_position, direction_char))
 
     return len({position for position, _ in visited})
-
-
-def part_2() -> int:
-    """Solve part 2."""
-    return 0
 
 
 def print_debug(
