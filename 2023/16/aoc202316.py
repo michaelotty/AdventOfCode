@@ -84,22 +84,6 @@ def part_1(data: list[list[str]]) -> int:
         if in_bounds(next_position):
             frontier.add((next_position, direction_char))
 
-    def print_debug():
-        grid = [["." for _ in range(len(data[0]))] for _ in range(len(data))]
-
-        for position, direction_char in visited:
-            printable_direction = {"u": "^", "d": "v", "l": "<", "r": ">"}
-            direction_char = printable_direction[direction_char]
-            if grid[position[0]][position[1]] == ".":
-                grid[position[0]][position[1]] = direction_char
-            else:
-                grid[position[0]][position[1]] = "2"
-
-        for row in grid:
-            print("".join(row))
-
-    print_debug()
-
     visited_tiles = {position for position, _ in visited}
 
     return len(visited_tiles)
@@ -108,6 +92,26 @@ def part_1(data: list[list[str]]) -> int:
 def part_2() -> int:
     """Solve part 2."""
     return 0
+
+
+def print_debug(
+    width: int,
+    height: int,
+    visited: set[tuple[tuple[int, int], str]],
+) -> None:
+    """Print the light beams for debugging."""
+    grid = [["." for _ in range(width)] for _ in range(height)]
+
+    for position, direction_char in visited:
+        printable_direction = {"u": "^", "d": "v", "l": "<", "r": ">"}
+        direction_char = printable_direction[direction_char]
+        if grid[position[0]][position[1]] == ".":
+            grid[position[0]][position[1]] = direction_char
+        else:
+            grid[position[0]][position[1]] = "2"
+
+    for row in grid:
+        print("".join(row))
 
 
 if __name__ == "__main__":
