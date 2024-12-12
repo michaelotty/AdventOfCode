@@ -54,7 +54,14 @@ def count_words(data, i, j):
 
 def part_2(data) -> int:
     """Solve part 2."""
-    return 0
+    count = 0
+    for i in range(1, len(data[0]) - 1):
+        for j in range(1, len(data) - 1):
+            diag1 = "".join((data[i - 1][j - 1], data[i][j], data[i + 1][j + 1]))
+            diag2 = "".join((data[i - 1][j + 1], data[i][j], data[i + 1][j - 1]))
+            if (diag1 in ("MAS", "SAM")) and (diag2 in ("MAS", "SAM")):
+                count += 1
+    return count
 
 
 if __name__ == "__main__":
