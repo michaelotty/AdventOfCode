@@ -175,8 +175,7 @@ std::ostream& operator<<(std::ostream& os, const Scanners& scanners)
     int scannerId = 0;
     for (const auto& scanner : scanners)
     {
-        os << "--- scanner " << scannerId++ << " ---"
-           << "\n";
+        os << "--- scanner " << scannerId++ << " ---\n";
         os << scanner << "\n";
     }
     return os;
